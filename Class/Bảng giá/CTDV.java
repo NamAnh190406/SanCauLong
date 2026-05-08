@@ -1,12 +1,12 @@
 
 
 public class CTDV {
-    private String maCTDV;
-    private String maDV;
-    private String maDS;
-    private long soLuong;
-    private long donGia;
-    private long thanhTien;
+    public String maCTDV;
+    public String maDV;
+    public String maDS;
+    public long soLuong;
+    public long donGia;
+    public long thanhTien;
 
     public CTDV() {
     }
