@@ -12,13 +12,13 @@ import java.time.LocalDate;
  */
 
 public class DATSAN {
-    private String maDS;
-    private String maKH;
-    private String maNV;
-    private String maHD;
-    private LocalDate ngayDat;
-    private String trangThai;
-    private long tongTienTamTinh;
+    public String maDS;
+    public String maKH;
+    public String maNV;
+    public String maHD;
+    public LocalDate ngayDat;
+    public String trangThai;
+    public long tongTienTamTinh;
     public DATSAN(){}
     public DATSAN (String mads, String makh, String manv, String mahd, LocalDate ngay, long tongtien, String trangthai)
     {
