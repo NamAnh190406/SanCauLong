@@ -1,35 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Model;
-
 import java.time.LocalDate;
-
-/**
- *
- * @author Hi
- */
 
 public class DATSAN {
     public String maDS;
     public String maKH;
     public String maNV;
     public String maHD;
+    public String maSan; // Thêm để khớp với DB
+    public String maKG;  // Thêm để khớp với DB
     public LocalDate ngayDat;
     public String trangThai;
     public long tongTienTamTinh;
-    public DATSAN(){}
-    public DATSAN (String mads, String makh, String manv, String mahd, LocalDate ngay, long tongtien, String trangthai)
-    {
-        this.maDS=mads;
-        this.maKH=makh;
-        this.maNV= manv;
-        this.maHD= mahd;
-        this.ngayDat= ngay;
-        this.trangThai= trangthai;
-        this.tongTienTamTinh= tongtien;
+
+    public DATSAN() {}
+
+    // Constructor đầy đủ
+    public DATSAN(String mads, String makh, LocalDate ngay, long tongtien, String trangthai) {
+        this.maDS = mads;
+        this.maKH = makh;
+        this.ngayDat = ngay;
+        this.tongTienTamTinh = tongtien;
+        this.trangThai = trangthai;
     }
+
+
     public long getTongTienTamTinh(){
         return tongTienTamTinh;
     }
@@ -108,5 +101,5 @@ public class DATSAN {
                 '}';
     }
     
-    
 }
+
