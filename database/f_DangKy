@@ -1,0 +1,48 @@
+CREATE OR REPLACE FUNCTION f_DangKy(
+    f_Hoten    IN KHACHHANG.HoTen%TYPE,
+    f_sdt      IN KHACHHANG.SDT%TYPE,
+    f_email    IN KHACHHANG.Email%TYPE,
+    f_username IN TAIKHOAN.Username%TYPE,
+    f_pass     IN TAIKHOAN.Password%TYPE
+) RETURN VARCHAR2 IS
+    f_dem    NUMBER;
+    v_ma_tk  TAIKHOAN.Ma_TK%TYPE;
+    v_ma_kh  KHACHHANG.Ma_KH%TYPE;
+BEGIN
+    -- Kiểm tra username đã tồn tại chưa
+    SELECT COUNT(*) INTO f_dem FROM TAIKHOAN WHERE Username = f_username;
+    IF f_dem > 0 THEN 
+        RETURN 'Username đã tồn tại!';
+    END IF;
+
+    -- Kiểm tra SĐT đã tồn tại chưa
+    SELECT COUNT(*) INTO f_dem FROM KHACHHANG WHERE SDT = f_sdt;
+    IF f_dem > 0 THEN 
+        RETURN 'Số điện thoại đã được đăng ký!';
+    END IF;
+
+    -- Kiểm tra Email đã tồn tại chưa
+    SELECT COUNT(*) INTO f_dem FROM KHACHHANG WHERE Email = f_email;
+    IF f_dem > 0 THEN 
+        RETURN 'Email đã được đăng ký!';
+    END IF;
+
+    -- Insert vào TAIKHOAN trước
+    INSERT INTO TAIKHOAN (Username, Password)
+    VALUES (f_username, f_pass);
+    
+    -- Lấy Ma_TK vừa insert
+    SELECT Ma_TK INTO v_ma_tk FROM TAIKHOAN WHERE Username = f_username;
+
+    -- Insert vào KHACHHANG
+    INSERT INTO KHACHHANG (HoTen, SDT, Email, Ma_TK)
+    VALUES (f_Hoten, f_sdt, f_email, v_ma_tk);
+
+    COMMIT;
+    RETURN 'Đăng ký thành công!';
+
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RETURN 'Lỗi: ' || SQLERRM;
+END;
