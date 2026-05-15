@@ -1,0 +1,37 @@
+/* Trạng thái bình thường */
+.login-button {
+    -fx-background-color: #f7b500;
+    -fx-background-radius: 30;    /* Bo tròn */
+    -fx-border-radius: 30;        /* Bo viền tròn */
+    -fx-background-insets: 0;      /* Xóa các khoảng hở mặc định */
+    -fx-text-fill: white;
+    -fx-padding: 10 30 10 30;
+-fx-font-family: "Sitka Heading"; 
+    -fx-font-size: 15px; 
+    -fx-font-weight: bold;
+}
+
+/* Quan trọng: Trạng thái khi ấn hoặc click vào (Focus) */
+.login-button:focused {
+    -fx-background-color: #f7b500; /* Hoặc màu khác tùy bạn */
+    -fx-background-radius: 30;    /* Phải giữ nguyên thông số này */
+    -fx-border-radius: 30;        /* Phải giữ nguyên thông số này */
+    -fx-background-insets: 0;      /* Triệt tiêu cái khung vuông mặc định */
+    
+    /* Nếu muốn có viền nhẹ khi nhấn cho đẹp thì thêm dòng dưới */
+    -fx-border-color: rgba(255, 255, 255, 0.5); 
+    -fx-border-width: 1;
+}
+
+
+.Dat-lai-mk-button {
+    -fx-background-color: #f7b500;
+    -fx-background-radius: 30;    /* Bo tròn */
+    -fx-border-radius: 30;        /* Bo viền tròn */
+    -fx-background-insets: 0;      /* Xóa các khoảng hở mặc định */
+    -fx-text-fill: white;
+    -fx-padding: 10 30 10 30;
+-fx-font-family: "Sitka Heading"; 
+    -fx-font-size: 16px; 
+    -fx-font-weight: bold;
+}

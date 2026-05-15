@@ -1,0 +1,26 @@
+.my-input {
+    -fx-background-color: #8faa8f;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-background-insets: 0;
+    -fx-padding: 10 5 10 20;
+    -fx-text-fill: #2d2d2d;
+    -fx-font-family: "Sitka Banner Bold";
+    -fx-prompt-text-fill: #2d2d2d;
+}
+
+.my-input:focused {
+    -fx-background-color: #a0b8a0;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-prompt-text-fill: #2d2d2d;
+}
+/* 3. Đây là cái StackPane (Khung bao quanh icon và input) */
+.input-group {
+    -fx-background-color: transparent; /* Để màu trắng của TextField hiện ra hoàn toàn */
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+}

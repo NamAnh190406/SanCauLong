@@ -1,0 +1,23 @@
+/* Class chung cho thông báo */
+.Thong-bao {
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", Arial;
+    -fx-font-weight: bold;
+}
+
+/* Khi có lỗi (Đỏ) */
+.Thong-bao-1 {
+    -fx-text-fill: #ff6b6b; /* Màu đỏ san hô cho hiện đại */
+}
+
+/* Khi thành công (Xanh) */
+.msg-success {
+    -fx-text-fill: #2ecc71; /* Màu xanh lá dịu mắt */
+}
+
+/* Nếu bạn làm cái bảng Popup (Pane) */
+.notification-box {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
