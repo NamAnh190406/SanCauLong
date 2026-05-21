@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guidemo.QTVController">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <BorderPane BorderPane.alignment="CENTER">
+                    <top>
+                        <HBox prefHeight="115.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <VBox prefHeight="105.0" prefWidth="380.0">
+                                    <children>
+                                        <Label text="DANH SÁCH QUẢN TRỊ VIÊN">
+                                            <font>
+                                                <Font name="System Bold" size="24.0" />
+                                            </font>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="10.0">
+                                            <children>
+                                                <TextField fx:id="txtSearch" prefHeight="34.0" prefWidth="260.0" promptText="Tìm theo mã hoặc họ tên QTV..." />
+                                                <Button minWidth="41.0" mnemonicParsing="false" onAction="#handleTimKiem" prefHeight="30.0" prefWidth="41.0" style="-fx-background-color: D3D3D3;">
+                                                    <graphic>
+                                                        <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../../image/icons8-search-50.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="20.0" top="10.0" />
+                                    </HBox.margin>
+                                </VBox>
+                                <Pane HBox.hgrow="ALWAYS" />
+                                <HBox alignment="CENTER" prefHeight="115.0" prefWidth="350.0">
+                                    <children>
+                                        <VBox alignment="TOP_RIGHT" prefHeight="115.0" prefWidth="330.0">
+                                            <children>
+                                                <Label text="Thao tác nhanh">
+                                                    <font>
+                                                        <Font name="System Bold" size="18.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets right="10.0" />
+                                                    </VBox.margin>
+                                                </Label>
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="98.0" spacing="10.0">
+                                                    <children>
+                                                        <Button mnemonicParsing="false" onAction="#handleThoat" prefHeight="35.0" prefWidth="65.0" text="Thoát" />
+                                                        <Button mnemonicParsing="false" onAction="#handleXoaQTV" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: #FF0000;" text="Xóa" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="System Bold" size="12.0" />
+                                                            </font>
+                                                        </Button>
+                                                        <Button mnemonicParsing="false" onAction="#handleMoThemQTV" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #008000;" text="Thêm QTV +" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="System Bold" size="12.0" />
+                                                            </font>
+                                                        </Button>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" right="10.0" />
+                                                    </VBox.margin>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </HBox>
+                    </top>
+                    <center>
+                        <TableView fx:id="tableQTV" BorderPane.alignment="CENTER">
+                            <columns>
+
+                                    <TableColumn fx:id="colSelect" prefWidth="50.0" text="Chọn" />
+                                    <TableColumn fx:id="colMaTK" prefWidth="120.0" text="Mã Tài Khoản" />
+                                    <TableColumn fx:id="colUsername" prefWidth="150.0" text="Tên Đăng Nhập" />
+
+                                    <TableColumn fx:id="colPassword" prefWidth="150.0" text="Mật Khẩu" />
+
+                                    <TableColumn fx:id="colVaiTro" prefWidth="120.0" text="Vai Trò" />
+                                    <TableColumn fx:id="colTrangThai" prefWidth="120.0" text="Trạng Thái" />
+
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </center>
+                </BorderPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
