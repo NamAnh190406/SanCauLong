@@ -1,0 +1,38 @@
+CREATE OR REPLACE FUNCTION f_DangKy(
+    f_Hoten    IN VARCHAR2,
+    f_sdt      IN VARCHAR2,
+    f_email    IN VARCHAR2,
+    f_username IN VARCHAR2,
+    f_pass     IN VARCHAR2
+) RETURN VARCHAR2 IS
+    PRAGMA AUTONOMOUS_TRANSACTION;
+    f_dem   NUMBER;
+    v_ma_tk VARCHAR2(20);
+    v_ma_kh VARCHAR2(20);
+BEGIN
+    SELECT COUNT(*) INTO f_dem FROM TAIKHOAN WHERE Username = f_username;
+    IF f_dem > 0 THEN RETURN 'Username đã tồn tại!'; END IF;
+
+    SELECT COUNT(*) INTO f_dem FROM KHACHHANG WHERE SDT = f_sdt;
+    IF f_dem > 0 THEN RETURN 'Số điện thoại đã được đăng ký!'; END IF;
+
+    SELECT COUNT(*) INTO f_dem FROM KHACHHANG WHERE Email = f_email;
+    IF f_dem > 0 THEN RETURN 'Email đã được đăng ký!'; END IF;
+
+    v_ma_tk := 'TK' || LPAD(seq_taikhoan.NEXTVAL, 3, '0');
+    v_ma_kh := 'KH' || LPAD(seq_khachhang.NEXTVAL, 3, '0');
+
+    INSERT INTO TAIKHOAN (Ma_TK, Username, Password, VaiTro, TrangThai)
+    VALUES (v_ma_tk, f_username, f_pass, 'KhachHang', 'HoatDong');
+
+    INSERT INTO KHACHHANG (MaKH, HoTen, SDT, Email, Ma_TK, HangThanhVien, DiemTichLuy)
+    VALUES (v_ma_kh, f_Hoten, f_sdt, f_email, v_ma_tk, 'Đồng', 0);
+
+    COMMIT;
+    RETURN 'Đăng ký thành công!';
+
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RETURN 'Lỗi: ' || SQLERRM;
+END;
