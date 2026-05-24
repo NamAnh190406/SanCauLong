@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #004225;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.DangKyTaiKhoanController">
+   <children>
+      <Label layoutX="489.0" layoutY="45.0" style="-fx-text-fill: white;" stylesheets="@label.css" text="FLYHIGH">
+         <font>
+            <Font name="Sitka Heading Bold" size="49.0" />
+         </font>
+      </Label>
+      <Label layoutX="476.0" layoutY="101.0" style="-fx-text-fill: white;" stylesheets="@label.css" text="ĐẶT SÂN CẦU LÔNG ONLINE">
+         <font>
+            <Font name="Sitka Heading Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtHoTen" layoutX="165.0" layoutY="156.0" prefHeight="40.0" prefWidth="855.0" promptText="Nhập Họ tên" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);;" styleClass="my-input" stylesheets="@Đăng%20nhập.css">
+         <font>
+            <Font name="Sitka Banner Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtSdt" layoutX="168.0" layoutY="224.0" prefHeight="40.0" prefWidth="432.0" promptText="Nhập Số điện thoại" styleClass="my-input" stylesheets="@Đăng%20nhập.css">
+         <font>
+            <Font name="Sitka Banner Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtEmail" layoutX="623.0" layoutY="224.0" prefHeight="40.0" prefWidth="395.0" promptText="Nhập Email" styleClass="my-input" stylesheets="@Đăng%20nhập.css">
+         <font>
+            <Font name="Sitka Banner Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtUsername" layoutX="165.0" layoutY="305.0" prefHeight="40.0" prefWidth="855.0" promptText="Nhập Username" styleClass="my-input" stylesheets="@Đăng%20nhập.css">
+         <font>
+            <Font name="Sitka Banner Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtPassword" layoutX="164.0" layoutY="384.0" prefHeight="40.0" prefWidth="855.0" promptText="Nhập Password" styleClass="my-input" stylesheets="@Đăng%20nhập.css">
+         <font>
+            <Font name="Sitka Banner Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Button layoutX="164.0" layoutY="490.0" mnemonicParsing="false" onMouseClicked="#thoat" prefHeight="38.0" prefWidth="325.0" styleClass="login-button" stylesheets="@Nút%20đăng%20nhập.css" text="Thoát">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="707.0" layoutY="490.0" mnemonicParsing="false" onMouseClicked="#handleDangKy" prefHeight="38.0" prefWidth="315.0" styleClass="login-button" stylesheets="@Nút%20đăng%20nhập.css" text="Đăng Ký">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="lblKiemTra" layoutX="238.0" layoutY="452.0" text="Kiểm tra: " textFill="WHITE">
+         <font>
+            <Font name="Sitka Banner Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- ROOT là StackPane để popup có thể overlay lên trên dialog chính -->
+<StackPane prefHeight="700" prefWidth="1000" style="-fx-background-color: rgba(0,0,0,0.45);" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.ChonDichVuController">
+
+    <!-- ===== DIALOG CHÍNH ===== -->
+    <VBox fx:id="dialogPane" maxWidth="980" prefWidth="980" style="-fx-background-color: white; -fx-background-radius: 16; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 30, 0, 0, 8);">
+
+        <!-- ===== HEADER ===== -->
+        <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-background-color: linear-gradient(to right, #1a88d4, #22c8e8); -fx-background-radius: 16 16 0 0; -fx-padding: 18 20 18 20;">
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="Đặt Dịch Vụ" />
+                <Label style="-fx-font-size: 12px; -fx-text-fill: rgba(255,255,255,0.85);" text="Chọn dịch vụ bạn cần" />
+            </VBox>
+            <Button fx:id="btnDong" onMouseClicked="#handleQuayLaiTrangChinh" style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 6 10 6 10; -fx-cursor: hand;" text="✕" />
+        </HBox>
+
+        <!-- ===== DANH SÁCH DỊCH VỤ ===== -->
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="420" style="-fx-background-color: #f8fafc; -fx-background: #f8fafc; -fx-border-color: transparent;">
+            <VBox spacing="10" style="-fx-padding: 16 20 16 20; -fx-background-color: #f8fafc;">
+
+                <!-- THUÊ VỢT -->
+                <VBox fx:id="cardVot" spacing="0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 6, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding: 16;">
+                        <VBox spacing="3" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Thuê vợt" />
+                            <HBox spacing="8">
+                                <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Đơn vị: Cái" />
+                                <Label fx:id="lblConVot" style="-fx-font-size: 12px; -fx-text-fill: #ef4444; -fx-font-weight: bold;" text="Còn: 50 cái" />
+                            </HBox>
+                            <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="30.000 đ/cái" />
+                        </VBox>
+                        <VBox fx:id="thanhTienVot" alignment="CENTER_RIGHT" managed="false" spacing="2" style="-fx-padding: 0 10 0 0;" visible="false">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="Thành tiền" />
+                            <Label fx:id="lblThanhTienVot" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1d4ed8;" text="0 đ" />
+                        </VBox>
+                        <HBox alignment="CENTER" spacing="10">
+                            <Button fx:id="btnGiamVot" onAction="#handleGiamVot" style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-min-width: 38; -fx-min-height: 38; -fx-cursor: hand;" text="−" />
+                            <Label fx:id="lblSoLuongVot" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #111827; -fx-min-width: 28; -fx-alignment: CENTER;" text="0" />
+                            <Button fx:id="btnTangVot" onAction="#handleTangVot" style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-min-width: 38; -fx-min-height: 38; -fx-cursor: hand;" text="+" />
+                        </HBox>
+                    </HBox>
+                </VBox>
+
+                <!-- CẦU LÔNG -->
+                <VBox fx:id="cardCau" spacing="0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 6, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding: 16;">
+                        <VBox spacing="3" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Cầu lông" />
+                            <HBox spacing="8">
+                                <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Đơn vị: Hộp" />
+                                <Label fx:id="lblConCau" style="-fx-font-size: 12px; -fx-text-fill: #ef4444; -fx-font-weight: bold;" text="Còn: 100 hộp" />
+                            </HBox>
+                            <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="120.000 đ/hộp" />
+                        </VBox>
+                        <VBox fx:id="thanhTienCau" alignment="CENTER_RIGHT" managed="false" spacing="2" style="-fx-padding: 0 10 0 0;" visible="false">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="Thành tiền" />
+                            <Label fx:id="lblThanhTienCau" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1d4ed8;" text="0 đ" />
+                        </VBox>
+                        <HBox alignment="CENTER" spacing="10">
+                            <Button fx:id="btnGiamCau" onAction="#handleGiamCau" style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-min-width: 38; -fx-min-height: 38; -fx-cursor: hand;" text="−" />
+                            <Label fx:id="lblSoLuongCau" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #111827; -fx-min-width: 28; -fx-alignment: CENTER;" text="0" />
+                            <Button fx:id="btnTangCau" onAction="#handleTangCau" style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-min-width: 38; -fx-min-height: 38; -fx-cursor: hand;" text="+" />
+                        </HBox>
+                    </HBox>
+                </VBox>
+
+                <!-- NƯỚC KHOÁNG -->
+                <VBox fx:id="cardNuocKhoang" spacing="0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 6, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding: 16;">
+                        <VBox spacing="3" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Nước khoáng" />
+                            <HBox spacing="8">
+                                <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Đơn vị: Chai" />
+                                <Label fx:id="lblConNuocKhoang" style="-fx-font-size: 12px; -fx-text-fill: #ef4444; -fx-font-weight: bold;" text="Còn: 20 chai" />
+                            </HBox>
+                            <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="50.000 đ/chai" />
+                        </VBox>
+                        <VBox fx:id="thanhTienNuocKhoang" alignment="CENTER_RIGHT" managed="false" spacing="2" style="-fx-padding: 0 10 0 0;" visible="false">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="Thành tiền" />
+                            <Label fx:id="lblThanhTienNuocKhoang" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1d4ed8;" text="0 đ" />
+                        </VBox>
+                        <HBox alignment="CENTER" spacing="10">
+                            <Button fx:id="btnGiamNuocKhoang" onAction="#handleGiamNuocKhoang" style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-min-width: 38; -fx-min-height: 38; -fx-cursor: hand;" text="−" />
+                            <Label fx:id="lblSoLuongNuocKhoang" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #111827; -fx-min-width: 28; -fx-alignment: CENTER;" text="0" />
+                            <Button fx:id="btnTangNuocKhoang" onAction="#handleTangNuocKhoang" style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-min-width: 38; -fx-min-height: 38; -fx-cursor: hand;" text="+" />
+                        </HBox>
+                    </HBox>
+                </VBox>
+
+                <!-- NƯỚC NGỌT -->
+                <VBox fx:id="cardNuocNgot" spacing="0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 6, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding: 16;">
+                        <VBox spacing="3" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Nước ngọt" />
+                            <HBox spacing="8">
+                                <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Đơn vị: Chai" />
+                                <Label fx:id="lblConNuocNgot" style="-fx-font-size: 12px; -fx-text-fill: #ef4444; -fx-font-weight: bold;" text="Còn: 200 chai" />
+                            </HBox>
+                            <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="15.000 đ/chai" />
+                        </VBox>
+                        <VBox fx:id="thanhTienNuocNgot" alignment="CENTER_RIGHT" managed="false" spacing="2" style="-fx-padding: 0 10 0 0;" visible="false">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="Thành tiền" />
+                            <Label fx:id="lblThanhTienNuocNgot" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1d4ed8;" text="0 đ" />
+                        </VBox>
+                        <HBox alignment="CENTER" spacing="10">
+                            <Button fx:id="btnGiamNuocNgot" onAction="#handleGiamNuocNgot" style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-min-width: 38; -fx-min-height: 38; -fx-cursor: hand;" text="−" />
+                            <Label fx:id="lblSoLuongNuocNgot" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #111827; -fx-min-width: 28; -fx-alignment: CENTER;" text="0" />
+                            <Button fx:id="btnTangNuocNgot" onAction="#handleTangNuocNgot" style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-min-width: 38; -fx-min-height: 38; -fx-cursor: hand;" text="+" />
+                        </HBox>
+                    </HBox>
+                </VBox>
+
+                <!-- KHĂN THỂ THAO -->
+                <VBox fx:id="cardKhan" spacing="0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 6, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding: 16;">
+                        <VBox alignment="CENTER" style="-fx-background-color: #f3e8ff; -fx-background-radius: 10; -fx-min-width: 48; -fx-min-height: 48; -fx-max-width: 48; -fx-max-height: 48;" />
+                        <VBox spacing="3" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Khăn thể thao" />
+                            <HBox spacing="8">
+                                <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Đơn vị: Cái" />
+                                <Label fx:id="lblConKhan" style="-fx-font-size: 12px; -fx-text-fill: #ef4444; -fx-font-weight: bold;" text="Còn: 80 cái" />
+                            </HBox>
+                            <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="20.000 đ/cái" />
+                        </VBox>
+                        <VBox fx:id="thanhTienKhan" alignment="CENTER_RIGHT" managed="false" spacing="2" style="-fx-padding: 0 10 0 0;" visible="false">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="Thành tiền" />
+                            <Label fx:id="lblThanhTienKhan" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1d4ed8;" text="0 đ" />
+                        </VBox>
+                        <HBox alignment="CENTER" spacing="10">
+                            <Button fx:id="btnGiamKhan" onAction="#handleGiamKhan" style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-min-width: 38; -fx-min-height: 38; -fx-cursor: hand;" text="−" />
+                            <Label fx:id="lblSoLuongKhan" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #111827; -fx-min-width: 28; -fx-alignment: CENTER;" text="0" />
+                            <Button fx:id="btnTangKhan" onAction="#handleTangKhan" style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-min-width: 38; -fx-min-height: 38; -fx-cursor: hand;" text="+" />
+                        </HBox>
+                    </HBox>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+
+        <!-- ===== FOOTER ===== -->
+        <VBox spacing="14" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0; -fx-background-radius: 0 0 16 16; -fx-padding: 14 20 20 20;">
+            <HBox alignment="CENTER_LEFT">
+                <VBox spacing="2" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Tổng số dịch vụ" />
+                    <Label fx:id="lblTongSoMuc" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="0 mục" />
+                </VBox>
+                <VBox alignment="CENTER_RIGHT" spacing="2">
+                    <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Tổng tiền" />
+                    <Label fx:id="lblTongTien" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="0 đ" />
+                </VBox>
+            </HBox>
+            <HBox spacing="12">
+                <Button fx:id="btnThoat" maxWidth="Infinity" onMouseClicked="#handleQuayLaiTrangChinh" style="-fx-background-color: white; -fx-text-fill: #374151; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 14 0 14 0; -fx-border-color: #d1d5db; -fx-border-radius: 10; -fx-border-width: 1; -fx-cursor: hand;" text="Thoát" HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnDatDichVu" maxWidth="Infinity" onAction="#handleDatDichVu" style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 14 0 14 0; -fx-cursor: hand;" text="Đặt Dịch Vụ" HBox.hgrow="ALWAYS" />
+            </HBox>
+        </VBox>
+
+    </VBox>
+
+    <!-- ===== POPUP THÀNH CÔNG — nằm cùng cấp với dialog, overlay lên trên ===== -->
+    <StackPane fx:id="popupThanhCong" alignment="CENTER" managed="false" visible="false"
+               prefHeight="700" prefWidth="1000"
+               style="-fx-background-color: rgba(0,0,0,0.5);">
+        <VBox alignment="CENTER" maxWidth="420" spacing="18"
+              style="-fx-background-color: white; -fx-background-radius: 20;
+                     -fx-padding: 36 32 32 32;
+                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 24, 0, 0, 6);">
+
+            <VBox alignment="CENTER" style="-fx-background-color: #dcfce7; -fx-background-radius: 50;
+                      -fx-min-width: 72; -fx-min-height: 72; -fx-max-width: 72; -fx-max-height: 72;" />
+
+            <VBox alignment="CENTER" spacing="6">
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Đặt Dịch Vụ Thành Công!" />
+                <Label maxWidth="320" style="-fx-font-size: 12px; -fx-text-fill: #6b7280;"
+                       text="Dịch vụ của bạn đã được đặt thành công. Vui lòng đến quầy để nhận dịch vụ."
+                       textAlignment="CENTER" wrapText="true" />
+            </VBox>
+
+            <VBox alignment="CENTER" maxWidth="360" spacing="6"
+                  style="-fx-background-color: #f0fdf4; -fx-background-radius: 10;
+                         -fx-border-color: #bbf7d0; -fx-border-radius: 10; -fx-border-width: 1;
+                         -fx-padding: 14 24 14 24;">
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Mã Chi Tiết Dịch Vụ" />
+                <Label fx:id="lblMaDon" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #16a34a; -fx-font-family: 'Courier New';" text="CTDV000000" />
+            </VBox>
+
+            <VBox maxWidth="360" prefWidth="360" spacing="6">
+                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Chi tiết đơn hàng:" />
+                <HBox>
+                    <Label fx:id="lblChiTietVot" style="-fx-font-size: 12px; -fx-text-fill: #374151;" text="" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblGiaVot" style="-fx-font-size: 12px; -fx-text-fill: #374151;" text="" />
+                </HBox>
+                <HBox>
+                    <Label fx:id="lblChiTietCau" style="-fx-font-size: 12px; -fx-text-fill: #374151;" text="" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblGiaCau" style="-fx-font-size: 12px; -fx-text-fill: #374151;" text="" />
+                </HBox>
+                <HBox>
+                    <Label fx:id="lblChiTietNuocKhoang" style="-fx-font-size: 12px; -fx-text-fill: #374151;" text="" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblGiaNuocKhoang" style="-fx-font-size: 12px; -fx-text-fill: #374151;" text="" />
+                </HBox>
+                <HBox>
+                    <Label fx:id="lblChiTietNuocNgot" style="-fx-font-size: 12px; -fx-text-fill: #374151;" text="" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblGiaNuocNgot" style="-fx-font-size: 12px; -fx-text-fill: #374151;" text="" />
+                </HBox>
+                <HBox>
+                    <Label fx:id="lblChiTietKhan" style="-fx-font-size: 12px; -fx-text-fill: #374151;" text="" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblGiaKhan" style="-fx-font-size: 12px; -fx-text-fill: #374151;" text="" />
+                </HBox>
+                <Separator />
+                <HBox>
+                    <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Tổng cộng:" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblTongCong" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="0 đ" />
+                </HBox>
+            </VBox>
+
+            <Button maxWidth="Infinity" onAction="#handleQuayLaiTrangChinh" prefWidth="360"
+                    style="-fx-background-color: #16a34a; -fx-text-fill: white;
+                           -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10;
+                           -fx-padding: 13 0 13 0; -fx-cursor: hand;" text="Quay Lại Trang Chính" />
+        </VBox>
+    </StackPane>
+
+</StackPane>
