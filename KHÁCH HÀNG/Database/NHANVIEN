@@ -1,0 +1,14 @@
+CREATE TABLE NHAN_VIEN (
+    Ma_NV       VARCHAR2(20) NOT NULL PRIMARY KEY,
+    Hoten_nv    VARCHAR2(100) NOT NULL,
+    SDT         VARCHAR2(15) NOT NULL UNIQUE,
+    ChucVu      VARCHAR2(50) NOT NULL,
+    CaLamViec   VARCHAR2(10) NOT NULL,
+    Ma_TK       VARCHAR2(20) UNIQUE,
+    -- Oracle không có ON UPDATE CASCADE, mình chỉ giữ lại ON DELETE SET NULL thôi
+    CONSTRAINT fk_nv_taikhoan FOREIGN KEY (Ma_TK) 
+        REFERENCES TAIKHOAN(Ma_TK) ON DELETE SET NULL,
+    -- Sửa lại hàm check SĐT chuẩn Oracle
+    CONSTRAINT chk_nv_sdt CHECK (REGEXP_LIKE(SDT, '^[0-9]{9,11}$')),
+    CONSTRAINT chk_nv_calamviec CHECK (CaLamViec IN ('Ca1','Ca2','Ca3'))
+);
