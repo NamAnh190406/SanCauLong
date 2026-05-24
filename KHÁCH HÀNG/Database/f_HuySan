@@ -1,0 +1,20 @@
+create or replace function f_HuySan (f_MaDS in varchar2)
+return varchar2
+is
+    f_PTTT varchar2(30); f_TrangThaiTT varchar2(20); f_CheckIn varchar2(20); f_NgayTT date; f_HienTai date := sysdate; f_KhoangCach number;
+begin
+    select tt.PTTT, tt.TrangThai, tt.ThoiGianTT, ds.TrangThai
+    into f_PTTT, f_TrangThaiTT, f_NgayTT, f_CheckIn
+    from DATSAN ds left join HOADON hd on ds.MaDS = hd.MaDS
+    left join THANHTOAN tt on hd.MaHoaDon = tt.MaHoaDon
+    where ds.MaDS = f_MaDS;
+
+    if f_CheckIn = 'CheckedIn' then return 'Khách đã check-in vào sân!'; end if;
+
+    if f_PTTT = 'ChuyenKhoan' and f_TrangThaiTT = 'ThanhCong' then return 'Thanh toán CK không được hoàn tiền!'; end if;
+
+    if f_NgayTT is not null then f_KhoangCach := f_HienTai - f_NgayTT;
+    if f_KhoangCach > 3 then return 'Không được hủy sân sau 3 ngày kể từ ngày thanh toán!';
+    end if; end if;
+    return 'Hủy thành công!';
+end;
