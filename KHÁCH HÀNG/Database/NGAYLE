@@ -1,0 +1,8 @@
+CREATE TABLE NGAYLE (
+    MaNL        VARCHAR2(20) NOT NULL PRIMARY KEY,
+    TenNL       VARCHAR2(100) NOT NULL,
+    NgayCuThe   DATE NOT NULL UNIQUE,
+    -- Sửa lại tên cột cho đúng chính tả: GiaPhuThu
+    GiaPhuThu   NUMBER DEFAULT 0 NOT NULL,
+    CONSTRAINT chk_nl_giaphuthu CHECK (GiaPhuThu >= 0)
+);
