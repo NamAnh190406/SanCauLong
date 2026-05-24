@@ -1,0 +1,10 @@
+CREATE TABLE TAIKHOAN (
+    Ma_TK       VARCHAR2(20) NOT NULL PRIMARY KEY,
+    Username    VARCHAR2(50) NOT NULL UNIQUE,
+    Password    VARCHAR2(255) NOT NULL,
+    VaiTro      VARCHAR2(20) NOT NULL,
+    TrangThai   VARCHAR2(20) DEFAULT 'HoatDong' NOT NULL,
+    CONSTRAINT chk_tk_role      CHECK (VaiTro IN ('Admin','NhanVien','KhachHang')),
+    CONSTRAINT chk_tk_trangthai CHECK (TrangThai IN ('HoatDong','KhoaAccount')),
+    CONSTRAINT chk_tk_username  CHECK (LENGTH(Username) >= 4)
+);
