@@ -1,0 +1,94 @@
+-- ============================================================
+-- CHẠY FILE NÀY SAU KHI ĐÃ CÓ ĐỦ:
+--   - Bảng DICHVU, DATSAN, CTDV (từ script gốc)
+--   - Dữ liệu mẫu DS001→DS010, DV001→DV005 đã COMMIT
+-- ============================================================
+
+-- BƯỚC 1: Dọn sequence cũ nếu có (bỏ qua lỗi ORA-02289 nếu chưa tồn tại)
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE SEQ_CTDV';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
+-- BƯỚC 2: Tạo sequence mới
+-- Đếm CTDV hiện có để bắt đầu đúng chỗ
+DECLARE
+    v_max NUMBER;
+BEGIN
+    SELECT NVL(MAX(TO_NUMBER(SUBSTR(MaCTDV, 5))), 0) + 1
+    INTO v_max
+    FROM CTDV
+    WHERE REGEXP_LIKE(MaCTDV, '^CTDV[0-9]+$');
+
+    EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_CTDV START WITH ' || v_max
+        || ' INCREMENT BY 1 NOCACHE NOCYCLE';
+END;
+/
+
+-- BƯỚC 3: Tạo function sinh mã
+CREATE OR REPLACE FUNCTION f_SinhMaCTDV
+RETURN VARCHAR2
+IS
+    v_so  NUMBER;
+    v_ma  VARCHAR2(20);
+BEGIN
+    SELECT SEQ_CTDV.NEXTVAL INTO v_so FROM DUAL;
+    v_ma := 'CTDV' || LPAD(TO_CHAR(v_so), 3, '0');
+    RETURN v_ma;
+END f_SinhMaCTDV;
+/
+
+-- BƯỚC 4: Tạo procedure (dùng f_TinhTienDV đã có sẵn trong DB)
+CREATE OR REPLACE PROCEDURE P_LUU_CTDV (
+    p_MaDS    IN  VARCHAR2,
+    p_MaDV    IN  VARCHAR2,
+    p_SoLuong IN  NUMBER,
+    p_MaCTDV  OUT VARCHAR2
+)
+IS
+    v_thanhTien NUMBER;
+BEGIN
+    p_MaCTDV    := f_SinhMaCTDV();
+    v_thanhTien := f_TinhTienDV(p_MaDV, p_SoLuong);
+
+    INSERT INTO CTDV (MaCTDV, SoLuong, ThanhTien, MaDS, MaDV)
+    VALUES (p_MaCTDV, p_SoLuong, v_thanhTien, p_MaDS, p_MaDV);
+
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
+END P_LUU_CTDV;
+/
+
+-- BƯỚC 5: Kiểm tra tất cả VALID
+SELECT OBJECT_NAME, OBJECT_TYPE, STATUS
+FROM USER_OBJECTS
+WHERE OBJECT_NAME IN ('SEQ_CTDV', 'F_SINHMACTDV', 'F_TINHTIENDV', 'P_LUU_CTDV');
+
+
+/
+
+-- ============================================================
+-- FUNCTION kiểm tra tồn kho dịch vụ
+-- Trả về SLTonkho hiện tại của một MaDV
+-- ============================================================
+CREATE OR REPLACE FUNCTION f_KiemTraTonKho (
+    p_MaDV IN VARCHAR2
+)
+RETURN NUMBER
+IS
+    v_tonKho NUMBER := 0;
+BEGIN
+    SELECT SLTonkho INTO v_tonKho
+    FROM DICHVU
+    WHERE MaDV = p_MaDV;
+
+    RETURN v_tonKho;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN RETURN 0;
+END f_KiemTraTonKho;
+/
