@@ -1,0 +1,27 @@
+CREATE OR REPLACE PROCEDURE p_QuenMatKhau(
+    f_email  IN VARCHAR2,
+    f_sdt    IN VARCHAR2,
+    f_pass   IN VARCHAR2,
+    p_ketqua OUT VARCHAR2
+) AS
+    v_ma_tk VARCHAR2(50);
+BEGIN
+    SELECT tk.Ma_TK INTO v_ma_tk
+    FROM KHACHHANG kh
+    JOIN TAIKHOAN tk ON kh.Ma_TK = tk.Ma_TK
+    WHERE kh.Email = f_email AND kh.SDT = f_sdt;
+
+    UPDATE TAIKHOAN
+    SET Password = f_pass
+    WHERE Ma_TK = v_ma_tk;
+
+    COMMIT;
+    p_ketqua := 'Đặt lại mật khẩu thành công!';
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        p_ketqua := 'Email hoặc số điện thoại không đúng!';
+    WHEN OTHERS THEN
+        ROLLBACK;
+        p_ketqua := 'Lỗi: ' || SQLERRM;
+END;
