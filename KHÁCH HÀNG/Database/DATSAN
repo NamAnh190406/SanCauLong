@@ -1,0 +1,19 @@
+CREATE TABLE DATSAN (
+    MaDS                VARCHAR2(20) NOT NULL PRIMARY KEY,
+    -- Oracle dùng SYSDATE và DEFAULT phải đứng trước NOT NULL
+    NgayDat             DATE DEFAULT SYSDATE NOT NULL,
+    TrangThai           VARCHAR2(20) DEFAULT 'ChoDuyet' NOT NULL,
+    TongTienTamTinh     NUMBER DEFAULT 0 NOT NULL,
+    MaKH                VARCHAR2(20) NOT NULL,
+    MaSan               VARCHAR2(20) NOT NULL,
+    MaKG                VARCHAR2(20) NOT NULL,
+    -- Cấu hình khóa ngoại chuẩn Oracle (không có RESTRICT/CASCADE UPDATE)
+    CONSTRAINT fk_ds_khach FOREIGN KEY (MaKH) 
+        REFERENCES KHACHHANG(MaKH),
+    CONSTRAINT fk_ds_san FOREIGN KEY (MaSan) 
+        REFERENCES SAN(MaSan),
+    CONSTRAINT fk_ds_khunggio FOREIGN KEY (MaKG) 
+        REFERENCES KHUNGGIO(MaKG),
+    CONSTRAINT chk_ds_tt CHECK (TrangThai IN ('ChoDuyet','DaDuyet','DaHuy','HoanThanh')),
+    CONSTRAINT chk_ds_tien CHECK (TongTienTamTinh >= 0)
+);
