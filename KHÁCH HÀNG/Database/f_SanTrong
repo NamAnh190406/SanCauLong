@@ -1,0 +1,17 @@
+CREATE OR REPLACE FUNCTION f_SanTrong
+(f_MaSan IN SAN.MaSan%TYPE, f_NgayDat IN DATSAN.NgayDat%TYPE, f_MaKG IN DATSAN.MaKG%TYPE)
+RETURN VARCHAR2
+IS
+    f_dem NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO f_dem
+    FROM SAN s JOIN DATSAN ds ON s.MaSan = ds.MaSan
+    WHERE s.MaSan = f_MaSan 
+    AND TRUNC(ds.NgayDat) = TRUNC(f_NgayDat)  -- ← thêm TRUNC cả 2 vế
+    AND ds.MaKG = f_MaKG 
+    AND ds.TrangThai IN ('DaDuyet','ChoDuyet');
+
+    IF f_dem = 0 THEN RETURN 'Sân Trống';
+    ELSE RETURN 'Sân Bận';
+    END IF;
+END;
