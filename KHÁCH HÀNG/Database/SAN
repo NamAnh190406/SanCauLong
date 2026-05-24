@@ -1,0 +1,15 @@
+CREATE TABLE SAN (
+    MaSan               VARCHAR2(20) NOT NULL PRIMARY KEY,
+    TenSan              VARCHAR2(100) NOT NULL,
+    LoaiSan             VARCHAR2(50) NOT NULL,
+    LoaiMatSan          VARCHAR2(50) NOT NULL,
+    KhongGian           VARCHAR2(50),
+    SLNguoiChoi         NUMBER NOT NULL,
+    GiaThueTheoGio      NUMBER NOT NULL,
+    TrangThai           VARCHAR2(20) DEFAULT 'HoatDong' NOT NULL,
+    MoTa                VARCHAR2(500),
+    DiaChi              VARCHAR2(255) NOT NULL,
+    CONSTRAINT chk_san_gia      CHECK (GiaThueTheoGio > 0),
+    CONSTRAINT chk_san_slng     CHECK (SLNguoiChoi > 0),
+    CONSTRAINT chk_san_tt       CHECK (TrangThai IN ('HoatDong','BaoDuong','Dong'))
+);
