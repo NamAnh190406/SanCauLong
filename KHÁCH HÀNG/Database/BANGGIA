@@ -1,0 +1,13 @@
+CREATE TABLE BANGGIA (
+    MaBG        VARCHAR2(20) NOT NULL PRIMARY KEY,
+    DonGia      NUMBER NOT NULL,
+    MaSan       VARCHAR2(20) NOT NULL,
+    MaKG        VARCHAR2(20) NOT NULL,
+    -- Oracle mặc định là RESTRICT nên mình không ghi gì thêm sau REFERENCES
+    CONSTRAINT fk_bg_san FOREIGN KEY (MaSan) 
+        REFERENCES SAN(MaSan),
+    CONSTRAINT fk_bg_khunggio FOREIGN KEY (MaKG) 
+        REFERENCES KHUNGGIO(MaKG),
+    CONSTRAINT chk_bg_dongie CHECK (DonGia > 0),
+    CONSTRAINT uq_bg_san_kg UNIQUE (MaSan, MaKG)
+);
