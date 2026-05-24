@@ -1,0 +1,19 @@
+CREATE TABLE KHACHHANG (
+    MaKH            VARCHAR2(20) NOT NULL PRIMARY KEY,
+    HoTen           VARCHAR2(100) NOT NULL,
+    SDT             VARCHAR2(15) NOT NULL UNIQUE,
+    Email           VARCHAR2(100) UNIQUE,
+    -- Oracle dùng SYSDATE để lấy ngày hiện tại
+    NgayDK          DATE DEFAULT SYSDATE NOT NULL,
+    HangThanhVien   VARCHAR2(20) DEFAULT 'Dong' NOT NULL,
+    DiemTichLuy     NUMBER DEFAULT 0 NOT NULL,
+    Ma_TK           VARCHAR2(20) UNIQUE,
+    -- Chỉ giữ lại ON DELETE SET NULL
+    CONSTRAINT fk_kh_taikhoan FOREIGN KEY (Ma_TK) 
+        REFERENCES TAIKHOAN(Ma_TK) ON DELETE SET NULL,
+    -- Cú pháp check SĐT chuẩn Oracle
+    CONSTRAINT chk_kh_sdt     CHECK (REGEXP_LIKE(SDT, '^[0-9]{9,11}$')),
+    CONSTRAINT chk_kh_email   CHECK (Email LIKE '%@%.%'),
+    CONSTRAINT chk_kh_diem    CHECK (DiemTichLuy >= 0),
+    CONSTRAINT chk_kh_hang    CHECK (HangThanhVien IN ('Dong','Bac','Vang','BachKim'))
+);
