@@ -1,0 +1,62 @@
+CREATE OR REPLACE PROCEDURE CAP_NHAT_THONG_TIN (
+    p_MaKH  IN VARCHAR2,
+    p_HoTen IN VARCHAR2,
+    p_SDT   IN VARCHAR2,
+    p_Email IN VARCHAR2,
+    p_KetQua OUT VARCHAR2  -- 'OK' hoặc thông báo lỗi
+) AS
+    v_SoKH NUMBER;
+BEGIN
+    -- 1. Kiểm tra họ tên không rỗng
+    IF TRIM(p_HoTen) IS NULL OR LENGTH(TRIM(p_HoTen)) = 0 THEN
+        p_KetQua := 'Họ tên không được để trống!';
+        RETURN;
+    END IF;
+
+    -- 2. Kiểm tra SDT: đúng 10 số, bắt đầu bằng 0
+    IF NOT REGEXP_LIKE(p_SDT, '^0[0-9]{9}$') THEN
+        p_KetQua := 'Số điện thoại không hợp lệ! Phải gồm 10 số và bắt đầu bằng 0.';
+        RETURN;
+    END IF;
+
+    -- 3. Kiểm tra SDT không trùng với khách hàng khác
+    SELECT COUNT(*) INTO v_SoKH
+    FROM KHACHHANG
+    WHERE SDT = p_SDT AND MaKH != p_MaKH;
+
+    IF v_SoKH > 0 THEN
+        p_KetQua := 'Số điện thoại đã được sử dụng bởi tài khoản khác!';
+        RETURN;
+    END IF;
+
+    -- 4. Kiểm tra Email đúng định dạng
+    IF NOT REGEXP_LIKE(p_Email, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$') THEN
+        p_KetQua := 'Email không hợp lệ! VD: example@gmail.com';
+        RETURN;
+    END IF;
+
+    -- 5. Kiểm tra Email không trùng với khách hàng khác
+    SELECT COUNT(*) INTO v_SoKH
+    FROM KHACHHANG
+    WHERE Email = p_Email AND MaKH != p_MaKH;
+
+    IF v_SoKH > 0 THEN
+        p_KetQua := 'Email đã được sử dụng bởi tài khoản khác!';
+        RETURN;
+    END IF;
+
+    -- 6. Tất cả hợp lệ → cập nhật
+    UPDATE KHACHHANG
+    SET HoTen = p_HoTen,
+        SDT   = p_SDT,
+        Email = p_Email
+    WHERE MaKH = p_MaKH;
+
+    COMMIT;
+    p_KetQua := 'OK';
+
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        p_KetQua := 'Lỗi hệ thống: ' || SQLERRM;
+END;
