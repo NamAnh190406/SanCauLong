@@ -1,0 +1,14 @@
+CREATE OR REPLACE FUNCTION f_DangNhap
+(f_username IN TAIKHOAN.Username%TYPE, f_pass IN TAIKHOAN.Password%TYPE)
+RETURN VARCHAR2
+IS
+    f_dem NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO f_dem
+    FROM TAIKHOAN
+    WHERE Username = f_username AND Password = f_pass;
+    
+    IF f_dem > 0 THEN RETURN 'SUCCESS';      -- ← đổi sang tiếng Anh
+    ELSE RETURN 'FAILED';
+    END IF;
+END;
