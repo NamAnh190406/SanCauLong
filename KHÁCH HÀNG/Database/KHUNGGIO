@@ -1,0 +1,7 @@
+CREATE TABLE KHUNGGIO (
+    MaKG        VARCHAR2(20) NOT NULL PRIMARY KEY,
+    -- Trong Oracle dùng TIMESTAMP để lưu cả ngày và giờ, hoặc chỉ giờ
+    GioBD       TIMESTAMP NOT NULL,
+    GioKT       TIMESTAMP NOT NULL,
+    CONSTRAINT chk_kg_gio CHECK (GioKT > GioBD)
+);
