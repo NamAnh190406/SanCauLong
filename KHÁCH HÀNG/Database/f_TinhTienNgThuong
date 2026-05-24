@@ -1,0 +1,35 @@
+create or replace function f_TinhTienNgThuong 
+(f_MaDS in varchar2) 
+return number
+is
+    f_TongTien number := 0; f_GiaThue number; f_SoGio number; f_PhanTram number := 0; f_GtriMax number; f_GiamGia number := 0; f_MaKM varchar2(20); 
+    f_MaKH varchar2(20);
+begin
+    select s.GiaThueTheoGio, 
+           extract(hour from (kg.GioKT - kg.GioBD)) + extract(minute from (kg.GioKT - kg.GioBD))/60,
+           ds.MaKH
+    into f_GiaThue, f_SoGio, f_MaKH
+    from DATSAN ds
+    join SAN s on ds.MaSan = s.MaSan
+    join KHUNGGIO kg on ds.MaKG = kg.MaKG
+    where ds.MaDS = f_MaDS;
+    f_TongTien := f_GiaThue * f_SoGio;
+    begin
+        select MaKM into f_MaKM 
+        from SuDungGG 
+        where MaKH = f_MaKH ;
+    end;
+    if f_MaKM is not null then
+        select PhanTramGG, GTriToiDa 
+        into f_PhanTram, f_GtriMax
+        from KHUYENMAI 
+        where MaKM = f_MaKM;
+
+        f_GiamGia := f_TongTien * (f_PhanTram / 100);
+
+        if f_GtriMax is not null and f_GiamGia > f_GtriMax then
+            f_GiamGia := f_GtriMax;
+        end if;
+    end if;
+    return f_TongTien - f_GiamGia;
+end;
