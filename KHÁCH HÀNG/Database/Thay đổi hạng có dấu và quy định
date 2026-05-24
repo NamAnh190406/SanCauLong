@@ -1,0 +1,21 @@
+--Thêm dấu cho hạng
+ALTER TABLE KHACHHANG DROP CONSTRAINT chk_kh_hang;
+
+ALTER TABLE KHACHHANG ADD CONSTRAINT chk_kh_hang 
+CHECK (HangThanhVien IN ('Đồng','Bạc','Vàng','Bạch Kim'));
+
+UPDATE KHACHHANG SET HangThanhVien = 'Bạc' WHERE HangThanhVien = 'Bac';
+UPDATE KHACHHANG SET HangThanhVien = 'Vàng' WHERE HangThanhVien = 'Vang';
+UPDATE KHACHHANG SET HangThanhVien = 'Đồng' WHERE HangThanhVien = 'Dong';
+UPDATE KHACHHANG SET HangThanhVien = 'Bạch Kim' WHERE HangThanhVien = 'BachKim';
+COMMIT;
+
+--Thay đổi hạng theo quy định
+UPDATE KHACHHANG SET HangThanhVien = 
+    CASE 
+        WHEN DiemTichLuy BETWEEN 0 AND 100 THEN 'Đồng'
+        WHEN DiemTichLuy BETWEEN 101 AND 200 THEN 'Bạc'
+        WHEN DiemTichLuy BETWEEN 201 AND 300 THEN 'Vàng'
+        ELSE 'Bạch Kim'
+    END;
+COMMIT;
