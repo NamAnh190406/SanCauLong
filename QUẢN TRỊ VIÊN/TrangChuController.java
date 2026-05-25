@@ -144,4 +144,22 @@ public class TrangChuController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleMoThongKeDoanhThu() {
+        try {
+
+            Parent view = FXMLLoader.load(getClass().getResource("ThongKeDoanhThu.fxml"));
+
+
+            if (rootPane != null) {
+                rootPane.setCenter(view);
+            } else {
+                System.out.println("Lỗi: rootPane đang bị null, chưa thể gán giao diện Thống Kê!");
+            }
+        } catch (IOException e) {
+            System.out.println("Không tìm thấy hoặc lỗi cấu trúc file ThongKeDoanhThu.fxml!");
+            e.printStackTrace();
+        }
+    }
 }
