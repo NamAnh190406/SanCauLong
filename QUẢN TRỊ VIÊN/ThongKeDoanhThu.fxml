@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane style="-fx-background-color: #F0F2F5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guidemo.ThongKeDoanhThuController">
+
+    <!-- HEADER -->
+    <top>
+        <HBox spacing="16" style="-fx-background-color: #1A1A2E; -fx-padding: 18 28 18 28; -fx-alignment: CENTER_LEFT;">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: BOLD;" text="Thống Kê Doanh Thu" />
+                <Label style="-fx-text-fill: #AAAACC; -fx-font-size: 13px;" text="Báo cáo chi tiết về đặt sân và dịch vụ" />
+            </VBox>
+            <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_LEFT" onMouseClicked="#goHome" size="20">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </FontAwesomeIconView>
+        </HBox>
+    </top>
+
+    <!-- MAIN -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
+            <content>
+                <VBox spacing="20">
+                    <padding>
+                        <Insets bottom="24" left="32" right="32" top="24" />
+                    </padding>
+
+                    <!-- DATE PICKER CARD -->
+                    <VBox spacing="12" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, #00000018, 8, 0, 0, 2); -fx-padding: 20 24 20 24;">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: BOLD; -fx-text-fill: #1A1A2E;" text="Chọn ngày thống kê" />
+                        <HBox alignment="CENTER_LEFT" spacing="16">
+                            <Label style="-fx-font-size: 14px; -fx-text-fill: #555;" text="Ngày:" />
+                            <DatePicker fx:id="datePicker" onAction="#onDateChanged" prefWidth="200">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor>
+                            </DatePicker>
+                            <Label fx:id="lblTenNgay" style="-fx-font-size: 14px; -fx-font-weight: BOLD; -fx-background-color: #F0F4FF; -fx-background-radius: 6; -fx-padding: 6 14 6 14; -fx-text-fill: #3A3AD4;" />
+                            <Button fx:id="btnThongKe" onAction="#thongKe" style="-fx-background-color: #3A3AD4; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: BOLD; -fx-background-radius: 8; -fx-padding: 8 20 8 20; -fx-cursor: HAND;" text="Thống kê">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor>
+                            </Button>
+                        </HBox>
+                    </VBox>
+
+                    <!-- SUMMARY CARDS -->
+                    <HBox spacing="16">
+                        <VBox style="-fx-background-color: #22B573; -fx-background-radius: 14; -fx-padding: 20 24 20 24;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-text-fill: #CCFFEE; -fx-font-size: 13px;" text="Doanh thu sân" />
+                            <Label fx:id="lblDoanhThuSan" style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: BOLD;" text="0 đ" />
+                        </VBox>
+                        <VBox style="-fx-background-color: #8B5CF6; -fx-background-radius: 14; -fx-padding: 20 24 20 24;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-text-fill: #E8CCFF; -fx-font-size: 13px;" text="Doanh thu dịch vụ" />
+                            <Label fx:id="lblDoanhThuDV" style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: BOLD;" text="0 đ" />
+                        </VBox>
+                        <VBox style="-fx-background-color: #F97316; -fx-background-radius: 14; -fx-padding: 20 24 20 24;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-text-fill: #FFE0CC; -fx-font-size: 13px;" text="Số lượt đặt" />
+                            <Label fx:id="lblSoLuotDat" style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: BOLD;" text="0" />
+                        </VBox>
+                    </HBox>
+
+                    <!-- TABLES ROW -->
+                    <HBox spacing="16">
+                        <!-- Sân được đặt nhiều nhất -->
+                        <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, #00000018, 8, 0, 0, 2); -fx-padding: 20 24 20 24;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: BOLD; -fx-text-fill: #1A1A2E;" text="Sân được đặt nhiều nhất" />
+                            <Label style="-fx-font-size: 12px; -fx-text-fill: #888;" text="Thống kê số lượt đặt và doanh thu theo từng sân" />
+                            <TableView fx:id="tableSan" prefHeight="200">
+                                <columns>
+                                    <TableColumn fx:id="colSanTen" prefWidth="140" text="Tên sân" />
+                                    <TableColumn fx:id="colSanLoai" prefWidth="80" text="Loại" />
+                                    <TableColumn fx:id="colSanLuot" prefWidth="80" text="Số lượt" />
+                                    <TableColumn fx:id="colSanTien" prefWidth="120" text="Doanh thu" />
+                                </columns>
+                                <placeholder>
+                                    <Label style="-fx-text-fill: #AAAAAA; -fx-font-size: 13px;" text="Không có dữ liệu trong ngày này" />
+                                </placeholder>
+                            </TableView>
+                        </VBox>
+
+                        <!-- Dịch vụ được sử dụng nhiều nhất -->
+                        <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, #00000018, 8, 0, 0, 2); -fx-padding: 20 24 20 24;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: BOLD; -fx-text-fill: #1A1A2E;" text="Dịch vụ được sử dụng nhiều nhất" />
+                            <Label style="-fx-font-size: 12px; -fx-text-fill: #888;" text="Thống kê số lượng sử dụng và doanh thu theo từng dịch vụ" />
+                            <TableView fx:id="tableDV" prefHeight="200">
+                                <columns>
+                                    <TableColumn fx:id="colDVTen" prefWidth="140" text="Tên dịch vụ" />
+                                    <TableColumn fx:id="colDVDVT" prefWidth="70" text="ĐVT" />
+                                    <TableColumn fx:id="colDVSL" prefWidth="80" text="Số lượng" />
+                                    <TableColumn fx:id="colDVTien" prefWidth="110" text="Doanh thu" />
+                                </columns>
+                                <placeholder>
+                                    <Label style="-fx-text-fill: #AAAAAA; -fx-font-size: 13px;" text="Không có dữ liệu dịch vụ trong ngày này" />
+                                </placeholder>
+                            </TableView>
+                        </VBox>
+                    </HBox>
+
+                    <!-- CHI TIẾT DOANH THU -->
+                    <VBox spacing="16" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, #00000018, 8, 0, 0, 2); -fx-padding: 20 24 20 24;">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: BOLD; -fx-text-fill: #1A1A2E;" text="Chi tiết doanh thu" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #888;" text="Phân tích chi tiết doanh thu theo từng hạng mục" />
+
+                        <HBox spacing="16">
+                            <!-- Đặt sân -->
+                            <VBox spacing="10" style="-fx-background-color: #F0FFF8; -fx-background-radius: 10; -fx-border-color: #22B573; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 16 20 16 20;" HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 14px; -fx-font-weight: BOLD; -fx-text-fill: #166534;" text="Doanh thu từ đặt sân" />
+                                <Separator />
+                                <HBox>
+                                    <Label style="-fx-font-size: 13px; -fx-text-fill: #555;" text="Số lượt đặt:" />
+                                    <Label fx:id="lblChiTietLuotDat" alignment="CENTER_RIGHT" style="-fx-font-size: 13px; -fx-font-weight: BOLD; -fx-text-fill: #166534;" text="0 lượt" HBox.hgrow="ALWAYS" />
+                                </HBox>
+                                <HBox>
+                                    <Label style="-fx-font-size: 13px; -fx-text-fill: #555;" text="Tổng tiền:" />
+                                    <Label fx:id="lblChiTietTienSan" alignment="CENTER_RIGHT" style="-fx-font-size: 13px; -fx-font-weight: BOLD; -fx-text-fill: #166534;" text="0 đ" HBox.hgrow="ALWAYS" />
+                                </HBox>
+                                <HBox>
+                                    <Label style="-fx-font-size: 13px; -fx-text-fill: #555;" text="Trung bình/lượt:" />
+                                    <Label fx:id="lblChiTietTBSan" alignment="CENTER_RIGHT" style="-fx-font-size: 13px; -fx-font-weight: BOLD; -fx-text-fill: #166534;" text="0 đ" HBox.hgrow="ALWAYS" />
+                                </HBox>
+                            </VBox>
+
+                            <!-- Dịch vụ -->
+                            <VBox spacing="10" style="-fx-background-color: #FAF5FF; -fx-background-radius: 10; -fx-border-color: #8B5CF6; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 16 20 16 20;" HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 14px; -fx-font-weight: BOLD; -fx-text-fill: #4C1D95;" text="Doanh thu từ dịch vụ" />
+                                <Separator />
+                                <HBox>
+                                    <Label style="-fx-font-size: 13px; -fx-text-fill: #555;" text="Số loại dịch vụ:" />
+                                    <Label fx:id="lblChiTietLoaiDV" alignment="CENTER_RIGHT" style="-fx-font-size: 13px; -fx-font-weight: BOLD; -fx-text-fill: #4C1D95;" text="0 loại" HBox.hgrow="ALWAYS" />
+                                </HBox>
+                                <HBox>
+                                    <Label style="-fx-font-size: 13px; -fx-text-fill: #555;" text="Tổng tiền:" />
+                                    <Label fx:id="lblChiTietTienDV" alignment="CENTER_RIGHT" style="-fx-font-size: 13px; -fx-font-weight: BOLD; -fx-text-fill: #4C1D95;" text="0 đ" HBox.hgrow="ALWAYS" />
+                                </HBox>
+                                <HBox>
+                                    <Label style="-fx-font-size: 13px; -fx-text-fill: #555;" text="Tỷ lệ/tổng doanh thu:" />
+                                    <Label fx:id="lblChiTietTyLeDV" alignment="CENTER_RIGHT" style="-fx-font-size: 13px; -fx-font-weight: BOLD; -fx-text-fill: #4C1D95;" text="0%" HBox.hgrow="ALWAYS" />
+                                </HBox>
+                            </VBox>
+                        </HBox>
+
+                        <!-- TỔNG KẾT -->
+                        <VBox spacing="8" style="-fx-background-color: #3A3AD4; -fx-background-radius: 10; -fx-padding: 20 24 20 24;">
+                            <Label style="-fx-text-fill: #CCCCFF; -fx-font-size: 13px;" text="Tổng doanh thu trong ngày" />
+                            <Label fx:id="lblTongCuoi" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: BOLD;" text="0 đ" />
+                            <HBox spacing="40">
+                                <VBox>
+                                    <Label style="-fx-text-fill: #AAAAFF; -fx-font-size: 12px;" text="Từ đặt sân" />
+                                    <Label fx:id="lblTongCuoiSan" style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: BOLD;" text="0 đ" />
+                                </VBox>
+                                <VBox>
+                                    <Label style="-fx-text-fill: #AAAAFF; -fx-font-size: 12px;" text="Từ dịch vụ" />
+                                    <Label fx:id="lblTongCuoiDV" style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: BOLD;" text="0 đ" />
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
