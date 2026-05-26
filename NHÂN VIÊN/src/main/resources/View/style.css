@@ -1,0 +1,360 @@
+/* =============================================
+   STYLE.CSS - Hệ thống Quản lý Sân Cầu Lông
+   JavaFX CSS (dùng -fx- prefix)
+   ============================================= */
+
+/* ---- ROOT / TOÀN BỘ APP ---- */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #f0f2f5;
+}
+
+/* =============================================
+   SIDEBAR - CỘT TRÁI
+   ============================================= */
+
+/* Header sidebar (chứa tên app) */
+.sidebar-header {
+    -fx-background-color: #1a1a2e;
+    -fx-padding: 20 20 20 20;
+}
+
+/* Menu sidebar chứa các nút */
+.sidebar-menu {
+    -fx-background-color: #1A222B;
+    -fx-padding: 20 15 20 15;
+    -fx-spacing: 8;
+}
+
+/* Nút menu mặc định (chưa active) */
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #A0AAB4;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 12 15 12 15;
+    -fx-cursor: hand;
+    -fx-alignment: BASELINE_LEFT;
+    -fx-graphic-text-gap: 10;
+}
+
+/* Hover trên nút menu */
+.sidebar-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+    -fx-text-fill: #ffffff;
+}
+
+/* Nút menu đang active (được chọn) */
+.sidebar-btn-active {
+    -fx-background-color: #00C853;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 12 15 12 15;
+    -fx-cursor: hand;
+    -fx-alignment: BASELINE_LEFT;
+    -fx-graphic-text-gap: 10;
+}
+
+.sidebar-btn-active:hover {
+    -fx-background-color: #00a844;
+}
+
+/* Label tên app trong sidebar */
+.app-title {
+    -fx-text-fill: #00e676;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.app-subtitle {
+    -fx-text-fill: #a0aab4;
+    -fx-font-size: 11px;
+}
+
+/* =============================================
+   TOPBAR - THANH TRÊN
+   ============================================= */
+.topbar {
+    -fx-background-color: #00A651;
+    -fx-spacing: 20;
+    -fx-padding: 10 20 10 20;
+}
+
+/* Ô tìm kiếm */
+.search-box {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-padding: 5 15 5 15;
+    -fx-spacing: 10;
+}
+
+.search-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+    -fx-prompt-text-fill: #999;
+}
+
+.search-field:focused {
+    -fx-background-color: transparent;
+}
+
+/* =============================================
+   CONTENT AREA - KHU VỰC NỘI DUNG
+   ============================================= */
+.content-area {
+    -fx-background-color: #f0f2f5;
+    -fx-padding: 20;
+}
+
+/* Tiêu đề trang */
+.page-title {
+    -fx-text-fill: #1a1a2e;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 13px;
+}
+
+/* =============================================
+   CARD THỐNG KÊ (Sân trống, Đang dùng, v.v.)
+   ============================================= */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.08), 10, 0, 0, 4);
+    -fx-cursor: hand;
+}
+
+.stat-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 15, 0, 0, 6);
+    -fx-background-color: #f8f9fa;
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #374151;
+}
+
+.stat-value-green {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #15804a;
+}
+
+.stat-value-red {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #dc2626;
+}
+
+/* =============================================
+   BUTTON CHUNG
+   ============================================= */
+.btn-primary {
+    -fx-background-color: #00C853;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #00a844;
+}
+
+.btn-secondary {
+    -fx-background-color: #e5e7eb;
+    -fx-text-fill: #374151;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #d1d5db;
+}
+
+/* =============================================
+   LABEL / TEXT
+   ============================================= */
+.label-muted {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 12px;
+}
+
+.label-success {
+    -fx-text-fill: #15803d;
+    -fx-font-weight: bold;
+}
+
+.label-danger {
+    -fx-text-fill: #dc2626;
+    -fx-font-weight: bold;
+}
+/* Trạng thái bình thường */
+.login-button {
+    -fx-background-color: #f7b500;
+    -fx-background-radius: 30;    /* Bo tròn */
+    -fx-border-radius: 30;        /* Bo viền tròn */
+    -fx-background-insets: 0;      /* Xóa các khoảng hở mặc định */
+    -fx-text-fill: white;
+    -fx-padding: 10 30 10 30;
+-fx-font-family: "Sitka Heading"; 
+    -fx-font-size: 15px; 
+    -fx-font-weight: bold;
+}
+
+/* Quan trọng: Trạng thái khi ấn hoặc click vào (Focus) */
+.login-button:focused {
+    -fx-background-color: #f7b500; /* Hoặc màu khác tùy bạn */
+    -fx-background-radius: 30;    /* Phải giữ nguyên thông số này */
+    -fx-border-radius: 30;        /* Phải giữ nguyên thông số này */
+    -fx-background-insets: 0;      /* Triệt tiêu cái khung vuông mặc định */
+    
+    /* Nếu muốn có viền nhẹ khi nhấn cho đẹp thì thêm dòng dưới */
+    -fx-border-color: rgba(255, 255, 255, 0.5); 
+    -fx-border-width: 1;
+}
+
+
+.Dat-lai-mk-button {
+    -fx-background-color: #f7b500;
+    -fx-background-radius: 30;    /* Bo tròn */
+    -fx-border-radius: 30;        /* Bo viền tròn */
+    -fx-background-insets: 0;      /* Xóa các khoảng hở mặc định */
+    -fx-text-fill: white;
+    -fx-padding: 10 30 10 30;
+-fx-font-family: "Sitka Heading"; 
+    -fx-font-size: 16px; 
+    -fx-font-weight: bold;
+}
+.my-input-Pass {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-background-insets: 0;
+    -fx-padding: 5 5 5 20;
+}
+/* Class chung cho thông báo */
+.Thong-bao {
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", Arial;
+    -fx-font-weight: bold;
+}
+
+/* Khi có lỗi (Đỏ) */
+.Thong-bao-1 {
+    -fx-text-fill: #ff6b6b; /* Màu đỏ san hô cho hiện đại */
+}
+
+/* Khi thành công (Xanh) */
+.msg-success {
+    -fx-text-fill: #2ecc71; /* Màu xanh lá dịu mắt */
+}
+
+/* Nếu bạn làm cái bảng Popup (Pane) */
+.notification-box {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+.white-label {
+    -fx-text-fill: white;
+}
+/* 1. Đây là cái TextField (Ô nhập liệu) */
+.my-input {
+    -fx-background-color: white;    /* Ép nền màu trắng */
+    -fx-background-radius: 30;     /* Bo tròn (tầm 25-30 là đẹp) */
+    -fx-border-radius: 30;
+    -fx-background-insets: 0;      /* Xóa bỏ các khoảng hở gây ra gạch dưới */
+    -fx-padding: 10 15 10 50;      /* Padding bên trái là 50 để tránh đè lên icon */
+    -fx-text-fill: black;          /* Chữ nhập vào màu đen cho dễ nhìn */
+    -fx-font-family: "Sitka Banner";      /* Hoặc font bạn thích */
+}
+
+/* 2. Trạng thái khi click vào (Focus) - Để không bị vuông lại */
+.my-input:focused {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-background-insets: 0;
+    -fx-border-color: #cccccc;     /* Thêm viền xám nhạt nhẹ khi focus cho sang */
+    -fx-border-width: 1;
+}
+
+/* 3. Đây là cái StackPane (Khung bao quanh icon và input) */
+.input-group {
+    -fx-background-color: transparent; /* Để màu trắng của TextField hiện ra hoàn toàn */
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+}
+/* 1. Đây là cái TextField (Ô nhập liệu) */
+.O-Nhap {
+    -fx-background-color: lightgrey;    /* Ép nền màu trắng */
+    -fx-background-radius: 15;     /* Bo tròn (tầm 25-30 là đẹp) */
+    -fx-border-radius: 30;
+    -fx-background-insets: 0;      /* Xóa bỏ các khoảng hở gây ra gạch dưới */
+    -fx-padding: 10 15 10 50;      /* Padding bên trái là 50 để tránh đè lên icon */
+    -fx-text-fill: black;          /* Chữ nhập vào màu đen cho dễ nhìn */
+    -fx-font-family: "Sitka Banner";      /* Hoặc font bạn thích */
+}
+
+/* 2. Trạng thái khi click vào (Focus) - Để không bị vuông lại */
+.my-input:focused {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-background-insets: 0;
+    -fx-border-color: #cccccc;     /* Thêm viền xám nhạt nhẹ khi focus cho sang */
+    -fx-border-width: 1;
+}
+
+/* 3. Đây là cái StackPane (Khung bao quanh icon và input) */
+.input-group {
+    -fx-background-color: transparent; /* Để màu trắng của TextField hiện ra hoàn toàn */
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+}
+.my-input {
+    -fx-background-color: #8faa8f;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-background-insets: 0;
+    -fx-padding: 10 5 10 20;
+    -fx-text-fill: #2d2d2d;
+    -fx-font-family: "Sitka Banner Bold";
+    -fx-prompt-text-fill: #2d2d2d;
+}
+
+.my-input:focused {
+    -fx-background-color: #a0b8a0;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-prompt-text-fill: #2d2d2d;
+}
+/* 3. Đây là cái StackPane (Khung bao quanh icon và input) */
+.input-group {
+    -fx-background-color: transparent; /* Để màu trắng của TextField hiện ra hoàn toàn */
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+}
+

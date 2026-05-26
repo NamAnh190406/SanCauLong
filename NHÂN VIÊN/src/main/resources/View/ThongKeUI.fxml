@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.ThongKeController">
+   <stylesheets>
+      <URL value="@style.css" />
+   </stylesheets>
+   <children>
+      <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+            AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+            style="-fx-background-color: #f0f2f5;">
+
+         <!-- ===== HEADER ===== -->
+         <HBox alignment="CENTER_LEFT" spacing="12"
+               style="-fx-background-color: white; -fx-padding: 14 24;
+                      -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+            <VBox spacing="2">
+               <Label text="&#x1F4CA; B&#xE1;o C&#xE1;o Th&#x1ED1;ng K&#xEA;"
+                      style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #16a34a;" />
+               <Label fx:id="lblFilterLabel"
+                      style="-fx-font-size: 12; -fx-text-fill: #6b7280;"
+                      text="Theo Ng&#xE0;y" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- Filter tabs -->
+            <HBox spacing="4"
+                  style="-fx-background-color: #f3f4f6; -fx-background-radius: 10; -fx-padding: 4;">
+               <Button fx:id="btnCa" mnemonicParsing="false" text="Ca"
+                       onAction="#onFilterCa" styleClass="filter-btn" />
+               <Button fx:id="btnNgay" mnemonicParsing="false" text="Ng&#xE0;y"
+                       onAction="#onFilterNgay" styleClass="filter-btn-active" />
+               <Button fx:id="btnThang" mnemonicParsing="false" text="Th&#xE1;ng"
+                       onAction="#onFilterThang" styleClass="filter-btn" />
+               <Button fx:id="btnQuy" mnemonicParsing="false" text="Qu&#xFD;"
+                       onAction="#onFilterQuy" styleClass="filter-btn" />
+            </HBox>
+
+            <!-- Export PDF -->
+            <Button fx:id="btnExport" mnemonicParsing="false"
+                    text="&#x1F4E5; Xu&#x1EA5;t b&#xE1;o c&#xE1;o"
+                    onAction="#onExportPDF"
+                    style="-fx-background-color: #16a34a; -fx-text-fill: white;
+                           -fx-font-weight: bold; -fx-font-size: 13;
+                           -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 9 18;" />
+         </HBox>
+
+         <!-- ===== SCROLLABLE CONTENT ===== -->
+         <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                     hbarPolicy="NEVER"
+                     style="-fx-background-color: #f0f2f5; -fx-background: #f0f2f5;
+                            -fx-border-color: transparent;">
+            <content>
+               <VBox spacing="18" style="-fx-padding: 20 24;">
+
+                  <!-- === STAT CARDS === -->
+                  <GridPane hgap="14">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                     </columnConstraints>
+
+                     <!-- Card 1: Doanh thu -->
+                     <VBox GridPane.columnIndex="0"
+                           style="-fx-background-color: white; -fx-background-radius: 12;
+                                  -fx-padding: 18; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),8,0,0,3);">
+                        <HBox alignment="CENTER_LEFT">
+                           <VBox spacing="4" HBox.hgrow="ALWAYS">
+                              <Label text="T&#x1ED5;ng doanh thu"
+                                     style="-fx-font-size: 12; -fx-text-fill: #6b7280;" />
+                              <Label fx:id="lblTotalRevenue"
+                                     style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #16a34a;"
+                                     text="0Ä‘" />
+                           </VBox>
+                           <Label text="&#x1F4B0;"
+                                  style="-fx-background-color: #dcfce7; -fx-font-size: 20;
+                                         -fx-background-radius: 50; -fx-alignment: center;
+                                         -fx-min-width: 46; -fx-min-height: 46;
+                                         -fx-max-width: 46; -fx-max-height: 46;" />
+                        </HBox>
+                     </VBox>
+
+                     <!-- Card 2: LÆ°á»£t Ä‘áº·t -->
+                     <VBox GridPane.columnIndex="1"
+                           style="-fx-background-color: white; -fx-background-radius: 12;
+                                  -fx-padding: 18; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),8,0,0,3);">
+                        <HBox alignment="CENTER_LEFT">
+                           <VBox spacing="4" HBox.hgrow="ALWAYS">
+                              <Label text="L&#x01B0;&#x1EE3;t &#x111;&#x1EB7;t s&#xE2;n"
+                                     style="-fx-font-size: 12; -fx-text-fill: #6b7280;" />
+                              <Label fx:id="lblTotalBookings"
+                                     style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #2563eb;"
+                                     text="0" />
+                           </VBox>
+                           <Label text="&#x1F4C5;"
+                                  style="-fx-background-color: #dbeafe; -fx-font-size: 20;
+                                         -fx-background-radius: 50; -fx-alignment: center;
+                                         -fx-min-width: 46; -fx-min-height: 46;
+                                         -fx-max-width: 46; -fx-max-height: 46;" />
+                        </HBox>
+                     </VBox>
+
+                     <!-- Card 3: KhÃ¡ch hÃ ng -->
+                     <VBox GridPane.columnIndex="2"
+                           style="-fx-background-color: white; -fx-background-radius: 12;
+                                  -fx-padding: 18; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),8,0,0,3);">
+                        <HBox alignment="CENTER_LEFT">
+                           <VBox spacing="4" HBox.hgrow="ALWAYS">
+                              <Label text="Kh&#xE1;ch h&#xE0;ng"
+                                     style="-fx-font-size: 12; -fx-text-fill: #6b7280;" />
+                              <Label fx:id="lblTotalCustomers"
+                                     style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #7c3aed;"
+                                     text="0" />
+                           </VBox>
+                           <Label text="&#x1F465;"
+                                  style="-fx-background-color: #ede9fe; -fx-font-size: 20;
+                                         -fx-background-radius: 50; -fx-alignment: center;
+                                         -fx-min-width: 46; -fx-min-height: 46;
+                                         -fx-max-width: 46; -fx-max-height: 46;" />
+                        </HBox>
+                     </VBox>
+
+                     <!-- Card 4: Trung bÃ¬nh -->
+                     <VBox GridPane.columnIndex="3"
+                           style="-fx-background-color: white; -fx-background-radius: 12;
+                                  -fx-padding: 18; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),8,0,0,3);">
+                        <HBox alignment="CENTER_LEFT">
+                           <VBox spacing="4" HBox.hgrow="ALWAYS">
+                              <Label text="Trung b&#xEC;nh"
+                                     style="-fx-font-size: 12; -fx-text-fill: #6b7280;" />
+                              <Label fx:id="lblAvgRevenue"
+                                     style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #d97706;"
+                                     text="0Ä‘" />
+                           </VBox>
+                           <Label text="&#x1F4C8;"
+                                  style="-fx-background-color: #fef9c3; -fx-font-size: 20;
+                                         -fx-background-radius: 50; -fx-alignment: center;
+                                         -fx-min-width: 46; -fx-min-height: 46;
+                                         -fx-max-width: 46; -fx-max-height: 46;" />
+                        </HBox>
+                     </VBox>
+                  </GridPane>
+
+                  <!-- === ROW 2: Revenue Bar + Bookings Line === -->
+                  <HBox spacing="14">
+                     <VBox HBox.hgrow="ALWAYS" spacing="8"
+                           style="-fx-background-color: white; -fx-background-radius: 12;
+                                  -fx-padding: 18; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),8,0,0,3);">
+                        <Label fx:id="lblChartRevTitle"
+                               style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #111827;"
+                               text="Doanh Thu Theo Ng&#xE0;y" />
+                        <BarChart fx:id="chartRevenue" prefHeight="260" maxHeight="260"
+                                  animated="false" legendVisible="false">
+                           <xAxis><CategoryAxis fx:id="revXAxis" /></xAxis>
+                           <yAxis><NumberAxis fx:id="revYAxis" /></yAxis>
+                        </BarChart>
+                     </VBox>
+                     <VBox HBox.hgrow="ALWAYS" spacing="8"
+                           style="-fx-background-color: white; -fx-background-radius: 12;
+                                  -fx-padding: 18; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),8,0,0,3);">
+                        <Label fx:id="lblChartBkTitle"
+                               style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #111827;"
+                               text="L&#x01B0;&#x1EE3;t &#x110;&#x1EB7;t S&#xE2;n Theo Ng&#xE0;y" />
+                        <LineChart fx:id="chartBookings" prefHeight="260" maxHeight="260"
+                                   animated="false" legendVisible="false">
+                           <xAxis><CategoryAxis fx:id="bkXAxis" /></xAxis>
+                           <yAxis><NumberAxis fx:id="bkYAxis" /></yAxis>
+                        </LineChart>
+                     </VBox>
+                  </HBox>
+
+                  <!-- === ROW 3: 3 charts === -->
+                  <HBox spacing="14">
+                     <VBox HBox.hgrow="ALWAYS" spacing="8"
+                           style="-fx-background-color: white; -fx-background-radius: 12;
+                                  -fx-padding: 18; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),8,0,0,3);">
+                        <Label text="T&#x1EF7; L&#x1EC7; S&#x1EED; D&#x1EE5;ng S&#xE2;n"
+                               style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #111827;" />
+                        <PieChart fx:id="chartCourtUsage" prefHeight="240" maxHeight="240"
+                                  animated="false" legendVisible="true" labelLineLength="10" />
+                     </VBox>
+                     <VBox HBox.hgrow="ALWAYS" spacing="8"
+                           style="-fx-background-color: white; -fx-background-radius: 12;
+                                  -fx-padding: 18; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),8,0,0,3);">
+                        <Label text="C&#x1A1; C&#x1EA5;u Doanh Thu"
+                               style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #111827;" />
+                        <PieChart fx:id="chartServiceRevenue" prefHeight="240" maxHeight="240"
+                                  animated="false" legendVisible="true" labelLineLength="10" />
+                     </VBox>
+                     <VBox HBox.hgrow="ALWAYS" spacing="8"
+                           style="-fx-background-color: white; -fx-background-radius: 12;
+                                  -fx-padding: 18; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),8,0,0,3);">
+                        <Label text="Gi&#x1EDD; Cao &#x110;i&#x1EC3;m"
+                               style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #111827;" />
+                        <BarChart fx:id="chartPeakHours" prefHeight="240" maxHeight="240"
+                                  animated="false" legendVisible="false">
+                           <xAxis><CategoryAxis fx:id="peakXAxis" /></xAxis>
+                           <yAxis><NumberAxis fx:id="peakYAxis" label="LÆ°á»£t" /></yAxis>
+                        </BarChart>
+                     </VBox>
+                  </HBox>
+
+                  <!-- === TABLE === -->
+                  <VBox spacing="10"
+                        style="-fx-background-color: white; -fx-background-radius: 12;
+                               -fx-padding: 18; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.06),8,0,0,3);">
+                     <Label text="&#x1F4CB; B&#x1EA3;ng Chi Ti&#x1EBF;t"
+                            style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #111827;" />
+                     <TableView fx:id="tableDetail" prefHeight="220">
+                        <columns>
+                           <TableColumn fx:id="colPeriod"  text="Kho&#x1EA3;ng th&#x1EDD;i gian" prefWidth="180" />
+                           <TableColumn fx:id="colRevenue"   text="Doanh thu"    prefWidth="160" />
+                           <TableColumn fx:id="colBookings"  text="L&#x01B0;&#x1EE3;t &#x111;&#x1EB7;t"    prefWidth="100" />
+                           <TableColumn fx:id="colCustomers" text="Kh&#xE1;ch h&#xE0;ng"  prefWidth="110" />
+                           <TableColumn fx:id="colAvg"       text="TB/l&#x01B0;&#x1EE3;t"     prefWidth="150" />
+                        </columns>
+                     </TableView>
+                  </VBox>
+
+               </VBox>
+            </content>
+         </ScrollPane>
+      </VBox>
+   </children>
+</AnchorPane>

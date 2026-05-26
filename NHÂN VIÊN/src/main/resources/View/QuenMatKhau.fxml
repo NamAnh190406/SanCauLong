@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.QuenMatKhau">
+   <children>
+      <AnchorPane layoutY="-43.0" prefHeight="149.0" prefWidth="651.0" style="-fx-background-color: #004225;">
+         <children>
+            <Label layoutX="197.0" layoutY="58.0" styleClass="white-label" stylesheets="@label.css" text="FLYHIGH">
+               <font>
+                  <Font name="Sitka Heading Bold" size="49.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="0.0" endY="1.0" startX="0.0" startY="0.0">
+                     <stops>
+                        <Stop offset="0.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.8" green="0.8" blue="0.8" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label layoutX="184.0" layoutY="113.0" styleClass="white-label" stylesheets="@label.css" text="ĐẶT SÂN CẦU LÔNG ONLINE">
+               <font>
+                  <Font name="Sitka Heading Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+
+      <!-- ✅ THÊM fx:id="txtEmail" -->
+      <TextField fx:id="txtEmail" layoutX="37.0" layoutY="171.0" prefHeight="34.0" prefWidth="525.0" promptText="Nhập Email" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);;" styleClass="O-Nhap" stylesheets="@Ô%20nhập%20SĐT%20-%20EMAIL.css">
+         <font>
+            <Font name="Sitka Banner Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="25.0" layoutY="124.0" text="Khách hàng vui lòng NHẬP EMAIL VÀ SỐ ĐIỆN THOẠI để đặt lại mật khẩu mới!">
+         <font>
+            <Font name="Sitka Banner Bold" size="14.0" />
+         </font>
+      </Label>
+
+      <!-- ✅ THÊM fx:id="txtSoDienThoai" -->
+      <TextField fx:id="txtSDT" layoutX="37.0" layoutY="225.0" prefHeight="37.0" prefWidth="525.0" promptText="Nhập Số điện thoại" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" styleClass="O-Nhap" stylesheets="@Ô%20nhập%20SĐT%20-%20EMAIL.css">
+         <font>
+            <Font name="Sitka Banner Bold" size="14.0" />
+         </font>
+      </TextField>
+
+      <FontAwesomeIconView glyphName="PHONE" layoutX="52.0" layoutY="254.0" size="25" text="" />
+
+      <!-- ✅ THÊM fx:id="lblKiemTra" -->
+      <Label fx:id="lblKiemTra" layoutX="25.0" layoutY="283.0" text="Kiểm tra: ">
+         <font>
+            <Font name="Sitka Banner Bold" size="14.0" />
+         </font>
+      </Label>
+
+      <Button layoutX="54.0" layoutY="331.0" minHeight="0.0" mnemonicParsing="false" onMouseClicked="#handleThoat" prefHeight="45.0" prefWidth="155.0" styleClass="login-button" stylesheets="@Nút%20đăng%20nhập.css" text="Thoát">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+
+      <!-- ✅ THÊM fx:id="btnDatLaiMatKhau" + onMouseClicked -->
+      <Button fx:id="btnDatLaiMatKhau" layoutX="331.0" layoutY="330.0" minHeight="0.0" mnemonicParsing="false" onMouseClicked="#handleDatLaiMatKhau" prefHeight="47.0" prefWidth="214.0" stylesheets="@Nút%20đăng%20nhập.css" text="Đặt lại mật khẩu">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <styleClass>
+            <String fx:value="login-button" />
+            <String fx:value="Dat-lai-mk-button" />
+         </styleClass>
+      </Button>
+      <FontAwesomeIconView glyphName="ENVELOPE" layoutX="46.0" layoutY="196.0" size="20" />
+
+   </children>
+</AnchorPane>

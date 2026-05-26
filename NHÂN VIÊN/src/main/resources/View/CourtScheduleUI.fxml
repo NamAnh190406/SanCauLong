@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.Priority?>
+
+<StackPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CourtScheduleController">
+    <children>
+        <VBox style="-fx-background-color: white;">
+            <HBox alignment="CENTER_LEFT" style="-fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0; -fx-padding: 16;">
+                <HBox alignment="CENTER_LEFT" spacing="16.0">
+                    <Button fx:id="btnPrevDate" text="&lt;" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 16px;"/>
+                    <Label fx:id="lblDate" text="01/05/2026" style="-fx-font-size: 18px;"/>
+                    <Button fx:id="btnNextDate" text="&gt;" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 16px;"/>
+                </HBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox spacing="8.0">
+                    <Button fx:id="btnAddBooking" text="+ Thêm đặt sân" style="-fx-background-color: #eab308; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand;" />
+                    <Button fx:id="btnExit" text="Thoát" style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand;" />
+                </HBox>
+            </HBox>
+
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background: white; -fx-background-color: transparent;">
+                <content>
+                    <GridPane fx:id="scheduleGrid" gridLinesVisible="true" style="-fx-border-color: #e5e7eb;">
+                        </GridPane>
+                </content>
+            </ScrollPane>
+
+            <HBox spacing="24.0" style="-fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0; -fx-padding: 16;">
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                    <Region prefWidth="16" prefHeight="16" style="-fx-background-color: white; -fx-border-color: #d1d5db; -fx-border-width: 2; -fx-background-radius: 4; -fx-border-radius: 4;" />
+                    <Label text="Trống" style="-fx-font-size: 14px;" />
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                    <Region prefWidth="16" prefHeight="16" style="-fx-background-color: #fef9c3; -fx-border-color: #fde047; -fx-border-width: 2; -fx-background-radius: 4; -fx-border-radius: 4;" />
+                    <Label text="Đã đặt" style="-fx-font-size: 14px;" />
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                    <Region prefWidth="16" prefHeight="16" style="-fx-background-color: #dcfce7; -fx-border-color: #86efac; -fx-border-width: 2; -fx-background-radius: 4; -fx-border-radius: 4;" />
+                    <Label text="Đang chơi" style="-fx-font-size: 14px;" />
+                </HBox>
+            </HBox>
+        </VBox>
+
+        <VBox fx:id="addBookingModal" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.5);" visible="false">
+            <VBox maxWidth="450" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24;" spacing="16.0">
+                <Label text="Thêm Đặt Sân Mới" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                
+                <VBox spacing="8.0">
+                    <Label text="Tên khách hàng *" style="-fx-text-fill: #6b7280;"/>
+                    <TextField fx:id="txtCustomerName" promptText="Nhập tên khách hàng" style="-fx-padding: 8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e5e7eb; -fx-background-color: white;"/>
+                </VBox>
+                
+                <VBox spacing="8.0">
+                    <Label text="Số điện thoại *" style="-fx-text-fill: #6b7280;"/>
+                    <TextField fx:id="txtPhoneNumber" promptText="Nhập số điện thoại" style="-fx-padding: 8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e5e7eb; -fx-background-color: white;"/>
+                </VBox>
+                
+                <VBox spacing="8.0">
+                    <Label text="Chọn sân *" style="-fx-text-fill: #6b7280;"/>
+                    <ComboBox fx:id="cbCourt" maxWidth="Infinity" promptText="Chọn sân..." style="-fx-padding: 4; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e5e7eb; -fx-background-color: #f0fdf4;"/>
+                </VBox>
+
+                <VBox spacing="8.0">
+                    <Label text="Giờ bắt đầu *" style="-fx-text-fill: #6b7280;"/>
+                    <ComboBox fx:id="cbTimeSlot" maxWidth="Infinity" promptText="Chọn giờ..." style="-fx-padding: 4; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e5e7eb; -fx-background-color: #f0fdf4;"/>
+                </VBox>
+
+                <VBox spacing="8.0">
+                    <Label text="Thời lượng (giờ) *" style="-fx-text-fill: #6b7280;"/>
+                    <ComboBox fx:id="cbDuration" maxWidth="Infinity" style="-fx-padding: 4; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e5e7eb; -fx-background-color: white;"/>
+                </VBox>
+
+                <VBox style="-fx-background-color: #f0fdf4; -fx-border-color: #bbf7d0; -fx-border-width: 2; -fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 12;" spacing="4.0">
+                    <Label text="Thông tin đặt sân:" style="-fx-font-weight: bold; -fx-text-fill: #4b5563;"/>
+                    <Label fx:id="lblSummaryCourt" text="Sân: (Chưa chọn)"/>
+                    <Label fx:id="lblSummaryTime" text="Giờ: (Chưa chọn)"/>
+                    <Label fx:id="lblSummaryDuration" text="Thời lượng: 1 giờ"/>
+                    <Label fx:id="lblSummaryCustomer" text="Khách hàng: (Chưa nhập)"/>
+                </VBox>
+
+                <HBox spacing="12.0" style="-fx-padding: 16 0 0 0;">
+                    <Button fx:id="btnCancelAdd" text="Hủy" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8; -fx-cursor: hand;"/>
+                    <Button fx:id="btnConfirmAdd" text="Xác nhận" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8; -fx-cursor: hand;"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <VBox fx:id="bookingDetailModal" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.5);" visible="false">
+            <VBox maxWidth="450" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24;" spacing="16.0">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Thông Tin Đặt Sân" style="-fx-font-size: 18px; -fx-font-weight: bold;" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Button fx:id="btnCloseDetailIcon" text="X" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-font-size: 16px; -fx-cursor: hand;"/>
+                </HBox>
+
+                <VBox style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 16;" spacing="12.0">
+                    <VBox>
+                        <Label text="Khách hàng" style="-fx-font-size: 12px; -fx-text-fill: #6b7280;"/>
+                        <Label fx:id="lblDetailCustomer" text="-" style="-fx-font-size: 14px;"/>
+                    </VBox>
+                    <VBox>
+                        <Label text="Số điện thoại" style="-fx-font-size: 12px; -fx-text-fill: #6b7280;"/>
+                        <Label fx:id="lblDetailPhone" text="-" style="-fx-font-size: 14px;"/>
+                    </VBox>
+                    <VBox>
+                        <Label text="Sân" style="-fx-font-size: 12px; -fx-text-fill: #6b7280;"/>
+                        <Label fx:id="lblDetailCourt" text="-" style="-fx-font-size: 14px;"/>
+                    </VBox>
+                    <HBox spacing="24.0">
+                        <VBox HBox.hgrow="ALWAYS">
+                            <Label text="Giờ bắt đầu" style="-fx-font-size: 12px; -fx-text-fill: #6b7280;"/>
+                            <Label fx:id="lblDetailTime" text="-" style="-fx-font-size: 14px;"/>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <Label text="Thời lượng" style="-fx-font-size: 12px; -fx-text-fill: #6b7280;"/>
+                            <Label fx:id="lblDetailDuration" text="-" style="-fx-font-size: 14px;"/>
+                        </VBox>
+                    </HBox>
+                    <VBox>
+                        <Label text="Trạng thái" style="-fx-font-size: 12px; -fx-text-fill: #6b7280;"/>
+                        <Label fx:id="lblDetailStatus" text="-" style="-fx-background-color: #fef9c3; -fx-text-fill: #a16207; -fx-padding: 4 8; -fx-background-radius: 4; -fx-font-size: 12px;"/>
+                    </VBox>
+                </VBox>
+
+                <VBox spacing="8.0" style="-fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0; -fx-padding: 16 0 0 0;">
+                    <Label text="Cập nhật trạng thái" style="-fx-font-size: 14px;"/>
+                    <HBox spacing="8.0">
+                        <Button fx:id="btnStartPlaying" text="Bắt đầu chơi" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8; -fx-cursor: hand;" visible="false" managed="false"/>
+                        <Button fx:id="btnRevertToBooked" text="Chuyển về đã đặt" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-background-color: #eab308; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8; -fx-cursor: hand;" visible="false" managed="false"/>
+                    </HBox>
+                </VBox>
+
+                <HBox spacing="12.0" style="-fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0; -fx-padding: 16 0 0 0;">
+                    <Button fx:id="btnCloseDetail" text="Đóng" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8; -fx-cursor: hand;"/>
+                    <Button fx:id="btnCancelBooking" text="Hủy đặt sân" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8; -fx-cursor: hand;">
+                         <graphic>
+                            <SVGPath content="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6" fill="transparent" scaleX="0.6" scaleY="0.6" stroke="#ffffff" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                         </graphic>
+                    </Button>
+                </HBox>
+            </VBox>
+        </VBox>
+    </children>
+</StackPane>

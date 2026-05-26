@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ThongTinCaNhanController">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+    <children>
+        <ScrollPane fitToWidth="true" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    style="-fx-background-color: #f3f4f6; -fx-background: #f3f4f6; -fx-border-color: transparent;">
+            <content>
+                <VBox alignment="TOP_CENTER" spacing="24" style="-fx-padding: 24;">
+                    <VBox maxWidth="800" spacing="24" HBox.hgrow="ALWAYS">
+                        
+                        <Label text="Th&#xF4;ng Tin C&#xE1; Nh&#xE2;n" 
+                               style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #16a34a;" />
+
+                        <!-- Profile Card -->
+                        <VBox style="-fx-background-color: white; -fx-background-radius: 8; 
+                                     -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.05),10,0,0,2);">
+                            
+                            <!-- Cover Header -->
+                            <Region style="-fx-background-color: linear-gradient(to right, #16a34a, #4ade80); 
+                                           -fx-background-radius: 8 8 0 0;" 
+                                    prefHeight="100" />
+                            
+                            <!-- Avatar and Info -->
+                            <VBox style="-fx-padding: 0 24 24 24;" spacing="16">
+                                <HBox alignment="BOTTOM_LEFT" spacing="16">
+                                    <VBox translateY="-30">
+                                        <Label style="-fx-background-color: white; -fx-text-fill: #16a34a; -fx-font-size: 64; 
+                                                      -fx-background-radius: 100; -fx-border-color: white; -fx-border-width: 4; 
+                                                      -fx-border-radius: 100; -fx-min-width: 100; -fx-min-height: 100; 
+                                                      -fx-alignment: center; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.1),10,0,0,4);" 
+                                               text="&#x1F464;" />
+                                    </VBox>
+                                    <VBox spacing="4" translateY="-10" HBox.hgrow="ALWAYS">
+                                        <Label fx:id="lblHeaderName" text="Nguy&#x1EC5;n V&#x103;n A" 
+                                               style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #111827;" />
+                                        <Label fx:id="lblHeaderRole" text="Nh&#xE2;n vi&#xEA;n qu&#x1EA3;n l&#xFD;" 
+                                               style="-fx-font-size: 14; -fx-text-fill: #16a34a;" />
+                                    </VBox>
+                                    <Button fx:id="btnEdit" text="&#x270E; Ch&#x1EC9;nh s&#x1EED;a" onAction="#onEditToggle"
+                                            style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-weight: bold; 
+                                                   -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand;" />
+                                </HBox>
+
+                                <!-- Details Grid -->
+                                <GridPane hgap="24" vgap="16">
+                                    <columnConstraints>
+                                        <javafx.scene.layout.ColumnConstraints percentWidth="50" />
+                                        <javafx.scene.layout.ColumnConstraints percentWidth="50" />
+                                    </columnConstraints>
+                                    
+                                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                        <Label text="&#x1F464; M&#xE3; nh&#xE2;n vi&#xEA;n" style="-fx-text-fill: #6b7280; -fx-font-size: 13;" />
+                                        <TextField fx:id="tfEmpId" editable="false" 
+                                                   style="-fx-background-color: #f3f4f6; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-padding: 8;" />
+                                    </VBox>
+                                    
+                                    <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                        <Label text="&#x1F4C5; Ng&#xE0;y v&#xE0;o l&#xE0;m" style="-fx-text-fill: #6b7280; -fx-font-size: 13;" />
+                                        <TextField fx:id="tfJoinDate" editable="false" 
+                                                   style="-fx-background-color: #f3f4f6; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-padding: 8;" />
+                                    </VBox>
+                                    
+                                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                        <Label text="&#x2709; Email" style="-fx-text-fill: #6b7280; -fx-font-size: 13;" />
+                                        <TextField fx:id="tfEmail" editable="false" 
+                                                   style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-padding: 8;" />
+                                    </VBox>
+                                    
+                                    <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                        <Label text="&#x1F4CD; &#x110;&#x1ECB;a ch&#x1EC9;" style="-fx-text-fill: #6b7280; -fx-font-size: 13;" />
+                                        <TextField fx:id="tfAddress" editable="false" 
+                                                   style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-padding: 8;" />
+                                    </VBox>
+                                    
+                                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                        <Label text="&#x1F4DE; S&#x1ED1; &#x111;i&#x1EC7;n tho&#x1EA1;i" style="-fx-text-fill: #6b7280; -fx-font-size: 13;" />
+                                        <TextField fx:id="tfPhone" editable="false" 
+                                                   style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-padding: 8;" />
+                                    </VBox>
+                                    
+                                    <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                        <Label text="Ch&#x1EE9;c v&#x1EE5;" style="-fx-text-fill: #6b7280; -fx-font-size: 13;" />
+                                        <TextField fx:id="tfRole" editable="false" 
+                                                   style="-fx-background-color: #f3f4f6; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-padding: 8;" />
+                                    </VBox>
+                                </GridPane>
+
+                                <HBox fx:id="boxActions" spacing="12" visible="false" managed="false" style="-fx-padding: 16 0 0 0; -fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0;">
+                                    <Button text="H&#x1EE7;y" onAction="#onCancelEdit" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                                            style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-font-weight: bold; 
+                                                   -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand;" />
+                                    <Button text="L&#x01B0;u thay &#x111;&#x1ED5;i" onAction="#onSaveEdit" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                                            style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-weight: bold; 
+                                                   -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand;" />
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <!-- Change Password -->
+                        <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24; 
+                                     -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.05),10,0,0,2);">
+                            <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 0 0 16 0;">
+                                <Label text="&#x1F512;" style="-fx-font-size: 20; -fx-text-fill: #374151;" />
+                                <Label text="&#x110;&#x1ED5;i m&#x1EAD;t kh&#x1EA9;u" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+                            </HBox>
+                            
+                            <VBox spacing="16" maxWidth="400">
+                                <VBox spacing="8">
+                                    <Label text="M&#x1EAD;t kh&#x1EA9;u hi&#x1EC7;n t&#x1EA1;i" style="-fx-text-fill: #6b7280; -fx-font-size: 13;" />
+                                    <PasswordField fx:id="pfOld" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-padding: 8;" />
+                                </VBox>
+                                <VBox spacing="8">
+                                    <Label text="M&#x1EAD;t kh&#x1EA9;u m&#x1EDB;i" style="-fx-text-fill: #6b7280; -fx-font-size: 13;" />
+                                    <PasswordField fx:id="pfNew" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-padding: 8;" />
+                                </VBox>
+                                <VBox spacing="8">
+                                    <Label text="X&#xE1;c nh&#x1EAD;n m&#x1EAD;t kh&#x1EA9;u m&#x1EDB;i" style="-fx-text-fill: #6b7280; -fx-font-size: 13;" />
+                                    <PasswordField fx:id="pfConfirm" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-padding: 8;" />
+                                </VBox>
+                                <Button text="&#x110;&#x1ED5;i m&#x1EAD;t kh&#x1EA9;u" onAction="#onChangePassword"
+                                        style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-weight: bold; 
+                                               -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand;" />
+                            </VBox>
+                        </VBox>
+                        
+                    </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
