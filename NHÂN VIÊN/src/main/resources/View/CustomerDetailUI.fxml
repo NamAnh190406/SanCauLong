@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<VBox prefHeight="538.0" prefWidth="477.0" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 0 1;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerDetailController">
+   <children>
+      <!-- Header -->
+      <VBox style="-fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+         <children>
+            <Label style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #111827;" text="Thông tin đặt sân" />
+         </children>
+         <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </padding>
+      </VBox>
+      
+      <!-- Scrollable Content -->
+      <ScrollPane fitToWidth="true" prefHeight="480.0" prefWidth="500.0" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox spacing="16.0">
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+               <children>
+                  <!-- Info Container -->
+                  <VBox spacing="12.0" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;">
+                     <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </padding>
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Khách hàng" />
+                              <Label fx:id="lblCustomerName" style="-fx-font-size: 13px; -fx-text-fill: #111827;" text="Nguyễn Văn A" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox>
+                           <children>
+                              <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Số điện thoại" />
+                              <Label fx:id="lblPhoneNumber" style="-fx-font-size: 13px; -fx-text-fill: #111827;" text="0901234567" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox>
+                           <children>
+                              <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Sân" />
+                              <Label fx:id="lblCourt" style="-fx-font-size: 13px; -fx-text-fill: #111827;" text="Sân 1" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox>
+                           <children>
+                              <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Thời gian" />
+                              <Label fx:id="lblTime" style="-fx-font-size: 13px; -fx-text-fill: #111827;" text="06:00 - 07:00" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox>
+                           <children>
+                              <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Ngày" />
+                              <Label fx:id="lblDate" style="-fx-font-size: 13px; -fx-text-fill: #111827;" text="01/05/2026" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox>
+                           <children>
+                              <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Trạng thái" />
+                              <HBox>
+                                 <padding>
+                                    <Insets top="4.0" />
+                                 </padding>
+                                 <children>
+                                    <Label fx:id="lblStatus" style="-fx-background-color: #fef9c3; -fx-text-fill: #a16207; -fx-font-size: 11px; -fx-padding: 4 8 4 8; -fx-background-radius: 4;" text="Đã đặt" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        
+                        <VBox>
+                           <children>
+                              <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Thanh toán" />
+                              <Label fx:id="lblTotalAmount" style="-fx-font-size: 13px; -fx-text-fill: #111827;" text="200.000 VNĐ" />
+                           </children>
+                        </VBox>
+
+                        <!-- Actions Section -->
+                        <VBox spacing="8.0" style="-fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0;">
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="16.0" />
+                           </VBox.margin>
+                           <children>
+                              <Button fx:id="btnConfirm" maxWidth="Infinity" style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8 16 8 16; -fx-cursor: hand;" text="Xác nhận" />
+                              <Button fx:id="btnEdit" maxWidth="Infinity" style="-fx-background-color: #eab308; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8 16 8 16; -fx-cursor: hand;" text="Chưa thanh toán" />
+                              <Button fx:id="btnCancelBooking" maxWidth="Infinity" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8 16 8 16; -fx-cursor: hand;" text="Huỷ đặt sân">
+                                 <graphic>
+                                    <SVGPath content="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6" fill="transparent" scaleX="0.6" scaleY="0.6" stroke="#ffffff" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnClose" maxWidth="Infinity" style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8 16 8 16; -fx-cursor: hand;" text="Đóng" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+
+                  <!-- Waiting List Section -->
+                  <VBox spacing="12.0" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;">
+                     <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </padding>
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #111827;" text="Danh sách đặt sân" />
+                        <VBox fx:id="waitingListContainer" spacing="8.0">
+                           <children>
+                              <VBox style="-fx-background-color: white; -fx-background-radius: 4;">
+                                 <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                 </padding>
+                                 <children>
+                                    <Label style="-fx-font-size: 13px; -fx-text-fill: #111827;" text="Trần Thị B" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="0907654321" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Sân 2 - 08:00" />
+                                 </children>
+                              </VBox>
+                              
+                              <VBox style="-fx-background-color: white; -fx-background-radius: 4;">
+                                 <padding>
+                                    <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                 </padding>
+                                 <children>
+                                    <Label style="-fx-font-size: 13px; -fx-text-fill: #111827;" text="Lê Văn C" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="0912345678" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Sân 3 - 09:00" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>
