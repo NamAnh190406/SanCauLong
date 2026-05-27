@@ -1,0 +1,77 @@
+.root {
+    -fx-background-color: #1f2937; /* Dark background */
+    -fx-base: #1f2937;
+    -fx-control-inner-background: #374151;
+    -fx-control-inner-background-alt: #4b5563;
+    -fx-text-background-color: #f3f4f6;
+    -fx-accent: #3b82f6;
+    -fx-focus-color: #3b82f6;
+    -fx-faint-focus-color: transparent;
+    -fx-background: #1f2937;
+}
+
+.label {
+    -fx-text-fill: #f3f4f6;
+}
+
+.button {
+    -fx-background-color: #374151;
+    -fx-text-fill: #f3f4f6;
+    -fx-border-color: #4b5563;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.button:hover {
+    -fx-background-color: #4b5563;
+}
+
+.button:pressed {
+    -fx-background-color: #1f2937;
+}
+
+.text-field, .password-field, .text-area, .combo-box {
+    -fx-background-color: #374151;
+    -fx-text-fill: #f3f4f6;
+    -fx-prompt-text-fill: #9ca3af;
+    -fx-border-color: #4b5563;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.scroll-pane, .scroll-pane > .viewport {
+    -fx-background-color: #1f2937;
+}
+
+/* Sidebar specific overrides if needed */
+.sidebar {
+    -fx-background-color: #111827;
+}
+
+/* White boxes in dashboard should be dark */
+HBox[style*="-fx-background-color: white"], VBox[style*="-fx-background-color: white"] {
+    -fx-background-color: #374151 !important;
+    -fx-border-color: #4b5563;
+}
+
+/* Dashboard labels override (keeping some colors) */
+Label[style*="-fx-text-fill: #374151"], Label[style*="-fx-text-fill: #6b7280"] {
+    -fx-text-fill: #d1d5db !important;
+}
+
+.table-view {
+    -fx-background-color: #1f2937;
+    -fx-table-cell-border-color: #4b5563;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #374151;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #f3f4f6;
+}
