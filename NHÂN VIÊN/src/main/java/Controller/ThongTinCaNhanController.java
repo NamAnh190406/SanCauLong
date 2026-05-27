@@ -58,17 +58,78 @@ public class ThongTinCaNhanController implements Initializable {
 
     // ================= LOAD DỮ LIỆU =================
     private void loadUserInfo() {
-        // TODO: Sau này bạn thay đoạn này bằng hàm Fetch từ DB theo ID người đang đăng nhập
-        lblHeaderName.setText("Mai Thị Hoài Linh");
-        lblHeaderRole.setText("Nhân viên quản lý");
+        // Lấy thông tin từ session đăng nhập
+        String maNV   = Controller.LuuThongTinDangNhap.maNV;
+        String hoTen  = Controller.LuuThongTinDangNhap.hoTen;
+        String chucVu = Controller.LuuThongTinDangNhap.chucVu;
+        String maKH   = Controller.LuuThongTinDangNhap.maKH;
 
-        tfEmpId.setText("NV001");
-        tfJoinDate.setText("01/01/2026");
-        tfEmail.setText("maithihoailinh@gmail.com");
-        tfAddress.setText("Thủ Đức, TP.HCM");
-        tfPhone.setText("0901234567");
-        tfRole.setText("Nhân viên quản lý");
+        // Hiển thị header từ session (đã có sau đăng nhập)
+        lblHeaderName.setText(hoTen != null && !hoTen.isEmpty() ? hoTen : "Người dùng");
+        lblHeaderRole.setText(chucVu != null && !chucVu.isEmpty() ? chucVu : "Thành viên");
+
+        if (maNV != null && !maNV.isEmpty()) {
+            // Nhân viên — query bảng NHAN_VIEN
+            String sql = "SELECT MA_NV, HOTEN_NV, SDT, DIACHI, EMAIL, NGAYBATDAU, CHUCVU " +
+                         "FROM NHAN_VIEN WHERE MA_NV = ?";
+            try (java.sql.Connection conn = new Utils.Databasehelper().createCon();
+                 java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, maNV);
+                try (java.sql.ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        tfEmpId.setText(rs.getString("MA_NV"));
+                        tfPhone.setText(nvl(rs.getString("SDT")));
+                        tfAddress.setText(nvl(rs.getString("DIACHI")));
+                        tfEmail.setText(nvl(rs.getString("EMAIL")));
+                        tfRole.setText(nvl(rs.getString("CHUCVU")));
+                        java.sql.Date nd = rs.getDate("NGAYBATDAU");
+                        tfJoinDate.setText(nd != null ? nd.toLocalDate().toString() : "---");
+                    }
+                }
+            } catch (java.sql.SQLException e) {
+                System.err.println("Lỗi load thông tin nhân viên: " + e.getMessage());
+                setDefaultFields(maNV, chucVu);
+            }
+        } else if (maKH != null && !maKH.isEmpty()) {
+            // Khách hàng — query bảng KHACHHANG
+            String sql = "SELECT MaKH, HoTen, SDT, DiaChi, HangThanhVien, DiemTichLuy " +
+                         "FROM KHACHHANG WHERE MaKH = ?";
+            try (java.sql.Connection conn = new Utils.Databasehelper().createCon();
+                 java.sql.PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, maKH);
+                try (java.sql.ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        tfEmpId.setText(rs.getString("MaKH"));
+                        tfPhone.setText(nvl(rs.getString("SDT")));
+                        tfAddress.setText(nvl(rs.getString("DiaChi")));
+                        tfEmail.setText("---");
+                        tfRole.setText(nvl(rs.getString("HangThanhVien")) +
+                                       " (" + rs.getInt("DiemTichLuy") + " điểm)");
+                        tfJoinDate.setText("---");
+                    }
+                }
+            } catch (java.sql.SQLException e) {
+                System.err.println("Lỗi load thông tin khách hàng: " + e.getMessage());
+                setDefaultFields(maKH, "Khách hàng");
+            }
+        } else {
+            setDefaultFields("---", "---");
+        }
     }
+
+    private void setDefaultFields(String id, String role) {
+        tfEmpId.setText(id != null ? id : "---");
+        tfPhone.setText("---");
+        tfAddress.setText("---");
+        tfEmail.setText("---");
+        tfRole.setText(role != null ? role : "---");
+        tfJoinDate.setText("---");
+    }
+
+    private String nvl(String s) {
+        return s != null && !s.isEmpty() ? s : "---";
+    }
+
 
     // ================= CHỈNH SỬA THÔNG TIN =================
     @FXML

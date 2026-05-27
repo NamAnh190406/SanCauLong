@@ -1,4 +1,4 @@
-package com.mycompany.qlysancaulong;
+package Controller;
 
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;

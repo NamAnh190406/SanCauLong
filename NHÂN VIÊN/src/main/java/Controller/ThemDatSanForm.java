@@ -27,22 +27,22 @@ public class ThemDatSanForm extends Stage {
     private Button btnHuy;
 
     public ThemDatSanForm() {
-        this.setTitle("ThÃªm Äáº·t SÃ¢n");
+        this.setTitle("Thêm Đặt Sân");
         initComponents();
     }
 
     private void initComponents() {
         txtMaDat = new TextField();
-        txtMaDat.setPromptText("MÃ£ Äáº·t");
+        txtMaDat.setPromptText("Mã Đặt");
 
         txtCustomerName = new TextField();
-        txtCustomerName.setPromptText("Nháº­p tÃªn khÃ¡ch hÃ ng");
+        txtCustomerName.setPromptText("Nhập tên khách hàng");
 
         txtCustomerPhone = new TextField();
-        txtCustomerPhone.setPromptText("Nháº­p sá»‘ Ä‘iá»‡n thoáº¡i khÃ¡ch hÃ ng");
+        txtCustomerPhone.setPromptText("Nhập số điện thoại khách hàng");
 
         txtCourt = new TextField();
-        txtCourt.setPromptText("Nháº­p tÃªn sÃ¢n");
+        txtCourt.setPromptText("Nhập tên sân");
 
         cboSan = new ComboBox<>();
         LoadCbbSan();
@@ -50,18 +50,20 @@ public class ThemDatSanForm extends Stage {
         dpNgayDat = new DatePicker();
 
         cboCa = new ComboBox<>();
-        cboCa.getItems().addAll("Ca 1 (6h-8h)", "Ca 2 (8h-10h)", "Ca 3 (10h-12h)", "Ca 4 (12h-14h)",
-                "Ca 5 (14h-16h)", "Ca 6 (16h-18h)", "Ca 7 (18h-20h)", "Ca 8 (20h-22h)");
+        cboCa.getItems().addAll(
+                "Ca 1 (6h-8h)", "Ca 2 (8h-10h)", "Ca 3 (10h-12h)", "Ca 4 (12h-14h)",
+                "Ca 5 (14h-16h)", "Ca 6 (16h-18h)", "Ca 7 (18h-20h)", "Ca 8 (20h-22h)"
+        );
 
         txtTienCoc = new TextField();
-        txtTienCoc.setPromptText("Nháº­p tiá»n cá»c");
+        txtTienCoc.setPromptText("Nhập tiền cọc");
 
         txtGhiChu = new TextArea();
-        txtGhiChu.setPromptText("Nháº­p ghi chÃº");
+        txtGhiChu.setPromptText("Nhập ghi chú");
         txtGhiChu.setPrefRowCount(3);
 
-        btnLuu = new Button("LÆ°u");
-        btnHuy = new Button("Há»§y");
+        btnLuu = new Button("Lưu");
+        btnHuy = new Button("Hủy");
 
         styleButton();
 
@@ -72,28 +74,29 @@ public class ThemDatSanForm extends Stage {
         grid.setPadding(new Insets(20));
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.add(createLabel("MÃ£ Äáº·t:"), 0, 0);
+        
+        grid.add(createLabel("Mã Đặt:"), 0, 0);
         grid.add(txtMaDat, 1, 0);
 
-        grid.add(createLabel("TÃªn KhÃ¡ch HÃ ng:"), 0, 1);
+        grid.add(createLabel("Tên Khách Hàng:"), 0, 1);
         grid.add(txtCustomerName, 1, 1);
 
-        grid.add(createLabel("Sá»‘ Äiá»‡n Thoáº¡i:"), 0, 2);
+        grid.add(createLabel("Số Điện Thoại:"), 0, 2);
         grid.add(txtCustomerPhone, 1, 2);
 
-        grid.add(createLabel("SÃ¢n:"), 0, 3);
+        grid.add(createLabel("Sân:"), 0, 3);
         grid.add(cboSan, 1, 3);
 
-        grid.add(createLabel("NgÃ y Äáº·t:"), 0, 4);
+        grid.add(createLabel("Ngày Đặt:"), 0, 4);
         grid.add(dpNgayDat, 1, 4);
 
         grid.add(createLabel("Ca:"), 0, 5);
         grid.add(cboCa, 1, 5);
 
-        grid.add(createLabel("Tiá»n Cá»c:"), 0, 6);
+        grid.add(createLabel("Tiền Cọc:"), 0, 6);
         grid.add(txtTienCoc, 1, 6);
 
-        grid.add(createLabel("Ghi ChÃº:"), 0, 7);
+        grid.add(createLabel("Ghi Chú:"), 0, 7);
         grid.add(txtGhiChu, 1, 7);
 
         HBox buttons = new HBox(10, btnLuu, btnHuy);
@@ -134,47 +137,50 @@ public class ThemDatSanForm extends Stage {
         String tienCoc = txtTienCoc.getText().trim();
         String ghiChu = txtGhiChu.getText().trim();
 
-        System.out.println("MÃ£ Äáº·t: " + maDat);
-        System.out.println("TÃªn KhÃ¡ch HÃ ng: " + tenKH);
-        System.out.println("Sá»‘ Äiá»‡n Thoáº¡i: " + sdt);
-        System.out.println("SÃ¢n: " + san);
-        System.out.println("NgÃ y Äáº·t: " + ngayDat);
+        System.out.println("Mã đặt: " + maDat);
+        System.out.println("Tên khách hàng: " + tenKH);
+        System.out.println("Số điện thoại: " + sdt);
+        System.out.println("Sân: " + san);
+        System.out.println("Ngày Đặt: " + ngayDat);
         System.out.println("Ca: " + ca);
-        System.out.println("Tiá»n Cá»c: " + tienCoc);
-        System.out.println("Ghi ChÃº: " + ghiChu);
+        System.out.println("Tiền cọc: " + tienCoc);
+        System.out.println("Ghi Chú: " + ghiChu);
+
+        // TODO: Kết nối với DatSanDAO để lưu dữ liệu vào cơ sở dữ liệu
 
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("ThÃ´ng bÃ¡o");
+        alert.setTitle("Thông báo");
         alert.setHeaderText(null);
-        alert.setContentText("Äáº·t sÃ¢n thÃ nh cÃ´ng!");
+        alert.setContentText("Đặt sân thành công!");
         alert.showAndWait();
+        
         clearForm();
         this.close();
     }
 
     private boolean validateForm() {
         if (txtMaDat.getText().trim().isEmpty()) {
-            showError("Vui lÃ²ng nháº­p mÃ£ Ä‘áº·t sÃ¢n");
+            showError("Vui lòng nhập mã đặt sân");
             return false;
         }
         if (txtCustomerName.getText().trim().isEmpty()) {
-            showError("Vui lÃ²ng nháº­p tÃªn khÃ¡ch hÃ ng");
+            showError("Vui lòng nhập tên khách hàng");
             return false;
         }
         if (txtCustomerPhone.getText().trim().isEmpty()) {
-            showError("Vui lÃ²ng nháº­p sá»‘ Ä‘iá»‡n thoáº¡i");
+            showError("Vui lòng nhập số điện thoại");
             return false;
         }
         if (cboSan.getValue() == null) {
-            showError("Vui lÃ²ng chá»n sÃ¢n");
+            showError("Vui lòng chọn sân");
             return false;
         }
         if (dpNgayDat.getValue() == null) {
-            showError("Vui lÃ²ng chá»n ngÃ y Ä‘áº·t");
+            showError("Vui lòng chọn ngày đặt");
             return false;
         }
         if (cboCa.getValue() == null) {
-            showError("Vui lÃ²ng chá»n ca chÆ¡i");
+            showError("Vui lòng chọn ca chơi");
             return false;
         }
         return true;
@@ -183,11 +189,14 @@ public class ThemDatSanForm extends Stage {
     private void LoadCbbSan() {
         ArrayList<String> ListMaSan = new ArrayList<String>();
         ArrayList<String> ListTenSan = new ArrayList<String>();
-        SAN dao = new SAN(null);
+        
+        // Khởi tạo model SAN (Lưu ý: cách thiết kế này hơi lạ, 
+        // thường lấy danh sách sẽ gọi qua SAN_DAO thay vì Model SAN)
+        SAN dao = new SAN(null); 
         ListMaSan = dao.getallMaSans();
         ListTenSan = dao.getallTenSans();
+        
         cboSan.setItems(FXCollections.observableArrayList(ListTenSan));
-
     }
 
     private void clearForm() {
@@ -203,7 +212,7 @@ public class ThemDatSanForm extends Stage {
 
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Lá»—i");
+        alert.setTitle("Lỗi");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();

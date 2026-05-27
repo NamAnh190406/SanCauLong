@@ -7,6 +7,10 @@ import javafx.scene.control.ComboBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import com.hoc.app_doan_scl.MainApp;
 
 public class CaiDatController implements Initializable {
 
@@ -18,32 +22,46 @@ public class CaiDatController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cbLanguage.getItems().addAll("Tiáº¿ng Viá»‡t", "English");
+        cbLanguage.getItems().addAll("Tiếng Việt", "English");
         cbLanguage.getSelectionModel().selectFirst();
 
         cbPrinter.getItems().addAll("HP LaserJet Pro", "Canon PIXMA", "Epson L3110");
         cbPrinter.getSelectionModel().selectFirst();
 
         chkDarkMode.selectedProperty().addListener((obs, oldVal, newVal) -> {
-            // Placeholder cho logic thay Ä‘á»•i theme
+            MainApp.setDarkMode(newVal);
         });
     }
 
     @FXML
     private void onBackupNow() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Sao lÆ°u dá»¯ liá»‡u");
-        alert.setHeaderText(null);
-        alert.setContentText("ÄÃ£ sao lÆ°u dá»¯ liá»‡u thÃ nh cÃ´ng!");
-        alert.showAndWait();
+        try {
+            File backupDir = new File("backups");
+            if (!backupDir.exists()) backupDir.mkdirs();
+            File backupFile = new File(backupDir, "backup_" + System.currentTimeMillis() + ".csv");
+            FileWriter writer = new FileWriter(backupFile);
+            writer.write("Demo Backup File\nThis file simulates a database backup.");
+            writer.close();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sao lưu dữ liệu");
+            alert.setHeaderText(null);
+            alert.setContentText("Đã sao lưu dữ liệu thành công tại: " + backupFile.getAbsolutePath());
+            alert.showAndWait();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lỗi");
+            alert.setContentText("Lỗi sao lưu: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     @FXML
     private void onRestoreData() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("KhÃ´i phá»¥c dá»¯ liá»‡u");
+        alert.setTitle("Khôi phục dữ liệu");
         alert.setHeaderText(null);
-        alert.setContentText("TÃ­nh nÄƒng Ä‘ang Ä‘Æ°á»£c phÃ¡t triá»ƒn.");
+        alert.setContentText("Tính năng đang được phát triển.");
         alert.showAndWait();
     }
 }

@@ -13,16 +13,12 @@ import java.net.URL;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class QuanLySanController implements Initializable {
 
     @FXML private TextField txtTimKiem;
     @FXML private Button btnThemSan; 
+
     @FXML private TableView<SanModel> tableSan;
     @FXML private TableColumn<SanModel, String> colMaSan;
     @FXML private TableColumn<SanModel, String> colTenSan;
@@ -86,6 +82,7 @@ public class QuanLySanController implements Initializable {
                     Label lbl = new Label(item);
                     lbl.setAlignment(Pos.CENTER);
                     lbl.setMinWidth(90);
+                    // Màu sắc trạng thái
                     if ("Trống".equals(item)) lbl.setStyle("-fx-background-color: #dcfce7; -fx-text-fill: #16a34a; -fx-padding: 4 8; -fx-background-radius: 6;");
                     else if ("Đang sử dụng".equals(item)) lbl.setStyle("-fx-background-color: #fee2e2; -fx-text-fill: #dc2626; -fx-padding: 4 8; -fx-background-radius: 6;");
                     setGraphic(lbl);
@@ -107,22 +104,10 @@ public class QuanLySanController implements Initializable {
 
     @FXML
     private void handleAddSan() {
-    try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ThemSan.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setTitle("Thêm Sân Mới");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL); 
-            stage.showAndWait();
-            loadData(); 
-
-        } catch (Exception e) {
-            System.out.println("Lỗi mở form Thêm Sân: " + e.getMessage());
-            e.printStackTrace();
-        }   
+        System.out.println("Mở form thêm sân...");
     }
+
+    // Class Model để hiển thị lên bảng
     public static class SanModel {
         private final StringProperty maSan = new SimpleStringProperty();
         private final StringProperty tenSan = new SimpleStringProperty();
@@ -145,20 +130,5 @@ public class QuanLySanController implements Initializable {
         public StringProperty loaiSanProperty() { return loaiSan; }
         public LongProperty giaThueProperty() { return giaThue; }
         public StringProperty trangThaiProperty() { return trangThai; }
-    }
-        private void setupTableEvents() {
-        tableSan.setRowFactory(tv -> {
-            TableRow<SanModel> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    SanModel rowData = row.getItem();
-                    System.out.println("Đang mở chi tiết sân: " + rowData.getTenSan());
-
-                    // Gợi ý logic tiếp theo:
-                    // Mở một form mới (SuaSan.fxml) và truyền đối tượng rowData sang form đó
-                }
-            });
-            return row;
-        });
     }
 }

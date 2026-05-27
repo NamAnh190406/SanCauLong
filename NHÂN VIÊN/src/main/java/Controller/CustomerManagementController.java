@@ -93,6 +93,7 @@ public class CustomerManagementController implements Initializable {
             closeModal();
             updateFooterCounts();
             showSuccess("Thành công", "Thêm khách hàng thành công!");
+            Utils.NotificationHelper.themKhachHang(newId, name, phone);
         } else {
             showError("Lỗi", "Lỗi khi lưu vào cơ sở dữ liệu!");
         }
@@ -422,30 +423,29 @@ public class CustomerManagementController implements Initializable {
 
     private void updateExistingCustomer(String name, String phone, String email, String address) {
         KHACHHANG khDb = new KHACHHANG(
-                editingCustomer.getId(), 
-                name, phone, email, address, 
-                editingCustomer.getStatus(), 
+                editingCustomer.getId(),
+                name, phone, email, address,
+                editingCustomer.getStatus(),
                 editingCustomer.getTotalBookings()
         );
 
-    // 2. Nếu DAO update thành công thì mới cập nhật UI
     if (DAO.KhachHangDAO.capNhatKhachHang(khDb)) {
         editingCustomer.nameProperty().set(name);
         editingCustomer.phoneProperty().set(phone);
         editingCustomer.emailProperty().set(email);
         editingCustomer.addressProperty().set(address);
-        
         closeModal();
         showSuccess("Thành công", "Cập nhật thành công!");
+        Utils.NotificationHelper.capNhatKhachHang(editingCustomer.getId(), name);
     } else {
         showError("Lỗi", "Lỗi khi cập nhật vào cơ sở dữ liệu!");
     }
 }
 
     private void deleteSelectedCustomers() {
-        if (showConfirmation("Xác nhận xóa", 
+        if (showConfirmation("Xác nhận xóa",
             "Bạn có chắc chắn muốn xóa những khách hàng đã chọn không?")) {
-            
+
             List<CustomerModel> toDelete = filteredData.stream()
                     .filter(CustomerModel::isSelected)
                     .collect(Collectors.toList());
@@ -460,6 +460,9 @@ public class CustomerManagementController implements Initializable {
                     .collect(Collectors.toList());
 
             if (DAO.KhachHangDAO.xoaKhachHang(listIdsToDelete)) {
+                toDelete.forEach(kh ->
+                    Utils.NotificationHelper.xoaKhachHang(kh.getName(), kh.getId())
+                );
                 masterDataList.removeAll(toDelete);
                 updateSelectAllCheckbox();
                 updateFooterCounts();
