@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="Controller.DichVuController"
+           prefWidth="1100.0" prefHeight="700.0">
+  <children>
+
+    <!-- MAIN CONTENT -->
+    <VBox style="-fx-background-color: #f3f4f6;">
+
+      <!-- HEADER -->
+      <VBox style="-fx-background-color: white; -fx-padding: 16; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;" spacing="12">
+        <HBox alignment="CENTER_LEFT">
+          <VBox spacing="4">
+            <Label text="Quản Lý Dịch Vụ" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #16a34a;"/>
+            <Label text="Quản lý danh mục và đơn đặt dịch vụ" style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+          </VBox>
+          <Region HBox.hgrow="ALWAYS"/>
+          <HBox spacing="8" alignment="CENTER">
+            <Label fx:id="lblLowStock" text="⚠ 0 mặt hàng sắp hết"
+                   style="-fx-background-color: #fee2e2; -fx-text-fill: #dc2626; -fx-padding: 6 12; -fx-background-radius: 6; -fx-font-size: 12px;"
+                   visible="false" managed="false"/>
+            <Button fx:id="btnTaoDonh" text="+ Tạo đơn dịch vụ"
+                    style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand; -fx-font-weight: bold;"/>
+            <Button fx:id="btnThemDV" text="+ Thêm dịch vụ"
+                    style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand; -fx-font-weight: bold;"
+                    visible="false" managed="false"/>
+          </HBox>
+        </HBox>
+
+        <!-- TABS -->
+        <HBox spacing="4" style="-fx-background-color: #f3f4f6; -fx-padding: 4; -fx-background-radius: 8;" maxWidth="320">
+          <Button fx:id="btnTabDon" text="🛒 Đơn đặt dịch vụ"
+                  style="-fx-background-color: white; -fx-text-fill: #16a34a; -fx-background-radius: 6; -fx-padding: 8 16; -fx-cursor: hand; -fx-font-weight: bold;"/>
+          <Button fx:id="btnTabDM" text="📦 Danh mục dịch vụ"
+                  style="-fx-background-color: transparent; -fx-text-fill: #6b7280; -fx-background-radius: 6; -fx-padding: 8 16; -fx-cursor: hand;"/>
+        </HBox>
+      </VBox>
+
+      <!-- CONTENT AREA -->
+      <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+        <VBox spacing="16" style="-fx-padding: 20;">
+
+          <!-- === TAB ĐƠN DẶT DỊCH VỤ === -->
+          <VBox fx:id="paneDon" spacing="12">
+
+            <!-- Filters -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+              <HBox style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 6 10;" spacing="6" alignment="CENTER_LEFT" prefWidth="280">
+                <SVGPath content="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#9ca3af" strokeWidth="2" fill="transparent" strokeLineCap="ROUND"/>
+                <TextField fx:id="txtSearchDon" promptText="Tìm đơn, khách, sân..." style="-fx-background-color: transparent; -fx-border-width: 0;" HBox.hgrow="ALWAYS"/>
+              </HBox>
+              <HBox spacing="6">
+                <Button fx:id="btnFilterAll" text="Tất cả" style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8 14; -fx-cursor: hand;"/>
+                <Button fx:id="btnFilterPending" text="Chờ phục vụ" style="-fx-background-color: white; -fx-text-fill: #6b7280; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 14; -fx-cursor: hand;"/>
+                <Button fx:id="btnFilterServing" text="Đang phục vụ" style="-fx-background-color: white; -fx-text-fill: #6b7280; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 14; -fx-cursor: hand;"/>
+                <Button fx:id="btnFilterDone" text="Hoàn thành" style="-fx-background-color: white; -fx-text-fill: #6b7280; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 14; -fx-cursor: hand;"/>
+                <Button fx:id="btnFilterCancelled" text="Đã hủy" style="-fx-background-color: white; -fx-text-fill: #6b7280; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 14; -fx-cursor: hand;"/>
+              </HBox>
+            </HBox>
+
+            <!-- Stats Cards -->
+            <HBox spacing="12">
+              <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 16; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 6, 0, 0, 2);" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                <Label text="Chờ phục vụ" style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                <Label fx:id="lblCountPending" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #d97706;"/>
+              </VBox>
+              <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 16; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 6, 0, 0, 2);" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                <Label text="Đang phục vụ" style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                <Label fx:id="lblCountServing" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2563eb;"/>
+              </VBox>
+              <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 16; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 6, 0, 0, 2);" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                <Label text="Hoàn thành" style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                <Label fx:id="lblCountDone" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #16a34a;"/>
+              </VBox>
+              <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 16; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 6, 0, 0, 2);" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                <Label text="Đã hủy" style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                <Label fx:id="lblCountCancelled" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #dc2626;"/>
+              </VBox>
+            </HBox>
+
+            <!-- Order List (dynamic, built by controller) -->
+            <VBox fx:id="vboxOrderList" spacing="10"/>
+          </VBox>
+
+          <!-- === TAB DANH MỤC DỊCH VỤ === -->
+          <VBox fx:id="paneDM" spacing="12" visible="false" managed="false">
+
+            <!-- Low stock alert -->
+            <VBox fx:id="boxLowStock" style="-fx-background-color: #fef2f2; -fx-border-color: #fecaca; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;" spacing="8" visible="false" managed="false">
+              <Label text="⚠ Cảnh báo tồn kho thấp" style="-fx-text-fill: #b91c1c; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+              <HBox fx:id="hboxLowStockItems" spacing="8" />
+            </VBox>
+
+            <!-- Catalog Filters -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+              <HBox style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 6 10;" spacing="6" alignment="CENTER_LEFT" prefWidth="280">
+                <SVGPath content="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#9ca3af" strokeWidth="2" fill="transparent" strokeLineCap="ROUND"/>
+                <TextField fx:id="txtSearchDV" promptText="Tìm dịch vụ..." style="-fx-background-color: transparent; -fx-border-width: 0;" HBox.hgrow="ALWAYS"/>
+              </HBox>
+              <HBox spacing="6">
+                <Button fx:id="btnCatAll" text="Tất cả" style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8 14; -fx-cursor: hand;"/>
+                <Button fx:id="btnCatDrink" text="Đồ uống" style="-fx-background-color: white; -fx-text-fill: #6b7280; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 14; -fx-cursor: hand;"/>
+                <Button fx:id="btnCatEquip" text="Thiết bị" style="-fx-background-color: white; -fx-text-fill: #6b7280; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 14; -fx-cursor: hand;"/>
+                <Button fx:id="btnCatFood" text="Đồ ăn" style="-fx-background-color: white; -fx-text-fill: #6b7280; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 14; -fx-cursor: hand;"/>
+                <Button fx:id="btnCatOther" text="Khác" style="-fx-background-color: white; -fx-text-fill: #6b7280; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 14; -fx-cursor: hand;"/>
+              </HBox>
+            </HBox>
+
+            <!-- Service Grid (built by controller) -->
+            <FlowPane fx:id="flowServices" hgap="16" vgap="16" prefWrapLength="1060"/>
+          </VBox>
+
+        </VBox>
+      </ScrollPane>
+    </VBox>
+
+    <!-- ===== MODAL: TẠO ĐƠN DỊCH VỤ ===== -->
+    <StackPane fx:id="overlayTaoDon" 
+               style="-fx-background-color: rgba(0,0,0,0.5);" 
+               visible="false" 
+               prefWidth="Infinity" prefHeight="Infinity" 
+               maxWidth="Infinity" maxHeight="Infinity">
+      <VBox prefWidth="850" minWidth="800" maxWidth="900" maxHeight="-Infinity" 
+            style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.25),20,0,0,4); -fx-padding: 0 0 0 0;"
+            StackPane.alignment="CENTER">
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 16 20; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+          <Label text="Tạo Đơn Dịch Vụ Mới" style="-fx-font-size: 16px; -fx-font-weight: bold;" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+          <Button fx:id="btnCloseTaoDon" text="✕" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 14px;"/>
+        </HBox>
+        <!-- Body -->
+        <HBox VBox.vgrow="ALWAYS" maxHeight="Infinity">
+          <!-- Left: service list -->
+          <ScrollPane prefWidth="450" minWidth="350" fitToWidth="true" HBox.hgrow="ALWAYS" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: #e5e7eb; -fx-border-width: 0 1 0 0;">
+            <VBox fx:id="vboxDVChon" spacing="6" style="-fx-padding: 12;">
+              <Label text="Chọn dịch vụ" style="-fx-text-fill: #6b7280; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            </VBox>
+          </ScrollPane>
+          <!-- Right: order form -->
+          <VBox prefWidth="400" minWidth="350" spacing="12" style="-fx-padding: 16;" HBox.hgrow="ALWAYS">
+            <Label text="Thông tin đơn hàng" style="-fx-text-fill: #6b7280; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            <VBox spacing="4">
+              <Label text="Khách hàng *" style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+              <TextField fx:id="txtOrderCustomer" promptText="Tên khách hàng"
+                         style="-fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 12;"/>
+            </VBox>
+            <VBox spacing="4">
+              <Label text="Sân" style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+              <ComboBox fx:id="cbxOrderCourt" maxWidth="Infinity" style="-fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+            </VBox>
+            <VBox spacing="4">
+              <Label text="Ghi chú" style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+              <TextField fx:id="txtOrderNote" promptText="Ghi chú thêm..."
+                         style="-fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 12;"/>
+            </VBox>
+            <!-- Selected lines -->
+            <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+              <VBox fx:id="vboxOrderLines" spacing="6"/>
+            </ScrollPane>
+            <!-- Total -->
+            <HBox alignment="CENTER_LEFT" style="-fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0; -fx-padding: 10 0 0 0;">
+              <Label text="Tổng cộng" style="-fx-font-weight: bold;" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+              <Label fx:id="lblOrderTotal" text="0 đ" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #16a34a;"/>
+            </HBox>
+          </VBox>
+        </HBox>
+        <!-- Footer -->
+        <HBox spacing="10" style="-fx-padding: 14 20; -fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0;">
+          <Button fx:id="btnHuyTaoDon" text="Hủy" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151; -fx-background-radius: 8; -fx-padding: 10; -fx-cursor: hand;"/>
+          <Button fx:id="btnXacNhanTaoDon" text="Tạo đơn dịch vụ" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10; -fx-cursor: hand; -fx-font-weight: bold;"/>
+        </HBox>
+      </VBox>
+    </StackPane>
+
+    <!-- ===== MODAL: THÊM / SỬA DỊCH VỤ ===== -->
+    <StackPane fx:id="overlayDichVuForm" 
+               style="-fx-background-color: rgba(0,0,0,0.5);" 
+               visible="false" 
+               prefWidth="Infinity" prefHeight="Infinity" 
+               maxWidth="Infinity" maxHeight="Infinity">
+      <VBox maxWidth="600" maxHeight="-Infinity"
+            style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.25),20,0,0,4);"
+            StackPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 16 20; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+          <Label fx:id="lblDVFormTitle" text="Thêm dịch vụ mới" style="-fx-font-size: 16px; -fx-font-weight: bold;" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+          <Button fx:id="btnCloseDVForm" text="✕" style="-fx-background-color: transparent; -fx-cursor: hand;"/>
+        </HBox>
+        <VBox spacing="14" style="-fx-padding: 20;">
+          <VBox spacing="4">
+            <Label text="Tên dịch vụ *" style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+            <TextField fx:id="txtDVName" promptText="Tên dịch vụ"
+                       style="-fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 12;"/>
+          </VBox>
+          <HBox spacing="12">
+            <VBox spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+              <Label text="Danh mục" style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+              <ComboBox fx:id="cbxDVCategory" maxWidth="Infinity"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+              <Label text="Đơn vị *" style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+              <TextField fx:id="txtDVUnit" promptText="chai, ly, cái..."
+                         style="-fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 12;"/>
+            </VBox>
+          </HBox>
+          <HBox spacing="10">
+            <VBox spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+              <Label text="Giá (đ)" style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+              <TextField fx:id="txtDVPrice" promptText="0"
+                         style="-fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 12;"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+              <Label text="Tồn kho" style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+              <TextField fx:id="txtDVStock" promptText="0"
+                         style="-fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 12;"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+              <Label text="Tối thiểu" style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+              <TextField fx:id="txtDVMinStock" promptText="5"
+                         style="-fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 12;"/>
+            </VBox>
+          </HBox>
+        </VBox>
+        <HBox spacing="10" style="-fx-padding: 14 20; -fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0;">
+          <Button fx:id="btnHuyDVForm" text="Hủy" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151; -fx-background-radius: 8; -fx-padding: 10; -fx-cursor: hand;"/>
+          <Button fx:id="btnLuuDV" text="Thêm dịch vụ" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10; -fx-cursor: hand; -fx-font-weight: bold;"/>
+        </HBox>
+      </VBox>
+    </StackPane>
+
+    <!-- ===== MODAL: NHẬP KHO ===== -->
+    <StackPane fx:id="overlayRestock" 
+               style="-fx-background-color: rgba(0,0,0,0.5);" 
+               visible="false" 
+               prefWidth="Infinity" prefHeight="Infinity" 
+               maxWidth="Infinity" maxHeight="Infinity">
+      <VBox maxWidth="380" maxHeight="-Infinity"
+            style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.25),20,0,0,4);"
+            StackPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 16 20; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+          <Label text="Nhập thêm kho" style="-fx-font-size: 16px; -fx-font-weight: bold;" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+          <Button fx:id="btnCloseRestock" text="✕" style="-fx-background-color: transparent; -fx-cursor: hand;"/>
+        </HBox>
+        <VBox spacing="14" style="-fx-padding: 20;">
+          <VBox style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 12;" spacing="4">
+            <Label fx:id="lblRestockName" text="Tên dịch vụ" style="-fx-font-weight: bold;"/>
+            <Label fx:id="lblRestockCurrent" text="Tồn kho hiện tại: 0" style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+          </VBox>
+          <VBox spacing="4">
+            <Label text="Số lượng nhập thêm" style="-fx-font-size: 11px; -fx-text-fill: #6b7280;"/>
+            <TextField fx:id="txtRestockQty" promptText="0"
+                       style="-fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 12;"/>
+            <Label fx:id="lblRestockAfter" text="Sau khi nhập: 0" style="-fx-text-fill: #6b7280; -fx-font-size: 11px;"/>
+          </VBox>
+        </VBox>
+        <HBox spacing="10" style="-fx-padding: 14 20; -fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0;">
+          <Button fx:id="btnHuyRestock" text="Hủy" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151; -fx-background-radius: 8; -fx-padding: 10; -fx-cursor: hand;"/>
+          <Button fx:id="btnXacNhanRestock" text="Xác nhận nhập kho" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10; -fx-cursor: hand; -fx-font-weight: bold;"/>
+        </HBox>
+      </VBox>
+    </StackPane>
+
+  </children>
+</StackPane>
