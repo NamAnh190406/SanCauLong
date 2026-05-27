@@ -11,8 +11,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DashboardController">
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sancaulong.controller.DashboardController">
     <!-- SIDEBAR -->
     <left>
         <VBox prefWidth="240.0" style="-fx-background-color: #003366;" BorderPane.alignment="CENTER">
@@ -29,10 +30,10 @@
             <VBox spacing="10.0">
                 <Button fx:id="btnTrangChu" alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: #00C853; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;" text="Trang chủ" />
                 <Button fx:id="btnSanCauLong" alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-cursor: hand;" text="Sân cầu lông" />
+                <Button fx:id="btnDichVu" alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-cursor: hand;" text="Dịch vụ" />
                 <Button fx:id="btnKhachHang" alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-cursor: hand;" text="Khách hàng" />
                 <Button fx:id="btnHoaDon" alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-cursor: hand;" text="Hoá đơn" />
                 <Button fx:id="btnThongKe" alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-cursor: hand;" text="Thống kê" />
-                <Button fx:id="btnThanhToan" alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-cursor: hand;" text="Thanh toán" />
                 <Button fx:id="btnCaiDat" alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-cursor: hand;" text="Cài đặt" />
             </VBox>
         </VBox>
@@ -41,7 +42,7 @@
     <center>
         <VBox fx:id="centerContainer" style="-fx-background-color: #f3f4f6;">
             <!-- TOPBAR -->
-            <HBox fx:id="titleBar" alignment="CENTER_LEFT" onMouseDragged="#onTitleBarDragged" onMousePressed="#onTitleBarPressed" prefHeight="60.0" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+            <HBox fx:id="titleBar" alignment="CENTER_LEFT" onMouseDragged="#onTitleBarDragged" onMousePressed="#onTitleBarPressed" prefHeight="67.0" prefWidth="840.0" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
                 <padding>
                     <Insets left="20.0" right="20.0" />
                 </padding>
@@ -51,23 +52,27 @@
                     <TextField fx:id="tfSearch" onKeyReleased="#onSearchKeyReleased" prefHeight="37.0" prefWidth="219.0" promptText="Tìm kiếm..." style="-fx-background-color: transparent;" />
                 </HBox>
                 
-                <Region HBox.hgrow="ALWAYS" />
+                <Region prefHeight="56.0" prefWidth="352.0" HBox.hgrow="ALWAYS" />
                 
                 <HBox alignment="CENTER" spacing="15.0">
                     <StackPane fx:id="bellPane" onMouseClicked="#onBellClick" style="-fx-cursor: hand;">
-                        <Label style="-fx-font-size: 20px;" text="🔔" textFill="#4b5563" />
+                        <FontAwesomeIconView glyphName="BELL" size="20" fill="#4b5563" />
                         <Label fx:id="lblNotifBadge" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-size: 10px; -fx-background-radius: 10; -fx-padding: 1 5;" text="0" visible="false" StackPane.alignment="TOP_RIGHT" />
                     </StackPane>
                     
-                    <Label fx:id="lblNhanVien" onMouseClicked="#onProfileClick" style="-fx-font-size: 24px; -fx-cursor: hand;" text="👤" textFill="#4b5563" />
+                    <Label fx:id="lblNhanVien" onMouseClicked="#onProfileClick" style="-fx-cursor: hand;">
+                        <graphic>
+                            <FontAwesomeIconView glyphName="USER" size="24" fill="#4b5563" />
+                        </graphic>
+                    </Label>
                 </HBox>
                 
                 <!-- WINDOW CONTROLS -->
-                <HBox alignment="CENTER" spacing="5.0" style="-fx-padding: 0 0 0 15;">
+                <!-- <HBox alignment="CENTER" spacing="5.0" style="-fx-padding: 0 0 0 15;">
                     <Button fx:id="btnMinimize" onAction="#onMinimize" onMouseEntered="#onWinBtnHover" onMouseExited="#onWinBtnExit" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 16px;" text="-" />
                     <Button fx:id="btnMaximize" onAction="#onMaximize" onMouseEntered="#onWinBtnHover" onMouseExited="#onWinBtnExit" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 14px;" text="☐" />
                     <Button fx:id="btnClose" onAction="#onClose" onMouseEntered="#onCloseBtnHover" onMouseExited="#onWinBtnExit" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 14px;" text="✕" />
-                </HBox>
+                </HBox> -->
             </HBox>
             
             <!-- MAIN DASHBOARD CONTENT -->
@@ -86,7 +91,7 @@
                                 <Label fx:id="lblSanTrong" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="3/6" />
                             </VBox>
                             <StackPane style="-fx-background-color: #dcfce7; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48; -fx-max-width: 48; -fx-max-height: 48;">
-                                <Label style="-fx-text-fill: #16a34a; -fx-font-size: 20px; -fx-font-weight: bold;" text="✓" />
+                                <FontAwesomeIconView glyphName="CHECK" size="20" fill="#16a34a" />
                             </StackPane>
                         </HBox>
                         
@@ -96,7 +101,7 @@
                                 <Label fx:id="lblDangSuDung" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #dc2626;" text="3/6" />
                             </VBox>
                             <StackPane style="-fx-background-color: #fee2e2; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48; -fx-max-width: 48; -fx-max-height: 48;">
-                                <Label style="-fx-text-fill: #dc2626; -fx-font-size: 20px;" text="👥" />
+                                <FontAwesomeIconView glyphName="USERS" size="20" fill="#dc2626" />
                             </StackPane>
                         </HBox>
                         
@@ -145,7 +150,7 @@
                                     </VBox>
                                 </graphic>
                             </Button>
-                            <Button maxWidth="Infinity" style="-fx-background-color: #eff6ff; -fx-background-radius: 8; -fx-padding: 16; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                            <Button maxWidth="Infinity" onAction ="#onXemLichClick" style="-fx-background-color: #eff6ff; -fx-background-radius: 8; -fx-padding: 16; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
                                 <graphic>
                                     <VBox alignment="CENTER" spacing="12.0">
                                         <StackPane style="-fx-background-color: #2563eb; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48;">
@@ -155,13 +160,13 @@
                                     </VBox>
                                 </graphic>
                             </Button>
-                            <Button maxWidth="Infinity" style="-fx-background-color: #faf5ff; -fx-background-radius: 8; -fx-padding: 16; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                            <Button maxWidth="Infinity" onAction="#onThemDichVuClick" style="-fx-background-color: #fdf4ff; -fx-background-radius: 8; -fx-padding: 16; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
                                 <graphic>
                                     <VBox alignment="CENTER" spacing="12.0">
-                                        <StackPane style="-fx-background-color: #9333ea; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48;">
-                                            <Label style="-fx-text-fill: white; -fx-font-size: 20px;" text="💰" />
+                                        <StackPane style="-fx-background-color: #c026d3; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48;">
+                                            <Label style="-fx-text-fill: white; -fx-font-size: 20px;" text="🛒" />
                                         </StackPane>
-                                        <Label style="-fx-text-fill: #111827; -fx-font-size: 14px;" text="Thanh toán" />
+                                        <Label style="-fx-text-fill: #111827; -fx-font-size: 14px;" text="Thêm dịch vụ" />
                                     </VBox>
                                 </graphic>
                             </Button>
@@ -171,132 +176,35 @@
                     <!-- BOTTOM LISTS -->
                     <HBox spacing="24.0">
                         <!-- TRẠNG THÁI SÂN -->
-                        <VBox prefWidth="400.0" spacing="12.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
+                        <VBox fx:id="vboxTrangThaiSan" prefWidth="400.0" spacing="12.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
                             <HBox alignment="CENTER_LEFT">
                                 <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Trạng Thái Sân" />
                                 <Region HBox.hgrow="ALWAYS" />
                                 <Label style="-fx-text-fill: #9ca3af; -fx-font-size: 18px;" text="⏱" />
                             </HBox>
                             
-                            <VBox spacing="12.0">
-                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 12;">
-                                    <Circle fill="#ef4444" radius="6.0" />
-                                    <VBox style="-fx-padding: 0 0 0 12;">
-                                        <Label style="-fx-text-fill: #111827;" text="Sân 1" />
-                                        <Label style="-fx-text-fill: #6b7280; -fx-font-size: 12px;" text="Nguyễn Văn A" />
+                            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" prefHeight="350.0">
+                                <content>
+                                    <VBox fx:id="vboxTrangThaiSanList" spacing="12.0">
                                     </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <VBox alignment="CENTER_RIGHT">
-                                        <Label style="-fx-text-fill: #4b5563; -fx-font-size: 12px;" text="Đang sử dụng" />
-                                        <Label style="-fx-text-fill: #6b7280; -fx-font-size: 12px;" text="Tiếp: 08:00" />
-                                    </VBox>
-                                </HBox>
-                                
-                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 12;">
-                                    <Circle fill="#22c55e" radius="6.0" />
-                                    <VBox style="-fx-padding: 0 0 0 12;">
-                                        <Label style="-fx-text-fill: #111827;" text="Sân 2" />
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <VBox alignment="CENTER_RIGHT">
-                                        <Label style="-fx-text-fill: #4b5563; -fx-font-size: 12px;" text="Trống" />
-                                    </VBox>
-                                </HBox>
-                                
-                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 12;">
-                                    <Circle fill="#ef4444" radius="6.0" />
-                                    <VBox style="-fx-padding: 0 0 0 12;">
-                                        <Label style="-fx-text-fill: #111827;" text="Sân 3" />
-                                        <Label style="-fx-text-fill: #6b7280; -fx-font-size: 12px;" text="Trần Thị B" />
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <VBox alignment="CENTER_RIGHT">
-                                        <Label style="-fx-text-fill: #4b5563; -fx-font-size: 12px;" text="Đang sử dụng" />
-                                        <Label style="-fx-text-fill: #6b7280; -fx-font-size: 12px;" text="Tiếp: 09:00" />
-                                    </VBox>
-                                </HBox>
-                                
-                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 12;">
-                                    <Circle fill="#22c55e" radius="6.0" />
-                                    <VBox style="-fx-padding: 0 0 0 12;">
-                                        <Label style="-fx-text-fill: #111827;" text="Sân 4" />
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <VBox alignment="CENTER_RIGHT">
-                                        <Label style="-fx-text-fill: #4b5563; -fx-font-size: 12px;" text="Trống" />
-                                    </VBox>
-                                </HBox>
-                                
-                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 12;">
-                                    <Circle fill="#eab308" radius="6.0" />
-                                    <VBox style="-fx-padding: 0 0 0 12;">
-                                        <Label style="-fx-text-fill: #111827;" text="Sân 5" />
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <VBox alignment="CENTER_RIGHT">
-                                        <Label style="-fx-text-fill: #4b5563; -fx-font-size: 12px;" text="Bảo trì" />
-                                    </VBox>
-                                </HBox>
-                            </VBox>
+                                </content>
+                            </ScrollPane>
                         </VBox>
                         
                         <!-- LỊCH SẮP TỚI -->
-                        <VBox fx:id="vboxLichSapToi" prefWidth="400.0" spacing="12.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
+                        <VBox prefWidth="400.0" spacing="12.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
                             <HBox alignment="CENTER_LEFT">
                                 <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Lịch Sắp Tới" />
                                 <Region HBox.hgrow="ALWAYS" />
                                 <Label style="-fx-text-fill: #9ca3af; -fx-font-size: 18px;" text="📅" />
                             </HBox>
                             
-                            <VBox spacing="12.0">
-                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 12;">
-                                    <StackPane style="-fx-background-color: #dcfce7; -fx-background-radius: 8; -fx-min-width: 48; -fx-min-height: 48;">
-                                        <Label style="-fx-text-fill: #16a34a; -fx-font-size: 14px;" text="08:00" />
-                                    </StackPane>
-                                    <VBox style="-fx-padding: 0 0 0 12;">
-                                        <Label style="-fx-text-fill: #111827;" text="Lê Văn C" />
-                                        <Label style="-fx-text-fill: #6b7280; -fx-font-size: 12px;" text="Sân 1" />
+                            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" prefHeight="350.0">
+                                <content>
+                                    <VBox fx:id="vboxLichSapToi" spacing="12.0">
                                     </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Label style="-fx-background-color: #dcfce7; -fx-text-fill: #15803d; -fx-padding: 4 8; -fx-background-radius: 4; -fx-font-size: 12px;" text="1h" />
-                                </HBox>
-                                
-                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 12;">
-                                    <StackPane style="-fx-background-color: #dcfce7; -fx-background-radius: 8; -fx-min-width: 48; -fx-min-height: 48;">
-                                        <Label style="-fx-text-fill: #16a34a; -fx-font-size: 14px;" text="09:00" />
-                                    </StackPane>
-                                    <VBox style="-fx-padding: 0 0 0 12;">
-                                        <Label style="-fx-text-fill: #111827;" text="Phạm Thị D" />
-                                        <Label style="-fx-text-fill: #6b7280; -fx-font-size: 12px;" text="Sân 2" />
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Label style="-fx-background-color: #dcfce7; -fx-text-fill: #15803d; -fx-padding: 4 8; -fx-background-radius: 4; -fx-font-size: 12px;" text="2h" />
-                                </HBox>
-                                
-                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 12;">
-                                    <StackPane style="-fx-background-color: #dcfce7; -fx-background-radius: 8; -fx-min-width: 48; -fx-min-height: 48;">
-                                        <Label style="-fx-text-fill: #16a34a; -fx-font-size: 14px;" text="10:00" />
-                                    </StackPane>
-                                    <VBox style="-fx-padding: 0 0 0 12;">
-                                        <Label style="-fx-text-fill: #111827;" text="Hoàng Văn E" />
-                                        <Label style="-fx-text-fill: #6b7280; -fx-font-size: 12px;" text="Sân 3" />
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Label style="-fx-background-color: #dcfce7; -fx-text-fill: #15803d; -fx-padding: 4 8; -fx-background-radius: 4; -fx-font-size: 12px;" text="1h" />
-                                </HBox>
-                                
-                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f9fafb; -fx-background-radius: 8; -fx-padding: 12;">
-                                    <StackPane style="-fx-background-color: #dcfce7; -fx-background-radius: 8; -fx-min-width: 48; -fx-min-height: 48;">
-                                        <Label style="-fx-text-fill: #16a34a; -fx-font-size: 14px;" text="11:00" />
-                                    </StackPane>
-                                    <VBox style="-fx-padding: 0 0 0 12;">
-                                        <Label style="-fx-text-fill: #111827;" text="Vũ Thị F" />
-                                        <Label style="-fx-text-fill: #6b7280; -fx-font-size: 12px;" text="Sân 4" />
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Label style="-fx-background-color: #dcfce7; -fx-text-fill: #15803d; -fx-padding: 4 8; -fx-background-radius: 4; -fx-font-size: 12px;" text="1h" />
-                                </HBox>
-                            </VBox>
+                                </content>
+                            </ScrollPane>
                         </VBox>
                     </HBox>
                 </VBox>
