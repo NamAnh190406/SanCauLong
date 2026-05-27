@@ -3,18 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+
 import Utils.Databasehelper;
 import Model.CTDV;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+
 /**
  *
  * @author Hi
  */
-
-
 
 public class CTDVDAo {
     private Connection con;
@@ -35,12 +35,12 @@ public class CTDVDAo {
 
             while (rs.next()) {
                 CTDV ctdv = new CTDV(
-                    rs.getString("MaCTDV"),
-                    rs.getString("MaDS"),
-                    rs.getString("MaDV"),
-                    rs.getLong("SoLuong"),
-                    rs.getLong("DonGia")
-                );
+                        rs.getString("MaCTDV"),
+                        rs.getString("MaDS"),
+                        rs.getString("MaDV"),
+                        rs.getLong("SoLuong"),
+                        0, // DonGia không còn trong DB, set tạm là 0 hoặc tính từ ThanhTien
+                        rs.getString("MaHoaDon"));
                 list.add(ctdv);
             }
             rs.close();
@@ -61,13 +61,16 @@ public class CTDVDAo {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
+                long sl = rs.getLong("SoLuong");
+                long tt = rs.getLong("ThanhTien");
+                long dg = sl > 0 ? tt / sl : 0;
                 CTDV ctdv = new CTDV(
-                    rs.getString("MaCTDV"),
-                    rs.getString("MaDS"),
-                    rs.getString("MaDV"),
-                    rs.getLong("SoLuong"),
-                    rs.getLong("DonGia")
-                );
+                        rs.getString("MaCTDV"),
+                        rs.getString("MaDS"),
+                        rs.getString("MaDV"),
+                        sl,
+                        dg,
+                        rs.getString("MaHoaDon"));
                 list.add(ctdv);
             }
             rs.close();
@@ -79,8 +82,8 @@ public class CTDVDAo {
     }
 
     public boolean addCTDV(CTDV ctdv) {
-        String sql = "INSERT INTO CTDV (MaCTDV, SoLuong, ThanhTien, MaDS, MaDV) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO CTDV (MaCTDV, SoLuong, ThanhTien, MaDS, MaDV, MaHoaDon) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement pstmt = con.prepareStatement(sql);
@@ -89,17 +92,12 @@ public class CTDVDAo {
             pstmt.setLong(3, ctdv.getThanhTien());
             pstmt.setString(4, ctdv.getMaDS());
             pstmt.setString(5, ctdv.getMaDV());
+            pstmt.setString(6, ctdv.getMaHoaDon());
 
             int result = pstmt.executeUpdate();
-            con.commit();
             pstmt.close();
             return result > 0;
         } catch (SQLException e) {
-            try {
-                con.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
             System.out.println("Lỗi thêm chi tiết dịch vụ: " + e.getMessage());
             return false;
         }
@@ -115,15 +113,9 @@ public class CTDVDAo {
             pstmt.setString(3, ctdv.getMaCTDV());
 
             int result = pstmt.executeUpdate();
-            con.commit();
             pstmt.close();
             return result > 0;
         } catch (SQLException e) {
-            try {
-                con.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
             System.out.println("Lỗi cập nhật chi tiết dịch vụ: " + e.getMessage());
             return false;
         }
@@ -137,15 +129,9 @@ public class CTDVDAo {
             pstmt.setString(1, maCTDV);
 
             int result = pstmt.executeUpdate();
-            con.commit();
             pstmt.close();
             return result > 0;
         } catch (SQLException e) {
-            try {
-                con.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
             System.out.println("Lỗi xóa chi tiết dịch vụ: " + e.getMessage());
             return false;
         }
@@ -174,4 +160,3 @@ public class CTDVDAo {
         connectDB.closeCon(con);
     }
 }
-

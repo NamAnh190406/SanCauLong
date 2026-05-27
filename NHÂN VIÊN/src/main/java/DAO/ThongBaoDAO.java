@@ -5,10 +5,12 @@ import Utils.Databasehelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ThongBaoDAO {
+    
     public static List<THONGBAO> getThongBaoMoiNhat() {
         List<THONGBAO> list = new ArrayList<>();
         String sql = "SELECT * FROM THONGBAO ORDER BY ThoiGian DESC FETCH FIRST 20 ROWS ONLY";
@@ -46,6 +48,7 @@ public class ThongBaoDAO {
         }
     }
     
+    // ✅ ĐÃ SỬA: Đổi tên hàm cho khớp với DashboardController
     public static void danhDauDaDocTatCa() {
         String sql = "UPDATE THONGBAO SET DaDoc = 1 WHERE DaDoc = 0";
         Databasehelper db = new Databasehelper();
@@ -54,6 +57,31 @@ public class ThongBaoDAO {
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Thêm một thông báo mới vào cơ sở dữ liệu
+     */
+    public static void themThongBao(String tieuDe, String noiDung, String loai) throws Exception {
+        // ✅ ĐÃ SỬA: Loại bỏ cột MATB ra khỏi câu lệnh INSERT. 
+        // Oracle sẽ tự động sinh số nguyên cho cột này (Identity/Trigger)
+        String sql = "INSERT INTO THONGBAO (TIEUDE, NOIDUNG, LOAI, THOIGIAN, DADOC) " +
+                     "VALUES (?, ?, ?, SYSDATE, 0)";
+
+        Databasehelper DBConnect = new Databasehelper();
+        try (Connection conn = DBConnect.createCon(); 
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             
+            pstmt.setString(1, tieuDe);
+            pstmt.setString(2, noiDung);
+            pstmt.setString(3, loai);
+            
+            pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.err.println("Lỗi truy vấn khi thêm thông báo mới: " + e.getMessage());
+            throw e; 
         }
     }
 }

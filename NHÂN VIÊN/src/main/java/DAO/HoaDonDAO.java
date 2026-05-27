@@ -1,89 +1,79 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
+
 import Utils.Databasehelper;
 import Model.HOADON;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDate;
-/**
- *
- * @author Hi
- */
+
 public class HoaDonDAO {
-    private Connection con;
     private Databasehelper connectDB;
 
-    public HoaDonDAO() throws SQLException {
+    public HoaDonDAO() {
         connectDB = new Databasehelper();
-        con = connectDB.createCon();
     }
 
     public ObservableList<HOADON> getAllHoaDon() {
         ObservableList<HOADON> list = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM HOADON ORDER BY MaHoaDon";
+        String sql = "SELECT * FROM HOADON ORDER BY MaHoaDon DESC";
 
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-//String maHD, long tongTienDV, long soTienGiam, String ghichu, LocalDate ngayXuat, String maDS
+        try (Connection con = connectDB.createCon();
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)) {
+
             while (rs.next()) {
-                    HOADON hd = new HOADON(
-                    rs.getString("MaHoaDon"),
-                    rs.getLong("TongTienDV"),
-                    rs.getLong("SoTienGG"),
-                    rs.getString("Ghichu"),
-                    rs.getDate("NgayXuat").toLocalDate(),
-                    rs.getString("MaDS")
-                );
+                HOADON hd = new HOADON(
+                        rs.getString("MaHoaDon"),
+                        rs.getLong("TongTienDV"),
+                        rs.getLong("SoTienGG"),
+                        rs.getString("Ghichu"),
+                        rs.getDate("NgayXuat") != null ? rs.getDate("NgayXuat").toLocalDate() : null,
+                        rs.getString("MaDS"));
+                hd.setTrangThai(rs.getString("TrangThai"));
+                try {
+                    hd.setLoaiHD(rs.getString("LoaiHD"));
+                } catch (Exception ignored) {
+                }
+                try {
+                    hd.setThanhTien(rs.getLong("ThanhTien"));
+                } catch (Exception ignored) {
+                }
                 list.add(hd);
             }
-            rs.close();
-            stmt.close();
         } catch (SQLException e) {
-            System.out.println("Lỗi lấy dữ liệu hóa đơn: " + e.getMessage());
+            System.err.println("Lỗi lấy dữ liệu hóa đơn: " + e.getMessage());
         }
         return list;
     }
 
-    public ObservableList<HOADON> getHoaDonByNgay(LocalDate ngay) {
-        ObservableList<HOADON> list = FXCollections.observableArrayList();
-        String sql = "SELECT hd.* FROM HOADON hd JOIN DATSAN ds ON hd.MaDS = ds.MaDS " +
-                    "WHERE TRUNC(ds.NgayDat) = TRUNC(?) ORDER BY hd.MaHoaDon";
+    /**
+     *
+     * @param maHoaDon
+     * @return
+     */
+    public boolean deleteHoaDon(String maHoaDon) {
+        String sql = "DELETE FROM HOADON WHERE MaHoaDon = ?";
 
-        try {
-            PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setDate(1, java.sql.Date.valueOf(ngay));
-            ResultSet rs = pstmt.executeQuery();
+        try (Connection con = connectDB.createCon();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-            while (rs.next()) {
-                HOADON hd = new HOADON(
-                    rs.getString("MaHoaDon"),
-                    rs.getLong("TongTienDV"),
-                    rs.getLong("SoTienGG"),
-                    rs.getString("Ghichu"),
-                    rs.getDate("NgayXuat").toLocalDate(),
-                    rs.getString("MaDS")
-                );
-                list.add(hd);
-            }
-            rs.close();
-            pstmt.close();
+            pstmt.setString(1, maHoaDon);
+            return pstmt.executeUpdate() > 0;
+
         } catch (SQLException e) {
-            System.out.println("Lỗi lấy hóa đơn theo ngày: " + e.getMessage());
+            System.err.println("Lỗi xóa hóa đơn: " + e.getMessage());
+            return false;
         }
-        return list;
     }
 
     public boolean addHoaDon(HOADON hd) {
         String sql = "INSERT INTO HOADON (MaHoaDon, TongTienDV, SoTienGG, ThanhTien, Ghichu, MaDS) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
-        try {
-            PreparedStatement pstmt = con.prepareStatement(sql);
+        try (Connection con = connectDB.createCon();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
+
             pstmt.setString(1, hd.getMaHD());
             pstmt.setLong(2, hd.getTongTienDV());
             pstmt.setLong(3, hd.getSoTienGiam());
@@ -91,122 +81,219 @@ public class HoaDonDAO {
             pstmt.setString(5, hd.getGhiChu());
             pstmt.setString(6, hd.getMaDS());
 
-            int result = pstmt.executeUpdate();
-            con.commit();
-            pstmt.close();
-            return result > 0;
+            return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
-            try {
-                con.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            System.out.println("Lỗi thêm hóa đơn: " + e.getMessage());
+            System.err.println("Lỗi thêm hóa đơn: " + e.getMessage());
             return false;
         }
     }
 
-    public boolean updateHoaDon(HOADON hd) {
-        String sql = "UPDATE HOADON SET TongTienDV=?, SoTienGG=?, ThanhTien=?, Ghichu=? WHERE MaHoaDon=?";
+    public boolean addHoaDonDatSan(String maDatSan, long tongTienSan) {
+        String sql = "INSERT INTO HOADON (MaHoaDon, MaDS, LoaiHD, TongTienDV, SoTienGG, Ghichu, TrangThai, NgayXuat) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+        try (Connection con = connectDB.createCon();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-        try {
-            PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setLong(1, hd.getTongTienDV());
-            pstmt.setLong(2, hd.getSoTienGiam());
-            pstmt.setLong(3, hd.getThanhTien());
-            pstmt.setString(4, hd.getGhiChu());
-            pstmt.setString(5, hd.getMaHD());
+            String maHD = "HDSAN"
+                    + java.util.UUID.randomUUID().toString().replace("-", "").substring(0, 6).toUpperCase();
+            pstmt.setString(1, maHD);
+            pstmt.setString(2, maDatSan);
+            pstmt.setString(3, HOADON.LOAI_DAT_SAN);
+            pstmt.setLong(4, 0);
+            pstmt.setLong(5, 0);
+            pstmt.setString(6, "");
+            pstmt.setString(7, "Chua Thanh Toan");
 
-            int result = pstmt.executeUpdate();
-            con.commit();
-            pstmt.close();
-            return result > 0;
+            boolean ok = pstmt.executeUpdate() > 0;
+            if (ok)
+                System.out.println("✓ Tạo hóa đơn đặt sân: " + maHD + " cho DS " + maDatSan);
+            return ok;
         } catch (SQLException e) {
-            try {
-                con.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            System.out.println("Lỗi cập nhật hóa đơn: " + e.getMessage());
+            System.err.println("Lỗi tạo hóa đơn đặt sân: " + e.getMessage());
             return false;
         }
     }
 
-    public HOADON getHoaDonByMa(String maHoaDon) {
-        String sql = "SELECT * FROM HOADON WHERE MaHoaDon=?";
-
-        try {
-            PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, maHoaDon);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                return new HOADON(
-                    rs.getString("MaHoaDon"),
-                    rs.getLong("TongTienDV"),
-                    rs.getLong("SoTienGG"),
-                    rs.getString("Ghichu"),
-                    rs.getDate("NgayXuat").toLocalDate(),
-                    rs.getString("MaDS")
-                );
-            }
-            rs.close();
-            pstmt.close();
-        } catch (SQLException e) {
-            System.out.println("Lỗi tìm hóa đơn: " + e.getMessage());
-        }
-        return null;
+    public boolean addHoaDon(String maDatSan, long tongTien) {
+        return addHoaDonDatSan(maDatSan, tongTien);
     }
 
-    public HOADON getHoaDonByDatSan(String maDS) {
-        String sql = "SELECT * FROM HOADON WHERE MaDS=?";
+    public String addHoaDonDichVu(String maDatSan, long tongTienDichVu, String ghiChu) {
+        String sql = "INSERT INTO HOADON (MaHoaDon, MaDS, LoaiHD, TongTienDV, SoTienGG, Ghichu, TrangThai, NgayXuat) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+        try (Connection con = connectDB.createCon();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-        try {
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            String maHD = "HDDV"
+                    + java.util.UUID.randomUUID().toString().replace("-", "").substring(0, 6).toUpperCase();
+            pstmt.setString(1, maHD);
+            if (maDatSan != null && !maDatSan.isEmpty()) {
+                pstmt.setString(2, maDatSan);
+            } else {
+                pstmt.setNull(2, java.sql.Types.VARCHAR);
+            }
+            pstmt.setString(3, HOADON.LOAI_DICH_VU);
+            pstmt.setLong(4, tongTienDichVu);
+            pstmt.setLong(5, 0);
+            pstmt.setString(6, ghiChu != null ? ghiChu : "");
+            pstmt.setString(7, "Chua Thanh Toan");
+            if (pstmt.executeUpdate() > 0) {
+                System.out.println("Tạo hóa đơn dịch vụ mới: " + maHD);
+                return maHD;
+            }
+            return null;
+        } catch (SQLException e) {
+            System.err.println("Lỗi tạo hóa đơn dịch vụ: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public boolean capNhatNgayXuatVaThanhToan(String maHD) {
+        String sql = "UPDATE HOADON SET NgayXuat = SYSDATE, TrangThai = 'Da Thanh Toan' WHERE MaHoaDon = ?";
+
+        try (Connection con = connectDB.createCon();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, maHD);
+            int result = pstmt.executeUpdate();
+
+            if (result > 0) {
+                try {
+                    ThongBaoDAO.themThongBao("Thanh toán hóa đơn",
+                            "Hóa đơn " + maHD + " đã được thanh toán.", "success");
+                } catch (Exception ex) {
+                    System.err.println("Không thể ghi log: " + ex.getMessage());
+                }
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi cập nhật ngày xuất: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public HOADON getHoaDonByMaDS(String maDS) {
+        String sql = "SELECT * FROM (SELECT * FROM HOADON WHERE MaDS = ? ORDER BY MaHoaDon DESC) WHERE ROWNUM <= 1";
+        try (Connection con = connectDB.createCon();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, maDS);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                return new HOADON(
-                    rs.getString("MaHoaDon"),
-                    rs.getLong("TongTienDV"),
-                    rs.getLong("SoTienGG"),
-                    rs.getString("Ghichu"),
-                    rs.getDate("NgayXuat").toLocalDate(),
-                    rs.getString("MaDS")
-                );
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    HOADON hd = new HOADON(
+                            rs.getString("MaHoaDon"),
+                            rs.getLong("TongTienDV"),
+                            rs.getLong("SoTienGG"),
+                            rs.getString("Ghichu"),
+                            rs.getDate("NgayXuat") != null ? rs.getDate("NgayXuat").toLocalDate() : null,
+                            rs.getString("MaDS"));
+                    hd.setTrangThai(rs.getString("TrangThai"));
+                    return hd;
+                }
             }
-            rs.close();
-            pstmt.close();
         } catch (SQLException e) {
-            System.out.println("Lỗi tìm hóa đơn: " + e.getMessage());
+            System.err.println("Lỗi lấy hóa đơn theo MaDS: " + e.getMessage());
         }
         return null;
+    }
+
+    public boolean updateTrangThaiHoaDon(String maHD, String trangThaiMoi) {
+        String sql = "UPDATE HOADON SET TrangThai = ? WHERE MaHoaDon = ?";
+
+        try (Connection con = connectDB.createCon();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, trangThaiMoi);
+            pstmt.setString(2, maHD);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Lỗi update trạng thái hóa đơn: " + e.getMessage());
+            return false;
+        }
     }
 
     public Long getTongDoanhThuByNgay(LocalDate ngay) {
-        String sql = "SELECT SUM(ThanhTien) AS tong FROM HOADON hd " +
-                    "JOIN DATSAN ds ON hd.MaDS = ds.MaDS " +
-                    "WHERE TRUNC(ds.NgayDat) = TRUNC(?)";
+        String sql = "SELECT SUM(NVL(hd.ThanhTien, 0) + NVL(ds.TongTienTamTinh, 0)) AS tong FROM HOADON hd " +
+                "LEFT JOIN DATSAN ds ON hd.MaDS = ds.MaDS " +
+                "WHERE hd.NgayXuat >= TRUNC(?) AND hd.NgayXuat < TRUNC(?) + 1 " +
+                "AND (hd.TrangThai LIKE '%Da Thanh Toan%' OR hd.TrangThai = 'HoanThanh')";
+        try (Connection con = connectDB.createCon();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-        try {
-            PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setDate(1, java.sql.Date.valueOf(ngay));
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                return rs.getLong("tong");
+            pstmt.setDate(2, java.sql.Date.valueOf(ngay));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getLong("tong");
+                }
             }
-            rs.close();
-            pstmt.close();
         } catch (SQLException e) {
-            System.out.println("Lỗi tính doanh thu: " + e.getMessage());
+            System.err.println("Lỗi tính doanh thu: " + e.getMessage());
         }
         return 0L;
     }
 
-    public void closeConnection() throws SQLException {
-        connectDB.closeCon(con);
+    public java.util.List<Object[]> getHoaDonDichVu() {
+        java.util.List<Object[]> result = new java.util.ArrayList<>();
+        String sql = "SELECT hd.MaHoaDon, hd.TrangThai, hd.Ghichu, hd.ThanhTien, " +
+                "       hd.NgayXuat, hd.MaDS, " +
+                "       NVL(kh.HoTen, 'Khach le') AS TenKH, " +
+                "       NVL(s.TenSan, hd.MaDS)   AS TenSan " +
+                "FROM HOADON hd " +
+                "LEFT JOIN DATSAN ds ON hd.MaDS = ds.MaDS " +
+                "LEFT JOIN KHACHHANG kh ON ds.MaKH = kh.MaKH " +
+                "LEFT JOIN SAN s ON ds.MaSan = s.MaSan " +
+                "WHERE hd.LoaiHD = 'DICH_VU' " +
+                "ORDER BY hd.NgayXuat DESC NULLS LAST";
+        try (Connection con = connectDB.createCon();
+                PreparedStatement pstmt = con.prepareStatement(sql);
+                ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                Object[] row = new Object[8];
+                row[0] = rs.getString("MaHoaDon");
+                row[1] = rs.getString("TenKH");
+                row[2] = rs.getString("TenSan");
+                row[3] = rs.getLong("ThanhTien");
+                row[4] = rs.getString("TrangThai");
+                row[5] = rs.getString("Ghichu");
+                row[6] = rs.getDate("NgayXuat") != null
+                        ? rs.getDate("NgayXuat").toLocalDate()
+                        : null;
+                row[7] = rs.getString("MaDS");
+                result.add(row);
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi lấy hóa đơn dịch vụ: " + e.getMessage());
+        }
+        return result;
+    }
+
+    public java.util.List<Object[]> getCTDVByHoaDon(String maHD) {
+        java.util.List<Object[]> result = new java.util.ArrayList<>();
+        String sql = "SELECT dv.TenDV, ct.SoLuong, ct.ThanhTien, ct.MaDV " +
+                "FROM CTDV ct " +
+                "JOIN DICHVU dv ON ct.MaDV = dv.MaDV " +
+                "JOIN HOADON hd ON ct.MaHoaDon = hd.MaHoaDon " +
+                "WHERE hd.MaHoaDon = ?";
+        try (Connection con = connectDB.createCon();
+                PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, maHD);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    long sl = rs.getLong("SoLuong");
+                    long tt = rs.getLong("ThanhTien");
+                    long dg = sl > 0 ? tt / sl : 0;
+                    result.add(new Object[] {
+                            rs.getString("TenDV"),
+                            sl,
+                            dg,
+                            rs.getString("MaDV")
+                    });
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi lấy CTDV: " + e.getMessage());
+        }
+        return result;
     }
 
 }
