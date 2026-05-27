@@ -1,4 +1,4 @@
-package com.mycompany.mavenproject1;
+package Model;
 
 public class LuuThongTinDangNhap {
     public static String maKH;

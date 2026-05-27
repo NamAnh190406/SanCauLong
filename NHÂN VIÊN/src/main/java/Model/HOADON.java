@@ -10,16 +10,21 @@ import java.time.LocalDate;
  * @author Hi
  */
 public class HOADON {
+    // Hai loại hóa đơn trong hệ thống
+    public static final String LOAI_DAT_SAN  = "DAT_SAN";   // Hóa đơn thuê sân
+    public static final String LOAI_DICH_VU  = "DICH_VU";   // Hóa đơn dịch vụ
+
     private String maHD;
+    private String loaiHD;         // Loại: DAT_SAN | DICH_VU
     private long tongTienDV;
     private long soTienGiam;
     private long thanhTien;
     private String ghichu;
+    private String trangThai;
     private LocalDate ngayXuat;
     private String maDS;
-    public HOADON()
-    {
-    }
+
+    public HOADON() {}
     public HOADON(String maHD, long tongTienDV, long soTienGiam, String ghichu, LocalDate ngayXuat, String maDS)
     {
         this.maHD = maHD;
@@ -30,13 +35,19 @@ public class HOADON {
         this.thanhTien = tinhThanhTien();
         this.maDS=maDS;
     }
+    public String getLoaiHD() { return loaiHD; }
+    public void setLoaiHD(String loaiHD) { this.loaiHD = loaiHD; }
+
+    public boolean isDatSan()  { return LOAI_DAT_SAN.equals(loaiHD); }
+    public boolean isDichVu()  { return LOAI_DICH_VU.equals(loaiHD); }
+
     public String getMaDS() { return maDS; }
     public void setMaDS(String maDS) { this.maDS = maDS; }
-    public long tinhThanhTien()
-    {
-        this.thanhTien=tongTienDV-soTienGiam;
-        return this.thanhTien;
-    }
+//    public long tinhThanhTien()
+//    {
+//        this.thanhTien=tongTienDV-soTienGiam;
+//        return this.thanhTien;
+//    }
     public String getMaHD()
     {
         return maHD;
@@ -61,6 +72,10 @@ public class HOADON {
     {
         return thanhTien;
     }
+    public  String getTrangThai()
+    {
+        return trangThai;
+    }
     public void setMaHD(String maHD)
     {
         this.maHD=maHD;
@@ -78,6 +93,10 @@ public class HOADON {
     public void setGhiChu(String ghiChu)
     {
         this.ghichu=ghiChu;
+    }
+    public void setTrangThai(String trangthai)
+    {
+        this.trangThai= trangthai;
     }
     public void setNgayXuat(LocalDate ngayXuat)
     {
@@ -98,5 +117,10 @@ public class HOADON {
     public String toString()
     {
         return maHD + " - VNĐ" + thanhTien;
+    }
+    public void setThanhTien(long thanhTien) { this.thanhTien = thanhTien; }
+    public long tinhThanhTien() {
+        this.thanhTien = tongTienDV - soTienGiam;
+        return this.thanhTien;
     }
 }

@@ -162,18 +162,27 @@ public class SAN {
     }
     public static ObservableList<SAN> getDanhSachSanTuDB() {
     ObservableList<SAN> danhSachSan = FXCollections.observableArrayList();
+    
+    // Câu lệnh SQL (Bạn nhớ thay đổi tên bảng và tên cột cho khớp với Oracle DB của bạn nhé)
     String sql = "SELECT MaSan, TenSan, LoaiSan, GiaThue, TrangThai FROM B_SAN"; 
     
     Databasehelper db = new Databasehelper();
+    
+    // Sử dụng try-with-resources để Java tự động đóng kết nối (Connection/ResultSet) khi xong việc
     try (Connection conn = db.createCon();
          PreparedStatement pstmt = conn.prepareStatement(sql);
          ResultSet rs = pstmt.executeQuery()) {
+         
+        // Duyệt qua từng dòng dữ liệu Database trả về
         while (rs.next()) {
+            // Lấy dữ liệu từ ResultSet
             String maSan = rs.getString("MaSan");
             String tenSan = rs.getString("TenSan");
             String loaiSan = rs.getString("LoaiSan");
             int giaThue = rs.getInt("GiaThue");
             String trangThai = rs.getString("TrangThai");
+            
+            // Tạo object Model và thêm vào danh sách
             SAN san = new SAN(maSan, tenSan, loaiSan, giaThue, trangThai);
             danhSachSan.add(san);
         }

@@ -40,7 +40,10 @@ public class ThanhToan {
 
     public String getMaHoaDon() { return maHoaDon; }
     public void setMaHoaDon(String maHoaDon) { this.maHoaDon = maHoaDon; }
-
+    
+    public long getSoTien(){ return soTien;}
+    public void setSoTien( long tien){ this.soTien=tien;}
+    
     @Override
     public String toString() {
         return pttt + " - " + trangThai;

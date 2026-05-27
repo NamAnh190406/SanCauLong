@@ -10,15 +10,18 @@ public class CTDV {
     private long soLuong;
     private long donGia;
     private long thanhTien;
+    private String maHoaDon;
 
     public CTDV() {
     }
-    public CTDV(String maCTDV, String maDS, String maDV, long soLuong, long donGia) {
+    public CTDV(String maCTDV, String maDS, String maDV, long soLuong, long donGia, String maHoaDon) {
         this.maCTDV = maCTDV;
         this.maDS = maDS;
         this.maDV = maDV;
         this.soLuong = soLuong;
         this.donGia = donGia;
+        this.maHoaDon = maHoaDon;
+        this.thanhTien = tinhThanhTien();
     }
 
     public String getMaCTDV() { return maCTDV; }
@@ -44,6 +47,9 @@ public class CTDV {
 
     public long getThanhTien() { return thanhTien; }
 
+    public String getMaHoaDon() { return maHoaDon; }
+    public void setMaHoaDon(String maHoaDon) { this.maHoaDon = maHoaDon; }
+
     public long tinhThanhTien() {
         this.thanhTien = soLuong * donGia;
         return this.thanhTien;
@@ -67,6 +73,7 @@ public class CTDV {
                 ", soLuong=" + soLuong +
                 ", donGia=" + donGia +
                 ", thanhTien=" + thanhTien +
+                ", maHoaDon='" + maHoaDon + '\'' +
                 '}';
     }
 }
