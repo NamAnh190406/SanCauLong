@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<StackPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.KhachHangNVController">
+    <children>
+        <VBox style="-fx-background-color: white;">
+            <VBox spacing="16.0" style="-fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0; -fx-padding: 16;">
+            <FontAwesomeIconView glyphName="CHEVRON_LEFT" onMouseClicked="#handleThoat" size="15">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </FontAwesomeIconView>
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="Danh Sách Khách Hàng" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <HBox fx:id="actionButtonsBox" alignment="CENTER_RIGHT" spacing="8.0">
+                        <Button fx:id="btnDeleteSelected" managed="false" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand;" text="Xóa" visible="false">
+                            <graphic>
+                                <SVGPath content="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6" fill="transparent" scaleX="0.6" scaleY="0.6" stroke="#ffffff" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btnCancelSelection" managed="false" style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand;" text="Hủy" visible="false" />
+                    </HBox>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="8.0" style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 4 12;">
+                    <SVGPath content="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" fill="transparent" stroke="#9ca3af" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2" />
+                    <TextField fx:id="txtSearch" promptText="Tìm kiếm khách hàng..." style="-fx-background-color: transparent; -fx-border-width: 0; -fx-padding: 8 0;" HBox.hgrow="ALWAYS" />
+                </HBox>
+            </VBox>
+            <TableView fx:id="tableCustomers" style="-fx-background-color: transparent; -fx-border-width: 0;" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colCheckbox" prefWidth="50" sortable="false" />
+                    <TableColumn fx:id="colId" prefWidth="50" text="ID" />
+                    <TableColumn fx:id="colName" prefWidth="150" text="Tên khách hàng" />
+                    <TableColumn fx:id="colPhone" prefWidth="120" text="Số điện thoại" />
+                    <TableColumn fx:id="colEmail" prefWidth="180" text="Email" />
+                    <TableColumn fx:id="colAddress" prefWidth="150" text="Địa chỉ" />
+                    <TableColumn fx:id="colTotalBookings" prefWidth="80" text="Số lần đặt" />
+                </columns>
+            </TableView>
+            <HBox alignment="CENTER_LEFT" spacing="16.0" style="-fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0; -fx-padding: 16;">
+                <Label style="-fx-text-fill: #6b7280; -fx-font-size: 14px;" text="Tổng số:" />
+                <Label fx:id="lblTotalCount" style="-fx-text-fill: #16a34a; -fx-font-weight: bold; -fx-font-size: 14px;" text="0" />
+                <Label style="-fx-text-fill: #6b7280; -fx-font-size: 14px;" text="khách hàng" />
+                
+                <HBox fx:id="selectedCountBox" alignment="CENTER_LEFT" managed="false" spacing="8.0" visible="false">
+                    <Label style="-fx-text-fill: #6b7280; -fx-font-size: 14px;" text="Đã chọn:" />
+                    <Label fx:id="lblSelectedCount" style="-fx-text-fill: #16a34a; -fx-font-weight: bold; -fx-font-size: 14px;" text="0" />
+                </HBox>
+            </HBox>
+        </VBox>
+        <VBox fx:id="addCustomerModal" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.5);" visible="false">
+            <VBox maxWidth="450" spacing="16.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24;">
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Thêm Khách Hàng Mới" />
+                
+                <VBox spacing="8.0">
+                    <Label style="-fx-text-fill: #6b7280;" text="Tên khách hàng *" />
+                    <TextField fx:id="txtAddName" promptText="Nhập tên khách hàng" style="-fx-padding: 8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e5e7eb; -fx-background-color: white;" />
+                </VBox>
+                
+                <VBox spacing="8.0">
+                    <Label style="-fx-text-fill: #6b7280;" text="Số điện thoại *" />
+                    <TextField fx:id="txtAddPhone" promptText="Nhập số điện thoại" style="-fx-padding: 8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e5e7eb; -fx-background-color: white;" />
+                </VBox>
+                <VBox spacing="8.0">
+                    <Label style="-fx-text-fill: #6b7280;" text="Email" />
+                    <TextField fx:id="txtAddEmail" promptText="Nhập email" style="-fx-padding: 8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e5e7eb; -fx-background-color: white;" />
+                </VBox>
+                <VBox spacing="8.0">
+                    <Label style="-fx-text-fill: #6b7280;" text="Địa chỉ" />
+                    <TextField fx:id="txtAddAddress" promptText="Nhập địa chỉ" style="-fx-padding: 8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e5e7eb; -fx-background-color: white;" />
+                </VBox>
+                <HBox spacing="12.0" style="-fx-padding: 16 0 0 0;">
+                    <Button fx:id="btnCancelAdd" maxWidth="Infinity" style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8; -fx-cursor: hand;" text="Hủy" HBox.hgrow="ALWAYS" />
+                    <Button fx:id="btnConfirmAdd" maxWidth="Infinity" style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8; -fx-cursor: hand;" text="Xác nhận" HBox.hgrow="ALWAYS" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </children>
+</StackPane>

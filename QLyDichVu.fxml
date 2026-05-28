@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.QLyDichVuController">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <BorderPane BorderPane.alignment="CENTER">
+                    <top>
+                        <HBox prefHeight="115.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <VBox prefHeight="105.0" prefWidth="350.0" stylesheets="@../../../style.css">
+                                    <children>
+                                        <Label text="QUẢN LÝ DỊCH VỤ &amp; TIỆN ÍCH">
+                                            <font>
+                                                <Font name="System Bold" size="24.0" />
+                                            </font>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="10.0">
+                                            <children>
+                                                <TextField fx:id="txtSearch" prefHeight="34.0" prefWidth="230.0" promptText="Nhập mã hoặc tên dịch vụ" styleClass="text-field-pill" />
+                                                <Button minWidth="41.0" mnemonicParsing="false" onAction="#handleTimKiem" prefHeight="30.0" prefWidth="41.0" style="-fx-background-color: D3D3D3;">
+                                                    <graphic>
+                                                        <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../../../image/icons8-search-50.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="20.0" top="10.0" />
+                                    </HBox.margin>
+                                </VBox>
+                                <Pane HBox.hgrow="ALWAYS" />
+                                <HBox alignment="CENTER" prefHeight="115.0" prefWidth="300.0">
+                                    <children>
+                                        <VBox alignment="TOP_RIGHT" prefHeight="115.0" prefWidth="280.0">
+                                            <children>
+                                                <Label text="Thao tác nhanh">
+                                                    <font>
+                                                        <Font name="System Bold" size="18.0" />
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets right="10.0" />
+                                                    </VBox.margin>
+                                                </Label>
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="98.0" spacing="10.0">
+                                                    <children>
+                                                        <Button mnemonicParsing="false" onMouseClicked="#handleThoat" prefHeight="35.0" prefWidth="65.0" text="Thoát">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></Button>
+                                                        <Button mnemonicParsing="false" onMouseClicked="#handleMoThemDichVu" prefHeight="35.0" prefWidth="85.0" styleClass="btn-round" text="Thêm DV">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></Button>
+                                                        <Button mnemonicParsing="false" onMouseClicked="#handleMoSuaDichVu" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #FFA500;" styleClass="btn-round" text="Sửa" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="System Bold" size="12.0" />
+                                                            </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                                        </Button>
+                                                        <Button mnemonicParsing="false" onMouseClicked="#handleXoaDichVu" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #FF0000;" styleClass="btn-round" text="Xóa" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="System Bold" size="12.0" />
+                                                            </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                                        </Button>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" right="10.0" />
+                                                    </VBox.margin>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </HBox>
+                    </top>
+                    <center>
+                        <TableView fx:id="tableDichVu" BorderPane.alignment="CENTER">
+                            <columns>
+                                <TableColumn fx:id="colSelect" prefWidth="80.0" text="Chọn" />
+
+                                <TableColumn fx:id="colMaDV" prefWidth="120.0" text="Mã dịch vụ" />
+                                <TableColumn fx:id="colTenDV" prefWidth="250.0" text="Tên dịch vụ" />
+                                <TableColumn fx:id="colDonViTinh" prefWidth="130.0" text="Đơn vị tính" />
+                                <TableColumn fx:id="colGiaBan" prefWidth="160.0" text="Giá bán (VNĐ)" />
+                                <TableColumn fx:id="colSoLuongTon" prefWidth="150.0" text="Số lượng tồn" />
+                                <TableColumn fx:id="colTrangThai" prefWidth="150.0" text="Trạng thái" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </center>
+                </BorderPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="700.0" prefWidth="860.0" style="-fx-background-color:#F5F7FA; -fx-background: #F5F7FA;" vbarPolicy="AS_NEEDED" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.BangGiaController">
+
+  <VBox spacing="24" style="-fx-padding:24 28 24 28; -fx-background-color:#F5F7FA;">
+      <FontAwesomeIconView fx:id="btnBack" glyphName="CHEVRON_LEFT" onMouseClicked="#handleQuayLai">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></FontAwesomeIconView>
+
+    <!-- ══════════════════════════════════ -->
+    <!--  TIÊU ĐỀ TRANG                    -->
+    <!-- ══════════════════════════════════ -->
+    <VBox spacing="4">
+      <Label style="-fx-font-size:24px; -fx-font-weight:bold; -fx-text-fill:#111827;" text="Bảng Giá">
+            <font>
+               <Font name="Sitka Banner Bold" size="15.0" />
+            </font></Label>
+      <Label style="-fx-font-size:13px; -fx-text-fill:#6B7280;" text="Chi tiết giá thuê sân và dịch vụ" />
+    </VBox>
+
+    <!-- ══════════════════════════════════ -->
+    <!--  BẢNG GIÁ THEO SÂN               -->
+    <!-- ══════════════════════════════════ -->
+    <VBox spacing="14">
+      <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label style="-fx-text-fill:#16A34A; -fx-font-size:16px;" text="⊙" />
+        <Label style="-fx-font-size:16px; -fx-font-weight:bold; -fx-text-fill:#111827;" text="Bảng Giá Theo Sân" />
+      </HBox>
+
+      <!-- Row 1: Sân A1 + Sân A2 -->
+      <HBox spacing="14">
+        <!-- SÂN A1 -->
+        <VBox style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.08),6,0,0,2);" HBox.hgrow="ALWAYS">
+          <!-- Header xanh -->
+          <HBox alignment="CENTER_LEFT" style="-fx-background-color:#16A34A; -fx-background-radius:10 10 0 0; -fx-padding:12 16 12 16;">
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+              <Label style="-fx-font-size:15px; -fx-font-weight:bold; -fx-text-fill:white;" text="Sân A1" />
+              <Label style="-fx-font-size:11px; -fx-text-fill:rgba(255,255,255,0.8);" text="Sân đơn gỗ tiêu chuẩn" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="1">
+              <Label style="-fx-font-size:10px; -fx-text-fill:rgba(255,255,255,0.75);" text="Giá từ" />
+              <Label style="-fx-font-size:16px; -fx-font-weight:bold; -fx-text-fill:white;" text="80,000 đ" />
+              <Label style="-fx-font-size:10px; -fx-text-fill:rgba(255,255,255,0.75);" text="/60 phút" />
+            </VBox>
+          </HBox>
+          <!-- Body -->
+          <VBox spacing="10" style="-fx-padding:14 16 14 16;">
+            <HBox spacing="0">
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Loại sân" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Đơn" />
+              </VBox>
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Mặt sân" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Gỗ" />
+              </VBox>
+            </HBox>
+            <HBox spacing="0">
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Không gian" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Nhà Cầu" />
+              </VBox>
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Giờ cao điểm" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="100,000 đ" />
+              </VBox>
+            </HBox>
+            <Label style="-fx-font-size:11px; -fx-text-fill:#6B7280;" text="📍 123 Nguyễn Trãi, Q1, TP.HCM" />
+          </VBox>
+        </VBox>
+
+        <!-- SÂN A2 -->
+        <VBox style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.08),6,0,0,2);" HBox.hgrow="ALWAYS">
+          <HBox alignment="CENTER_LEFT" style="-fx-background-color:#16A34A; -fx-background-radius:10 10 0 0; -fx-padding:12 16 12 16;">
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+              <Label style="-fx-font-size:15px; -fx-font-weight:bold; -fx-text-fill:white;" text="Sân A2" />
+              <Label style="-fx-font-size:11px; -fx-text-fill:rgba(255,255,255,0.8);" text="Sân đôi giá cao cấp" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="1">
+              <Label style="-fx-font-size:10px; -fx-text-fill:rgba(255,255,255,0.75);" text="Giá từ" />
+              <Label style="-fx-font-size:16px; -fx-font-weight:bold; -fx-text-fill:white;" text="120,000 đ" />
+              <Label style="-fx-font-size:10px; -fx-text-fill:rgba(255,255,255,0.75);" text="/60 phút" />
+            </VBox>
+          </HBox>
+          <VBox spacing="10" style="-fx-padding:14 16 14 16;">
+            <HBox spacing="0">
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Loại sân" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Đôi" />
+              </VBox>
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Mặt sân" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Gỗ" />
+              </VBox>
+            </HBox>
+            <HBox spacing="0">
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Không gian" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Nhà Cầu" />
+              </VBox>
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Giờ cao điểm" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="150,000 đ" />
+              </VBox>
+            </HBox>
+            <Label style="-fx-font-size:11px; -fx-text-fill:#6B7280;" text="📍 123 Nguyễn Trãi, Q1, TP.HCM" />
+          </VBox>
+        </VBox>
+      </HBox>
+
+      <!-- Row 2: Sân B1 + Sân C1 -->
+      <HBox spacing="14">
+        <!-- SÂN B1 -->
+        <VBox style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.08),6,0,0,2);" HBox.hgrow="ALWAYS">
+          <HBox alignment="CENTER_LEFT" style="-fx-background-color:#16A34A; -fx-background-radius:10 10 0 0; -fx-padding:12 16 12 16;">
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+              <Label style="-fx-font-size:15px; -fx-font-weight:bold; -fx-text-fill:white;" text="Sân B1" />
+              <Label style="-fx-font-size:11px; -fx-text-fill:rgba(255,255,255,0.8);" text="Sân đơn ngoài trời giá rẻ" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="1">
+              <Label style="-fx-font-size:10px; -fx-text-fill:rgba(255,255,255,0.75);" text="Giá từ" />
+              <Label style="-fx-font-size:16px; -fx-font-weight:bold; -fx-text-fill:white;" text="60,000 đ" />
+              <Label style="-fx-font-size:10px; -fx-text-fill:rgba(255,255,255,0.75);" text="/60 phút" />
+            </VBox>
+          </HBox>
+          <VBox spacing="10" style="-fx-padding:14 16 14 16;">
+            <HBox spacing="0">
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Loại sân" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Đơn" />
+              </VBox>
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Mặt sân" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Nhựa PVC" />
+              </VBox>
+            </HBox>
+            <HBox spacing="0">
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Không gian" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Ngoài Trời" />
+              </VBox>
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Giờ cao điểm" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="90,000 đ" />
+              </VBox>
+            </HBox>
+            <Label style="-fx-font-size:11px; -fx-text-fill:#6B7280;" text="📍 45 Lê Lợi, Q1, TP.HCM" />
+          </VBox>
+        </VBox>
+
+        <!-- SÂN C1 -->
+        <VBox style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.08),6,0,0,2);" HBox.hgrow="ALWAYS">
+          <HBox alignment="CENTER_LEFT" style="-fx-background-color:#16A34A; -fx-background-radius:10 10 0 0; -fx-padding:12 16 12 16;">
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+              <Label style="-fx-font-size:15px; -fx-font-weight:bold; -fx-text-fill:white;" text="Sân C1" />
+              <Label style="-fx-font-size:11px; -fx-text-fill:rgba(255,255,255,0.8);" text="Sân đôi cao su cao cấp VIP" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="1">
+              <Label style="-fx-font-size:10px; -fx-text-fill:rgba(255,255,255,0.75);" text="Giá từ" />
+              <Label style="-fx-font-size:16px; -fx-font-weight:bold; -fx-text-fill:white;" text="150,000 đ" />
+              <Label style="-fx-font-size:10px; -fx-text-fill:rgba(255,255,255,0.75);" text="/60 phút" />
+            </VBox>
+          </HBox>
+          <VBox spacing="10" style="-fx-padding:14 16 14 16;">
+            <HBox spacing="0">
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Loại sân" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Đôi" />
+              </VBox>
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Mặt sân" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Cao Su" />
+              </VBox>
+            </HBox>
+            <HBox spacing="0">
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Không gian" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Nhà Cầu" />
+              </VBox>
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Giờ cao điểm" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="200,000 đ" />
+              </VBox>
+            </HBox>
+            <Label style="-fx-font-size:11px; -fx-text-fill:#6B7280;" text="📍 88 Trần Hưng Đạo, Q5, TP.HCM" />
+          </VBox>
+        </VBox>
+      </HBox>
+
+      <!-- Row 3: Sân C2 (nửa hàng) -->
+      <HBox spacing="14">
+        <!-- SÂN C2 -->
+        <VBox prefWidth="400" style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.08),6,0,0,2);">
+          <HBox alignment="CENTER_LEFT" style="-fx-background-color:#16A34A; -fx-background-radius:10 10 0 0; -fx-padding:12 16 12 16;">
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+              <Label style="-fx-font-size:15px; -fx-font-weight:bold; -fx-text-fill:white;" text="Sân C2" />
+              <Label style="-fx-font-size:11px; -fx-text-fill:rgba(255,255,255,0.8);" text="Sân đơn cao su trong nhà" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="1">
+              <Label style="-fx-font-size:10px; -fx-text-fill:rgba(255,255,255,0.75);" text="Giá từ" />
+              <Label style="-fx-font-size:16px; -fx-font-weight:bold; -fx-text-fill:white;" text="90,000 đ" />
+              <Label style="-fx-font-size:10px; -fx-text-fill:rgba(255,255,255,0.75);" text="/60 phút" />
+            </VBox>
+          </HBox>
+          <VBox spacing="10" style="-fx-padding:14 16 14 16;">
+            <HBox spacing="0">
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Loại sân" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Đơn" />
+              </VBox>
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Mặt sân" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Cao Su" />
+              </VBox>
+            </HBox>
+            <HBox spacing="0">
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Không gian" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="Nhà Cầu" />
+              </VBox>
+              <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Giờ cao điểm" />
+                <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1F2937;" text="90,000 đ" />
+              </VBox>
+            </HBox>
+            <Label style="-fx-font-size:11px; -fx-text-fill:#6B7280;" text="📍 88 Trần Hưng Đạo, Q5, TP.HCM" />
+          </VBox>
+        </VBox>
+        <!-- placeholder nửa còn lại -->
+        <Region HBox.hgrow="ALWAYS" />
+      </HBox>
+    </VBox>
+
+    <!-- ══════════════════════════════════ -->
+    <!--  KHUNG GIỜ                         -->
+    <!-- ══════════════════════════════════ -->
+    <VBox spacing="12">
+      <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label style="-fx-text-fill:#2563EB; -fx-font-size:16px;" text="⊙" />
+        <Label style="-fx-font-size:16px; -fx-font-weight:bold; -fx-text-fill:#111827;" text="Khung Giờ" />
+      </HBox>
+
+      <!-- Bảng Khung Giờ -->
+      <VBox style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);">
+
+        <!-- Header row -->
+        <HBox style="-fx-background-color:#F9FAFB; -fx-background-radius:10 10 0 0; -fx-padding:10 16 10 16; -fx-border-color:transparent transparent #E5E7EB transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="160" style="-fx-font-size:12px; -fx-font-weight:bold; -fx-text-fill:#6B7280;" text="Khung giờ" />
+          <Label prefWidth="200" style="-fx-font-size:12px; -fx-font-weight:bold; -fx-text-fill:#6B7280;" text="Thời gian" />
+          <Label style="-fx-font-size:12px; -fx-font-weight:bold; -fx-text-fill:#6B7280;" text="Loại giờ" />
+        </HBox>
+
+        <!-- KG001 -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:white; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="160" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="KG001" />
+          <Label prefWidth="200" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="06:00 - 07:30" />
+          <Label style="-fx-background-color:#059669; -fx-text-fill:white; -fx-font-size:11px; -fx-font-weight:bold; -fx-background-radius:20; -fx-padding:3 12 3 12;" text="Sáng sớm" />
+        </HBox>
+
+        <!-- KG002 -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:#FAFAFA; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="160" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="KG002" />
+          <Label prefWidth="200" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="07:30 - 09:00" />
+          <Label style="-fx-background-color:#10B981; -fx-text-fill:white; -fx-font-size:11px; -fx-font-weight:bold; -fx-background-radius:20; -fx-padding:3 12 3 12;" text="Sáng" />
+        </HBox>
+
+        <!-- KG003 -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:white; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="160" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="KG003" />
+          <Label prefWidth="200" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="09:00 - 10:30" />
+          <Label style="-fx-background-color:#10B981; -fx-text-fill:white; -fx-font-size:11px; -fx-font-weight:bold; -fx-background-radius:20; -fx-padding:3 12 3 12;" text="Sáng" />
+        </HBox>
+
+        <!-- KG004 -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:#FAFAFA; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="160" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="KG004" />
+          <Label prefWidth="200" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="10:30 - 12:00" />
+          <Label style="-fx-background-color:#F59E0B; -fx-text-fill:white; -fx-font-size:11px; -fx-font-weight:bold; -fx-background-radius:20; -fx-padding:3 12 3 12;" text="Trưa" />
+        </HBox>
+
+        <!-- KG005 -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:white; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="160" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="KG005" />
+          <Label prefWidth="200" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="13:00 - 14:30" />
+          <Label style="-fx-background-color:#3B82F6; -fx-text-fill:white; -fx-font-size:11px; -fx-font-weight:bold; -fx-background-radius:20; -fx-padding:3 12 3 12;" text="Chiều" />
+        </HBox>
+
+        <!-- KG006 -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:#FAFAFA; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="160" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="KG006" />
+          <Label prefWidth="200" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="14:30 - 16:00" />
+          <Label style="-fx-background-color:#3B82F6; -fx-text-fill:white; -fx-font-size:11px; -fx-font-weight:bold; -fx-background-radius:20; -fx-padding:3 12 3 12;" text="Chiều" />
+        </HBox>
+
+        <!-- KG007 -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:white; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="160" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="KG007" />
+          <Label prefWidth="200" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="16:00 - 17:30" />
+          <Label style="-fx-background-color:#3B82F6; -fx-text-fill:white; -fx-font-size:11px; -fx-font-weight:bold; -fx-background-radius:20; -fx-padding:3 12 3 12;" text="Chiều" />
+        </HBox>
+
+        <!-- KG008 -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:#FAFAFA; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="160" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="KG008" />
+          <Label prefWidth="200" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="17:30 - 19:00" />
+          <Label style="-fx-background-color:#F97316; -fx-text-fill:white; -fx-font-size:11px; -fx-font-weight:bold; -fx-background-radius:20; -fx-padding:3 12 3 12;" text="Tối (Cao điểm)" />
+        </HBox>
+
+        <!-- KG009 -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:white; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="160" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="KG009" />
+          <Label prefWidth="200" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="19:00 - 20:30" />
+          <Label style="-fx-background-color:#F97316; -fx-text-fill:white; -fx-font-size:11px; -fx-font-weight:bold; -fx-background-radius:20; -fx-padding:3 12 3 12;" text="Tối (Cao điểm)" />
+        </HBox>
+
+        <!-- KG010 (last row - bo góc dưới) -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:#FAFAFA; -fx-padding:11 16 11 16; -fx-background-radius:0 0 10 10;">
+          <Label prefWidth="160" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="KG010" />
+          <Label prefWidth="200" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="20:30 - 22:00" />
+          <Label style="-fx-background-color:#6B7280; -fx-text-fill:white; -fx-font-size:11px; -fx-font-weight:bold; -fx-background-radius:20; -fx-padding:3 12 3 12;" text="Tối" />
+        </HBox>
+      </VBox>
+
+      <!-- Lưu ý về giá -->
+      <VBox spacing="4" style="-fx-background-color:#EFF6FF; -fx-border-color:#BFDBFE; -fx-border-width:1; -fx-border-radius:8; -fx-background-radius:8; -fx-padding:12 16 12 16;">
+        <HBox alignment="CENTER_LEFT" spacing="6">
+          <Label style="-fx-text-fill:#2563EB; -fx-font-size:14px; -fx-font-weight:bold;" text="ℹ" />
+          <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1E40AF;" text="Lưu ý về giá:" />
+        </HBox>
+        <Label style="-fx-font-size:12px; -fx-text-fill:#1E40AF; -fx-padding:0 0 0 20;" text="• Giờ cao điểm (17:00 - 20:30): Giá tăng so với giá thường" />
+        <Label style="-fx-font-size:12px; -fx-text-fill:#1E40AF; -fx-padding:0 0 0 20;" text="• Mỗi khung giờ là 90 phút (1.5 giờ)" />
+        <Label style="-fx-font-size:12px; -fx-text-fill:#1E40AF; -fx-padding:0 0 0 20;" text="• Giá đã bao gồm điện và ánh sáng" />
+      </VBox>
+    </VBox>
+
+    <!-- ══════════════════════════════════ -->
+    <!--  PHỤ THU NGÀY LỄ                  -->
+    <!-- ══════════════════════════════════ -->
+    <VBox spacing="12">
+      <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label style="-fx-font-size:16px;" text="🎁" />
+        <Label style="-fx-font-size:16px; -fx-font-weight:bold; -fx-text-fill:#111827;" text="Phụ Thu Ngày Lễ" />
+      </HBox>
+
+      <VBox style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);">
+        <!-- Header -->
+        <HBox style="-fx-background-color:#F9FAFB; -fx-background-radius:10 10 0 0; -fx-padding:10 16 10 16; -fx-border-color:transparent transparent #E5E7EB transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="280" style="-fx-font-size:12px; -fx-font-weight:bold; -fx-text-fill:#6B7280;" text="Ngày lễ" />
+          <Label prefWidth="180" style="-fx-font-size:12px; -fx-font-weight:bold; -fx-text-fill:#6B7280;" text="Ngày" />
+          <Label style="-fx-font-size:12px; -fx-font-weight:bold; -fx-text-fill:#6B7280;" text="Phụ thu" />
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:white; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="280" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="Tết Dương Lịch" />
+          <Label prefWidth="180" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="01/01" />
+          <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#DC2626;" text="+50,000 đ" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:#FAFAFA; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="280" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="Giỗ Tổ Hùng Vương" />
+          <Label prefWidth="180" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="10/03 Âm lịch" />
+          <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#DC2626;" text="+30,000 đ" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:white; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="280" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="Ngày Giải Phóng" />
+          <Label prefWidth="180" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="30/04" />
+          <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#DC2626;" text="+50,000 đ" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:#FAFAFA; -fx-padding:11 16 11 16; -fx-border-color:transparent transparent #F3F4F6 transparent; -fx-border-width:0 0 1 0;">
+          <Label prefWidth="280" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="Quốc Tế Lao Động" />
+          <Label prefWidth="180" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="01/05" />
+          <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#DC2626;" text="+50,000 đ" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color:white; -fx-padding:11 16 11 16; -fx-background-radius:0 0 10 10;">
+          <Label prefWidth="280" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="Quốc Khánh 2/9" />
+          <Label prefWidth="180" style="-fx-font-size:13px; -fx-text-fill:#374151;" text="02/09" />
+          <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#DC2626;" text="+50,000 đ" />
+        </HBox>
+      </VBox>
+
+      <!-- Lưu ý phụ thu -->
+      <HBox alignment="TOP_LEFT" spacing="8" style="-fx-background-color:#FFF7ED; -fx-border-color:#FED7AA; -fx-border-width:1; -fx-border-radius:8; -fx-background-radius:8; -fx-padding:12 16 12 16;">
+        <Label style="-fx-text-fill:#EA580C; -fx-font-size:14px;" text="⚠" />
+        <Label style="-fx-font-size:12px; -fx-text-fill:#9A3412;" text="Phụ thu ngày lễ được cộng thêm vào giá sân thông thường. Ví dụ: Sân A1 (80.000đ) + Phụ Thu (50.000đ) = 130.000đ/90 phút" wrapText="true" />
+      </HBox>
+    </VBox>
+
+    <!-- ══════════════════════════════════ -->
+    <!--  BẢNG GIÁ DỊCH VỤ                 -->
+    <!-- ══════════════════════════════════ -->
+    <VBox spacing="12">
+      <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label style="-fx-font-size:16px;" text="🏸" />
+        <Label style="-fx-font-size:16px; -fx-font-weight:bold; -fx-text-fill:#111827;" text="Bảng Giá Dịch Vụ" />
+      </HBox>
+
+      <!-- Row 1: 3 dịch vụ -->
+      <HBox spacing="14">
+        <!-- Thuê vợt -->
+        <VBox spacing="10" style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-padding:14 16 14 16; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);" HBox.hgrow="ALWAYS">
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label style="-fx-font-size:24px;" text="🏸" />
+            <VBox spacing="2">
+              <Label style="-fx-font-size:14px; -fx-font-weight:bold; -fx-text-fill:#111827;" text="Thuê vợt" />
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Đơn vị: Cái" />
+            </VBox>
+          </HBox>
+          <HBox alignment="CENTER_LEFT">
+            <VBox spacing="1" HBox.hgrow="ALWAYS">
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Giá" />
+              <Label style="-fx-font-size:15px; -fx-font-weight:bold; -fx-text-fill:#16A34A;" text="30,000 đ" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="1">
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Tồn kho" />
+              <Label style="-fx-font-size:12px; -fx-text-fill:#6B7280;" text="50 cái" />
+            </VBox>
+          </HBox>
+        </VBox>
+
+        <!-- Cầu lông -->
+        <VBox spacing="10" style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-padding:14 16 14 16; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);" HBox.hgrow="ALWAYS">
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label style="-fx-font-size:24px;" text="🏸" />
+            <VBox spacing="2">
+              <Label style="-fx-font-size:14px; -fx-font-weight:bold; -fx-text-fill:#111827;" text="Cầu lông" />
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Đơn vị: Hộp" />
+            </VBox>
+          </HBox>
+          <HBox alignment="CENTER_LEFT">
+            <VBox spacing="1" HBox.hgrow="ALWAYS">
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Giá" />
+              <Label style="-fx-font-size:15px; -fx-font-weight:bold; -fx-text-fill:#16A34A;" text="120,000 đ" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="1">
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Tồn kho" />
+              <Label style="-fx-font-size:12px; -fx-text-fill:#6B7280;" text="100 hộp" />
+            </VBox>
+          </HBox>
+        </VBox>
+
+        <!-- Nước khoáng -->
+        <VBox spacing="10" style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-padding:14 16 14 16; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);" HBox.hgrow="ALWAYS">
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label style="-fx-font-size:24px;" text="💧" />
+            <VBox spacing="2">
+              <Label style="-fx-font-size:14px; -fx-font-weight:bold; -fx-text-fill:#111827;" text="Nước khoáng" />
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Đơn vị: Chai" />
+            </VBox>
+          </HBox>
+          <HBox alignment="CENTER_LEFT">
+            <VBox spacing="1" HBox.hgrow="ALWAYS">
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Giá" />
+              <Label style="-fx-font-size:15px; -fx-font-weight:bold; -fx-text-fill:#16A34A;" text="50,000 đ" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="1">
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Tồn kho" />
+              <Label style="-fx-font-size:12px; -fx-text-fill:#6B7280;" text="10 chai" />
+            </VBox>
+          </HBox>
+        </VBox>
+      </HBox>
+
+      <!-- Row 2: 2 dịch vụ -->
+      <HBox spacing="14">
+        <!-- Nước ngọt -->
+        <VBox spacing="10" style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-padding:14 16 14 16; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);" HBox.hgrow="ALWAYS">
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label style="-fx-font-size:24px;" text="🥤" />
+            <VBox spacing="2">
+              <Label style="-fx-font-size:14px; -fx-font-weight:bold; -fx-text-fill:#111827;" text="Nước ngọt" />
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Đơn vị: Chai" />
+            </VBox>
+          </HBox>
+          <HBox alignment="CENTER_LEFT">
+            <VBox spacing="1" HBox.hgrow="ALWAYS">
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Giá" />
+              <Label style="-fx-font-size:15px; -fx-font-weight:bold; -fx-text-fill:#16A34A;" text="15,000 đ" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="1">
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Tồn kho" />
+              <Label style="-fx-font-size:12px; -fx-text-fill:#6B7280;" text="200 chai" />
+            </VBox>
+          </HBox>
+        </VBox>
+
+        <!-- Khăn thể thao -->
+        <VBox spacing="10" style="-fx-background-color:white; -fx-background-radius:10; -fx-border-color:#E5E7EB; -fx-border-radius:10; -fx-border-width:1; -fx-padding:14 16 14 16; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.06),4,0,0,2);" HBox.hgrow="ALWAYS">
+          <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label style="-fx-font-size:24px;" text="🏋" />
+            <VBox spacing="2">
+              <Label style="-fx-font-size:14px; -fx-font-weight:bold; -fx-text-fill:#111827;" text="Khăn thể thao" />
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Đơn vị: Cái" />
+            </VBox>
+          </HBox>
+          <HBox alignment="CENTER_LEFT">
+            <VBox spacing="1" HBox.hgrow="ALWAYS">
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Giá" />
+              <Label style="-fx-font-size:15px; -fx-font-weight:bold; -fx-text-fill:#16A34A;" text="20,000 đ" />
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" spacing="1">
+              <Label style="-fx-font-size:11px; -fx-text-fill:#9CA3AF;" text="Tồn kho" />
+              <Label style="-fx-font-size:12px; -fx-text-fill:#6B7280;" text="80 cái" />
+            </VBox>
+          </HBox>
+        </VBox>
+
+        <!-- Placeholder -->
+        <Region HBox.hgrow="ALWAYS" />
+      </HBox>
+
+      <!-- Chính sách dịch vụ -->
+      <VBox spacing="4" style="-fx-background-color:#EFF6FF; -fx-border-color:#BFDBFE; -fx-border-width:1; -fx-border-radius:8; -fx-background-radius:8; -fx-padding:12 16 12 16;">
+        <HBox alignment="CENTER_LEFT" spacing="6">
+          <Label style="-fx-text-fill:#2563EB; -fx-font-size:14px; -fx-font-weight:bold;" text="ℹ" />
+          <Label style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1E40AF;" text="Chính sách dịch vụ:" />
+        </HBox>
+        <Label style="-fx-font-size:12px; -fx-text-fill:#1E40AF; -fx-padding:0 0 0 20;" text="• Hàng bổ sung lịch đặt bảo có sẵn dịch vụ" />
+        <Label style="-fx-font-size:12px; -fx-text-fill:#1E40AF; -fx-padding:0 0 0 20;" text="• Giá đã bao gồm VAT" />
+        <Label style="-fx-font-size:12px; -fx-text-fill:#1E40AF; -fx-padding:0 0 0 20;" text="• Có thể đặt kèm khi đặt sân hoặc mua trực tiếp tại quầy" />
+      </VBox>
+    </VBox>
+
+    <Region prefHeight="16" />
+  </VBox>
+</ScrollPane>

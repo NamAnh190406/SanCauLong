@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.CaiDatController">
+   <children>
+      <ScrollPane prefHeight="702.0" prefWidth="1277.0">
+        <content>
+          <AnchorPane prefHeight="900.0" prefWidth="1286.0">
+               <children>
+                  <AnchorPane fx:id="panelThongTin" layoutX="242.0" layoutY="228.0" prefHeight="475.0" prefWidth="802.0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2); -fx-background-radius: 15;">
+                     <children>
+                        <Label layoutX="36.0" layoutY="14.0" text="Thông Tin Cá Nhân">
+                           <font><Font name="Sitka Banner Bold" size="20.0" /></font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="43.0" text="Cập nhật thông tin cá nhân của bạn">
+                           <font><Font name="Sitka Banner" size="15.0" /></font>
+                        </Label>
+                        <FontAwesomeIconView fill="#054e09" glyphName="USER_CIRCLE" layoutX="23.0" layoutY="127.0" size="50" />
+                        <Label fx:id="lblMaKH" layoutX="89.0" layoutY="100.0" text="Mã Khách Hàng">
+                           <font><Font name="Sitka Banner Bold" size="15.0" /></font>
+                        </Label>
+                        <Label fx:id="lblHang" layoutX="585.0" layoutY="80.0" text="Hạng">
+                           <font><Font name="Sitka Banner Bold" size="20.0" /></font>
+                        </Label>
+                        <Label fx:id="lblDiem" layoutX="585.0" layoutY="121.0" text="Điểm Tích Lũy">
+                           <font><Font name="Sitka Banner Bold" size="20.0" /></font>
+                        </Label>
+                        <Line endX="613.6666870117188" endY="-6.66668701171875" layoutX="149.0" layoutY="156.0" startX="-100.0" stroke="#c9c9c9" />
+                        <TextField fx:id="txtHoTen" layoutX="23.0" layoutY="200.0" prefHeight="37.0" prefWidth="365.0" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #cccccc;" />
+
+                        <!-- Ngày Đăng Ký -->
+                        <Label layoutX="475.0" layoutY="176.0" text="Ngày Đăng Ký Thành Viên:" />
+                        <AnchorPane layoutX="464.0" layoutY="200.0" prefHeight="37.0" prefWidth="271.0" style="-fx-background-color: transparent; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #cccccc;">
+                           <children>
+                              <Label fx:id="lblNgayDK" layoutX="14.0" layoutY="10.0" text="" />
+                           </children>
+                        </AnchorPane>
+
+                        <!-- SDT -->
+                        <Label layoutX="34.0" layoutY="255.0" text="Số Điện Thoại:" />
+                        <TextField fx:id="txtSDT" layoutX="23.0" layoutY="274.0" prefHeight="37.0" prefWidth="325.0" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #cccccc;" />
+
+                        <!-- Email -->
+                        <Label layoutX="478.0" layoutY="255.0" text="Email:" />
+                        <TextField fx:id="txtEmail" layoutX="468.0" layoutY="274.0" prefHeight="37.0" prefWidth="275.0" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #cccccc;" />
+
+                        <!-- Kiểm Tra -->
+                        <Label layoutX="155.0" layoutY="336.0" text="Kiểm Tra:">
+                           <font><Font name="Sitka Banner Bold" size="15.0" /></font>
+                        </Label>
+                        <Label fx:id="lblKiemTra" layoutX="239.0" layoutY="336.0" prefHeight="17.0" prefWidth="395.0" text="" />
+
+                        <!-- Nút -->
+                        <Button layoutX="61.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#handleThoat" styleClass="login-button" stylesheets="@Nút%20đăng%20nhập.css" text="Thoát" />
+                        <Button layoutX="446.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#handleLuu" prefHeight="38.0" prefWidth="169.0" styleClass="login-button" stylesheets="@Nút%20đăng%20nhập.css" text="Lưu thay đổi" />
+                        <FontAwesomeIconView glyphName="TROPHY" layoutX="554.0" layoutY="98.0" size="20" />
+                        <FontAwesomeIconView glyphName="STAR" layoutX="554.0" layoutY="139.0" size="20" />
+                     </children>
+                  </AnchorPane>
+
+                  <Label layoutX="41.0" layoutY="25.0" text="Cài Đặt">
+                     <font><Font name="Sitka Banner Bold" size="20.0" /></font>
+                  </Label>
+                  <Label layoutX="41.0" layoutY="55.0" text="Quản lý thông tin và Tùy chọn tài khoản của bạn">
+                     <font><Font name="Sitka Banner" size="15.0" /></font>
+                  </Label>
+
+                  <AnchorPane fx:id="iconThongTin" layoutX="23.0" layoutY="91.0" onMouseClicked="#toggleThongTin" prefHeight="46.0" prefWidth="1131.0" style="-fx-background-color: #D5F5E3; -fx-background-radius: 15;">
+                     <children>
+                        <Label layoutX="47.0" layoutY="14.0" text="Thông Tin Cá Nhân">
+                           <font><Font name="Sitka Banner Bold" size="15.0" /></font>
+                        </Label>
+                        <FontAwesomeIconView glyphName="USER" layoutX="20.0" layoutY="30.0" size="20" />
+                        <FontAwesomeIconView glyphName="CHEVRON_RIGHT" layoutX="1106.0" layoutY="29.0" size="15" text="" />
+                     </children>
+                  </AnchorPane>
+
+                  <AnchorPane fx:id="iconBaoMat" layoutX="23.0" layoutY="150.0" onMouseClicked="#toggleBaoMat" prefHeight="49.0" prefWidth="1129.0" style="-fx-background-radius: 15; -fx-background-color: #AED6F1;">
+                     <children>
+                        <Label layoutX="46.0" layoutY="16.0" text="Điều Khoản &amp; Chính Sách">
+                           <font><Font name="Sitka Banner Bold" size="15.0" /></font>
+                        </Label>
+                        <FontAwesomeIconView glyphName="SHIELD" layoutX="20.0" layoutY="31.0" size="20" />
+                        <FontAwesomeIconView glyphName="CHEVRON_RIGHT" layoutX="1104.0" layoutY="30.0" size="15" />
+                     </children>
+                  </AnchorPane>
+
+                  <AnchorPane fx:id="panelBaoMat" layoutX="191.0" layoutY="218.0" prefHeight="438.0" prefWidth="903.0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2); -fx-background-radius: 15;" visible="false">
+                     <children>
+                        <Label layoutX="36.0" layoutY="14.0" text="Điều Khoản &amp; Chính Sách">
+                           <font><Font name="Sitka Banner Bold" size="20.0" /></font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="43.0" text="Tìm hiểu về các quy định và chính sách của chúng tôi" />
+                        <Label layoutX="30.0" layoutY="69.0" text="1. Chính sách hủy sân:">
+                           <font><Font name="Sitka Banner Bold" size="15.0" /></font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="94.0" prefHeight="17.0" prefWidth="491.0" text="- Nếu khách hàng đã CHUYỂN KHOẢN TRƯỚC 100%, khi hủy sẽ KHÔNG ĐƯỢC HOÀN TIỀN." wrapText="true" />
+                        <Label layoutX="36.0" layoutY="120.0" text="- Mọi trường hợp khác đều ĐƯỢC HOÀN TIỀN." />
+                        <Label layoutX="36.0" layoutY="145.0" text="- Vui lòng không hủy sân khi ĐÃ CHECK-IN." />
+                        <Label layoutX="28.0" layoutY="175.0" text="2. Chính sách bảo mật:">
+                           <font><Font name="Sitka Banner Bold" size="15.0" /></font>
+                        </Label>
+                        <!-- TÌM -->
+<Label layoutX="31.0" layoutY="201.0" prefHeight="17.0" prefWidth="442.0" text="- Chúng tôi thu thập các thông tin khách hàng nhằm mục đích đặt sân và liên lạc." />
+
+<!-- SỬA THÀNH -->
+<Label layoutX="35.0" layoutY="313.0" prefHeight="34.0" prefWidth="711.0" text="- Tổng tiền sau khi đổi thông tin đặt sân phải bằng tổng tiền đã đặt trước đó, nếu có chênh lệch, thông tin thay đổi sẽ không hợp lệ." wrapText="true" />
+                        <Label layoutX="31.0" layoutY="219.0" text="- Các thông tin cá nhân đã cung cấp sẽ được mã hóa và lưu trữ an toàn. " />
+                        <Label layoutX="29.0" layoutY="263.0" text="3. Chính sách thay đổi thông tin đặt sân:">
+                           <font><Font name="Sitka Banner Bold" size="15.0" /></font>
+                        </Label>
+                        <Label layoutX="32.0" layoutY="287.0" text="- Không thay đổi các thông tin SAU KHI CHECK-IN." />
+                        <Label layoutX="31.0" layoutY="362.0" text="4. Đặt dịch vụ:">
+                           <font><Font name="Sitka Banner Bold" size="15.0" /></font>
+                        </Label>
+                       <Label layoutX="36.0" layoutY="379.0" prefHeight="38.0" prefWidth="323.0" text="- Các dịch vụ có thể đặt online hoặc tại sân.&#10;  Khách hàng vui lòng trả tiền dịch vụ tại sân khi đã check-in." wrapText="true" />
+                        <Label layoutX="31.0" layoutY="236.0" text="- Chúng tôi không chia sẻ thông tin với bên thứ ba." />
+                     </children>
+                  </AnchorPane>
+
+                  <FontAwesomeIconView glyphName="CHEVRON_LEFT" layoutX="17.0" layoutY="31.0" onMouseClicked="#handleThoat" size="15" text="">
+                     <cursor><Cursor fx:constant="HAND" /></cursor>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView glyphName="CHEVRON_LEFT" layoutX="17.0" layoutY="30.0" onMouseClicked="#handleThoat" size="15">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></FontAwesomeIconView>
+
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

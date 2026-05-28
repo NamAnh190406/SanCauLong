@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.ManHinhChinhNVController">
+    <!-- SIDEBAR -->
+    <left>
+        <VBox prefWidth="240.0" style="-fx-background-color: #003366;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+            </padding>
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="FLYHIGH" textFill="#00e676" />
+            <Label style="-fx-font-size: 12px;" text="ĐẶT SÂN CẦU LÔNG ONLINE" textFill="#a0aab4">
+                <VBox.margin>
+                    <Insets bottom="30.0" />
+                </VBox.margin>
+            </Label>
+            
+            <VBox spacing="10.0">
+                <Button fx:id="btnTrangChu" alignment="BASELINE_LEFT" maxWidth="Infinity" onMouseClicked="#onTitleBarPressed" style="-fx-background-color: #00C853; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-background-radius: 8; -fx-cursor: hand;" text="Trang chủ">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="btnSanCauLong" alignment="BASELINE_LEFT" maxWidth="Infinity" onMouseClicked="#onSanCauLongClick" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-cursor: hand;" text="Sân cầu lông">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#onQuanLyKhachHangClick" onMouseClicked="#onKhachHangClick" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-cursor: hand;" text="Khách hàng">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button fx:id="btnCaiDat" alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#onCaiDatClick" onMouseClicked="#onCaiDatClick" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 15; -fx-cursor: hand;" text="Cài đặt">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            </VBox>
+        </VBox>
+    </left>
+    
+    <center>
+        <VBox fx:id="centerContainer" style="-fx-background-color: #f3f4f6;">
+            <!-- TOPBAR -->
+            <HBox fx:id="titleBar" alignment="CENTER_LEFT" onMouseDragged="#onTitleBarDragged" onMousePressed="#onTitleBarPressed" prefHeight="67.0" prefWidth="840.0" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+                <padding>
+                    <Insets left="20.0" right="20.0" />
+                </padding>
+                
+                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 20; -fx-padding: 5 15;">
+                    <Label text="🔍" textFill="#6b7280" />
+                    <TextField fx:id="tfSearch" onKeyReleased="#onSearchKeyReleased" prefHeight="37.0" prefWidth="219.0" promptText="Tìm kiếm..." style="-fx-background-color: transparent;">
+                  <cursor>
+                     <Cursor fx:constant="TEXT" />
+                  </cursor></TextField>
+                </HBox>
+                
+                <Region prefHeight="56.0" prefWidth="352.0" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#onDangXuatClick" onMouseClicked="#onDangXuatClick" text="Đăng Xuất">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+                
+                <HBox alignment="CENTER" spacing="15.0">
+                    <StackPane fx:id="bellPane" onMouseClicked="#onBellClick" style="-fx-cursor: hand;">
+                        <Label fx:id="lblNotifBadge" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-size: 10px; -fx-background-radius: 10; -fx-padding: 1 5;" text="0" visible="false" StackPane.alignment="TOP_RIGHT" />
+                    </StackPane>
+                    
+                    <Label fx:id="lblNhanVien" onMouseClicked="#onProfileClick" style="-fx-cursor: hand;" />
+                </HBox>
+                
+                <!-- WINDOW CONTROLS -->
+                <!-- <HBox alignment="CENTER" spacing="5.0" style="-fx-padding: 0 0 0 15;">
+                    <Button fx:id="btnMinimize" onAction="#onMinimize" onMouseEntered="#onWinBtnHover" onMouseExited="#onWinBtnExit" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 16px;" text="-" />
+                    <Button fx:id="btnMaximize" onAction="#onMaximize" onMouseEntered="#onWinBtnHover" onMouseExited="#onWinBtnExit" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 14px;" text="☐" />
+                    <Button fx:id="btnClose" onAction="#onClose" onMouseEntered="#onCloseBtnHover" onMouseExited="#onWinBtnExit" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 14px;" text="✕" />
+                </HBox> -->
+            </HBox>
+            
+            <!-- MAIN DASHBOARD CONTENT -->
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+                <VBox prefHeight="855.0" prefWidth="825.0" spacing="24.0" style="-fx-padding: 24;">
+                    <VBox>
+                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="Trang Chủ" />
+                        <Label style="-fx-text-fill: #6b7280;" text="Tổng quan hệ thống quản lý sân cầu lông" />
+                    </VBox>
+                    
+                    <!-- 4 STAT CARDS -->
+                    <HBox spacing="16.0">
+                        <HBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
+                            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                <Label style="-fx-text-fill: #6b7280; -fx-font-size: 14px;" text="Sân trống" />
+                                <Label fx:id="lblSanTrong" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="3/6" />
+                            </VBox>
+                            <StackPane style="-fx-background-color: #dcfce7; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48; -fx-max-width: 48; -fx-max-height: 48;">
+                                <FontAwesomeIconView fill="#16a34a" glyphName="CHECK" size="20" />
+                            </StackPane>
+                        </HBox>
+                        
+                        <HBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
+                            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                <Label style="-fx-text-fill: #6b7280; -fx-font-size: 14px;" text="Đang sử dụng" />
+                                <Label fx:id="lblDangSuDung" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #dc2626;" text="3/6" />
+                            </VBox>
+                            <StackPane style="-fx-background-color: #fee2e2; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48; -fx-max-width: 48; -fx-max-height: 48;">
+                                <FontAwesomeIconView fill="#dc2626" glyphName="USERS" size="20" />
+                            </StackPane>
+                        </HBox>
+                        
+                        <HBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
+                            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                <Label style="-fx-text-fill: #6b7280; -fx-font-size: 14px;" text="Lịch hôm nay" />
+                                <Label fx:id="lblLichHomNay" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="4" />
+                            </VBox>
+                            <StackPane style="-fx-background-color: #dbeafe; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48; -fx-max-width: 48; -fx-max-height: 48;">
+                                <Label style="-fx-text-fill: #2563eb; -fx-font-size: 20px;" text="📅" />
+                            </StackPane>
+                        </HBox>
+                        
+                        <HBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
+                            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                <Label style="-fx-text-fill: #6b7280; -fx-font-size: 14px;" text="Doanh thu hôm nay" />
+                                <Label fx:id="lblDoanhThu" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="1.2M" />
+                            </VBox>
+                            <StackPane style="-fx-background-color: #fef3c7; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48; -fx-max-width: 48; -fx-max-height: 48;">
+                                <Label style="-fx-text-fill: #d97706; -fx-font-size: 20px;" text="💰" />
+                            </StackPane>
+                        </HBox>
+                    </HBox>
+                    
+                    <!-- QUICK ACTIONS -->
+                    <VBox spacing="16.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Quick Actions" />
+                        <HBox spacing="16.0">
+                            <Button maxWidth="Infinity" onAction="#onDatSanClick" onMouseClicked="#onSanCauLongClick" style="-fx-background-color: #fefce8; -fx-background-radius: 8; -fx-padding: 16; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                                <graphic>
+                                    <VBox alignment="CENTER" spacing="12.0">
+                                        <StackPane style="-fx-background-color: #eab308; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48;">
+                                            <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="+" />
+                                        </StackPane>
+                                        <Label style="-fx-text-fill: #111827; -fx-font-size: 14px;" text="Đặt sân mới" />
+                                    </VBox>
+                                </graphic>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </Button>
+                            <Button maxWidth="Infinity" onAction="#onQuanLyKhachHangClick" onMouseClicked="#onKhachHangClick" style="-fx-background-color: #f0fdf4; -fx-background-radius: 8; -fx-padding: 16; -fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                                <graphic>
+                                    <VBox alignment="CENTER" spacing="12.0">
+                                        <StackPane style="-fx-background-color: #16a34a; -fx-background-radius: 50; -fx-min-width: 48; -fx-min-height: 48;">
+                                            <Label style="-fx-text-fill: white; -fx-font-size: 20px;" text="👥" />
+                                        </StackPane>
+                                        <Label style="-fx-text-fill: #111827; -fx-font-size: 14px;" text="Khách hàng" />
+                                    </VBox>
+                                </graphic>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </Button>
+                        </HBox>
+                    </VBox>
+                    
+                    <!-- BOTTOM LISTS -->
+                    <HBox spacing="24.0" />
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>

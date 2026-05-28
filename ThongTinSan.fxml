@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: #f0f4f8; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.ThongTinSanController">
+
+    <content>
+        <VBox prefWidth="900" spacing="20" style="-fx-background-color: #f0f4f8;">
+            <padding>
+                <Insets bottom="30" left="20" right="20" top="20" />
+            </padding>
+         <FontAwesomeIconView fx:id="btnQuayLai" glyphName="CHEVRON_LEFT" onMouseClicked="#handleQuayLai" size="15">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </FontAwesomeIconView>
+
+            <!-- ===== HEADER ===== -->
+            <VBox spacing="4">
+                <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1a202c;" text="Thông Tin Sân" />
+                <Label style="-fx-font-size: 13px; -fx-text-fill: #718096;" text="Tìm hiểu về các sân của chúng tôi" />
+            </VBox>
+<!-- ===== SAN GRID ROW 1: A1 & A2 ===== -->
+            <GridPane hgap="16" vgap="16">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50" />
+                    <ColumnConstraints percentWidth="50" />
+                </columnConstraints>
+
+                <!-- SAN A1 -->
+                <VBox spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <!-- Green Header -->
+                    <VBox spacing="4" style="-fx-background-color: #276749; -fx-background-radius: 12 12 0 0; -fx-padding: 12 14 12 14;">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label style="-fx-font-size: 18px;" text="🏸" />
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;" text="Sân A1" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #9ae6b4;" text="⭐ 5 (48 đánh giá)" />
+                            </VBox>
+                            <Label style="-fx-background-color: #9ae6b4; -fx-text-fill: #276749;                                           -fx-font-size: 10px; -fx-font-weight: bold;                                           -fx-background-radius: 10; -fx-padding: 3 8 3 8;" text="Đang hoạt động" />
+                        </HBox>
+                        <Label prefWidth="300" style="-fx-font-size: 11px; -fx-text-fill: #c6f6d5; -fx-wrap-text: true;" text="Sân đơn giá tiêu chuẩn với hệ thống ánh sáng LED hiện đại, thông gió tốt" />
+                    </VBox>
+
+                    <!-- Body -->
+                    <VBox spacing="8" style="-fx-padding: 12 14 14 14;">
+                        <GridPane hgap="20" vgap="6">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50" />
+                                <ColumnConstraints percentWidth="50" />
+                            </columnConstraints>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="👤" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Loại sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Đơn" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="🏸" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Mặt sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Gỗ" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="🌡️" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Không gian" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Nhà Cầu" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="👥" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Số người" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="2 người" />
+                                </VBox>
+                            </HBox>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                        </GridPane>
+
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="📍" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="123 Nguyễn Trãi, Quận 1, TP.HCM" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="⏱" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="60 phút" />
+                        </HBox>
+
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #a0aec0;" text="Giá từ" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #e53e3e;" text="80,000 đ" />
+                        </HBox>
+</VBox>
+                </VBox>
+
+                <!-- SAN A2 -->
+                <VBox spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <VBox spacing="4" style="-fx-background-color: #276749; -fx-background-radius: 12 12 0 0; -fx-padding: 12 14 12 14;">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label style="-fx-font-size: 18px;" text="🏸" />
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;" text="Sân A2" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #9ae6b4;" text="⭐ 4.8 (22 đánh giá)" />
+                            </VBox>
+                            <Label style="-fx-background-color: #9ae6b4; -fx-text-fill: #276749;                                           -fx-font-size: 10px; -fx-font-weight: bold;                                           -fx-background-radius: 10; -fx-padding: 3 8 3 8;" text="Đang hoạt động" />
+                        </HBox>
+                        <Label prefWidth="300" style="-fx-font-size: 11px; -fx-text-fill: #c6f6d5; -fx-wrap-text: true;" text="Sân đôi cao cấp, rộng rãi, phù hợp cho thi đấu và luyện tập chuyên nghiệp" />
+                    </VBox>
+                    <VBox spacing="8" style="-fx-padding: 12 14 14 14;">
+                        <GridPane hgap="20" vgap="6">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50" />
+                                <ColumnConstraints percentWidth="50" />
+                            </columnConstraints>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="👤" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Loại sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Đôi" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="🏸" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Mặt sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Gỗ" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="🌡️" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Không gian" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Nhà Cầu" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="👥" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Số người" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="4 người" />
+                                </VBox>
+                            </HBox>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="📍" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="123 Nguyễn Trãi, Quận 1, TP.HCM" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="⏱" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="40 phút" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #a0aec0;" text="Giá từ" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #e53e3e;" text="120,000 đ" />
+                        </HBox>
+</VBox>
+                </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <!-- ===== SAN GRID ROW 2: B1 & B2 ===== -->
+            <GridPane hgap="16" vgap="16">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50" />
+                    <ColumnConstraints percentWidth="50" />
+                </columnConstraints>
+
+                <!-- SAN B1 -->
+                <VBox spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <VBox spacing="4" style="-fx-background-color: #2c7a7b; -fx-background-radius: 12 12 0 0; -fx-padding: 12 14 12 14;">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label style="-fx-font-size: 18px;" text="🏸" />
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;" text="Sân B1" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #b2f5ea;" text="⭐ 4.5 (31 đánh giá)" />
+                            </VBox>
+                            <Label style="-fx-background-color: #b2f5ea; -fx-text-fill: #2c7a7b;                                           -fx-font-size: 10px; -fx-font-weight: bold;                                           -fx-background-radius: 10; -fx-padding: 3 8 3 8;" text="Đang hoạt động" />
+                        </HBox>
+                        <Label prefWidth="300" style="-fx-font-size: 11px; -fx-text-fill: #e6fffa; -fx-wrap-text: true;" text="Sân đơn ngoài trời giá rẻ, phù hợp cho người mới tập hoặc chơi giải trí" />
+                    </VBox>
+                    <VBox spacing="8" style="-fx-padding: 12 14 14 14;">
+                        <GridPane hgap="20" vgap="6">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50" />
+                                <ColumnConstraints percentWidth="50" />
+                            </columnConstraints>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="👤" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Loại sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Đơn" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="🏸" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Mặt sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Nhựa PVC" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="☀️" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Không gian" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Ngoài Trời" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="👥" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Số người" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="2 người" />
+                                </VBox>
+                            </HBox>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="📍" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="45 Lê Lợi, Quận 1, TP.HCM" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="⏱" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="60 phút" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #a0aec0;" text="Giá từ" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #e53e3e;" text="60,000 đ" />
+                        </HBox>
+</VBox>
+                </VBox>
+
+                <!-- SAN B2 - Đặc trưng (featured) -->
+                <VBox spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                              -fx-border-color: #f6ad55; -fx-border-width: 2; -fx-border-radius: 12;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 10, 0, 0, 3);" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <VBox spacing="4" style="-fx-background-color: #c05621; -fx-background-radius: 10 10 0 0; -fx-padding: 12 14 12 14;">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label style="-fx-font-size: 18px;" text="🏸" />
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;" text="Sân B2" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #feebc8;" text="⭐ 4 (86 đánh giá)" />
+                            </VBox>
+                            <Label style="-fx-background-color: #f6ad55; -fx-text-fill: #7b341e;                                           -fx-font-size: 10px; -fx-font-weight: bold;                                           -fx-background-radius: 10; -fx-padding: 3 8 3 8;" text="Đặc trưng" />
+                        </HBox>
+                        <Label prefWidth="300" style="-fx-font-size: 11px; -fx-text-fill: #feebc8; -fx-wrap-text: true;" text="Sân đôi ngoài trời rộng rãi, phù hợp lý tưởng, duy trì hoàn thiện sau 7 ngày" />
+                    </VBox>
+                    <VBox spacing="8" style="-fx-padding: 12 14 14 14;">
+                        <GridPane hgap="20" vgap="6">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50" />
+                                <ColumnConstraints percentWidth="50" />
+                            </columnConstraints>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="👤" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Loại sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Đôi" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="🏸" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Mặt sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Nhựa PVC" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="☀️" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Không gian" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Ngoài Trời" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="👥" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Số người" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="4 người" />
+                                </VBox>
+                            </HBox>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="📍" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="45 Lê Lợi, Quận 3, TP.HCM" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="⏱" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="40 phút" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #a0aec0;" text="Giá từ" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #e53e3e;" text="100,000 đ" />
+                        </HBox>
+</VBox>
+                </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <!-- ===== SAN GRID ROW 3: C1 & C2 ===== -->
+            <GridPane hgap="16" vgap="16">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50" />
+                    <ColumnConstraints percentWidth="50" />
+                </columnConstraints>
+
+                <!-- SAN C1 -->
+                <VBox spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <VBox spacing="4" style="-fx-background-color: #2b6cb0; -fx-background-radius: 12 12 0 0; -fx-padding: 12 14 12 14;">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label style="-fx-font-size: 18px;" text="🏸" />
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;" text="Sân C1" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #bee3f8;" text="⭐ 5 (67 đánh giá)" />
+                            </VBox>
+                            <Label style="-fx-background-color: #bee3f8; -fx-text-fill: #2b6cb0;                                           -fx-font-size: 10px; -fx-font-weight: bold;                                           -fx-background-radius: 10; -fx-padding: 3 8 3 8;" text="Đang hoạt động" />
+                        </HBox>
+                        <Label prefWidth="300" style="-fx-font-size: 11px; -fx-text-fill: #ebf8ff; -fx-wrap-text: true;" text="Sân đơn cao cao cấp VIP với tiêu chuẩn thi đấu quốc tế, lắm thanh chịch lý trí" />
+                    </VBox>
+                    <VBox spacing="8" style="-fx-padding: 12 14 14 14;">
+                        <GridPane hgap="20" vgap="6">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50" />
+                                <ColumnConstraints percentWidth="50" />
+                            </columnConstraints>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="👤" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Loại sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Đơn" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="🏸" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Mặt sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Cao Su" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="🏠" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Không gian" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Nhà Cầu" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="👥" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Số người" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="4 người" />
+                                </VBox>
+                            </HBox>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="📍" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="88 Trần Hưng Đạo, Quận 5, TP.HCM" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="⏱" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="90 phút" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #a0aec0;" text="Giá từ" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #e53e3e;" text="150,000 đ" />
+                        </HBox>
+</VBox>
+                </VBox>
+
+                <!-- SAN C2 -->
+                <VBox spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <VBox spacing="4" style="-fx-background-color: #276749; -fx-background-radius: 12 12 0 0; -fx-padding: 12 14 12 14;">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label style="-fx-font-size: 18px;" text="🏸" />
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;" text="Sân C2" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #9ae6b4;" text="⭐ 4.6 (95 đánh giá)" />
+                            </VBox>
+                            <Label style="-fx-background-color: #9ae6b4; -fx-text-fill: #276749;                                           -fx-font-size: 10px; -fx-font-weight: bold;                                           -fx-background-radius: 10; -fx-padding: 3 8 3 8;" text="Đang hoạt động" />
+                        </HBox>
+                        <Label prefWidth="300" style="-fx-font-size: 11px; -fx-text-fill: #c6f6d5; -fx-wrap-text: true;" text="Sân cao su trong nhà, mặt sân êm hơn nhất, phù hợp luyện tập kỹ thuật" />
+                    </VBox>
+                    <VBox spacing="8" style="-fx-padding: 12 14 14 14;">
+                        <GridPane hgap="20" vgap="6">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50" />
+                                <ColumnConstraints percentWidth="50" />
+                            </columnConstraints>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="👤" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Loại sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Đơn" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="🏸" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Mặt sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Cao Su" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="🏠" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Không gian" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Nhà Cầu" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="👥" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Số người" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="2 người" />
+                                </VBox>
+                            </HBox>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="📍" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="88 Trần Hưng Đạo, Quận 5, TP.HCM" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="⏱" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="40 phút" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #a0aec0;" text="Giá từ" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #e53e3e;" text="90,000 đ" />
+                        </HBox>
+</VBox>
+                </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <!-- ===== SAN D1 (Tạm dừng) ===== -->
+            <GridPane hgap="16" vgap="16">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50" />
+                    <ColumnConstraints percentWidth="50" />
+                </columnConstraints>
+
+                <VBox spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 6, 0, 0, 1); -fx-opacity: 0.85;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <VBox spacing="4" style="-fx-background-color: #718096; -fx-background-radius: 12 12 0 0; -fx-padding: 12 14 12 14;">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label style="-fx-font-size: 18px;" text="🏸" />
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;" text="Sân D1" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #e2e8f0;" text="⭐ 4.2 (29 đánh giá)" />
+                            </VBox>
+                            <Label style="-fx-background-color: #e2e8f0; -fx-text-fill: #4a5568;                                           -fx-font-size: 10px; -fx-font-weight: bold;                                           -fx-background-radius: 10; -fx-padding: 3 8 3 8;" text="Tạm dừng" />
+                        </HBox>
+                        <Label prefWidth="300" style="-fx-font-size: 11px; -fx-text-fill: #e2e8f0; -fx-wrap-text: true;" text="Sân tạm dừng cần đổi năng cấp hệ thống clip hệ thống chiếu sáng" />
+                    </VBox>
+                    <VBox spacing="8" style="-fx-padding: 12 14 14 14;">
+                        <GridPane hgap="20" vgap="6">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50" />
+                                <ColumnConstraints percentWidth="50" />
+                            </columnConstraints>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="👤" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Loại sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Đôi" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label style="-fx-font-size: 12px;" text="🏸" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Mặt sân" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Gỗ" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="🏠" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Không gian" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Nhà Cầu" />
+                                </VBox>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label style="-fx-font-size: 12px;" text="👥" />
+                                <VBox>
+                                    <Label style="-fx-font-size: 10px; -fx-text-fill: #a0aec0;" text="Số người" />
+                                    <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="4 người" />
+                                </VBox>
+                            </HBox>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                        </GridPane>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="📍" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="200 Cách Mạng Tháng 8, Quận III, TP.HCM" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="6">
+                            <Label style="-fx-font-size: 11px;" text="⏱" />
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #718096;" text="90 phút" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 11px; -fx-text-fill: #a0aec0;" text="Giá từ" />
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #a0aec0;" text="130,000 đ" />
+                        </HBox>
+                        <Button fx:id="btnXemThemD1" disable="true" maxWidth="Infinity" style="-fx-background-color: #cbd5e0; -fx-text-fill: #718096; -fx-font-weight: bold;                                        -fx-font-size: 13px; -fx-background-radius: 8; -fx-padding: 9 0 9 0;" text="Xem thêm" />
+                    </VBox>
+                </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+            <!-- ===== CÁC CHI NHÁNH ===== -->
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #1a202c; -fx-padding: 8 0 0 0;" text="Các Chi Nhánh" />
+
+            <GridPane hgap="16" vgap="16">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50" />
+                    <ColumnConstraints percentWidth="50" />
+                </columnConstraints>
+
+                <!-- Chi Nhánh Quận 1 -->
+                <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 16;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Chi nhánh Quận 1" />
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="📍" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="123 Nguyễn Trãi, Quận 1, TP.HCM" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="📞" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="028 1234 5678" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="🏸" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="Số lượng sân: 2 sân (S01, S02)" />
+                    </HBox>
+</VBox>
+
+                <!-- Chi Nhánh Quận 3 -->
+                <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 16;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Chi nhánh Quận 3" />
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="📍" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="45 Lê Lợi, Quận 3, TP.HCM" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="📞" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="028 2345 6789" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="🏸" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="Số lượng sân: 2 sân (S03, S04)" />
+                    </HBox>
+</VBox>
+
+                <!-- Chi Nhánh Quận 5 -->
+                <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 16;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Chi nhánh Quận 5" />
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="📍" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="88 Trần Hưng Đạo, Quận 5, TP.HCM" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="📞" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="028 3456 /890" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="🏸" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="Số lượng sân: 2 sân (S05, S06)" />
+                    </HBox>
+</VBox>
+
+                <!-- Chi Nhánh Quận 10 -->
+                <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 16;                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2d3748;" text="Chi nhánh Quận 10" />
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="📍" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="200 Cách Mạng Tháng 8, Quận 10, TP.HCM" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="📞" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="028 4567 8901" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Label style="-fx-font-size: 12px;" text="🏸" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #4a5568;" text="Số lượng sân: 1 sân (S07)" />
+                    </HBox>
+</VBox>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+</VBox>
+    </content>
+</ScrollPane>

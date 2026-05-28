@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="750" prefWidth="1100" style="-fx-background-color: #f1f5f1;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.DatSanController">
+
+    <!-- ===== BƯỚC 1: CHỌN SÂN / NGÀY / KHUNG GIỜ ===== -->
+    <VBox fx:id="buoc1Pane" spacing="0" style="-fx-background-color: #f1f5f1;">
+
+        <!-- HEADER -->
+        <HBox alignment="CENTER_LEFT" spacing="16" style="-fx-background-color: #1a2e1a; -fx-padding: 18 28 18 28;">
+         <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_LEFT" onMouseClicked="#handleQuayVeTrangChu" size="15">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </FontAwesomeIconView>
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="Đặt Sân Cầu Lông" />
+                <Label style="-fx-font-size: 12px; -fx-text-fill: rgba(255,255,255,0.65);" text="Chọn sân, ngày giờ và dịch vụ" />
+            </VBox>
+            <Label style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white;                           -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 20;                           -fx-padding: 6 14 6 14;" text="Bước 1/2" />
+        </HBox>
+
+        <!-- NỘI DUNG -->
+        <HBox spacing="0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+
+            <!-- CỘT TRÁI: danh sách sân + ngày + khung giờ -->
+            <ScrollPane fitToWidth="true" prefWidth="680" style="-fx-background-color: #f1f5f1; -fx-background: #f1f5f1;                                -fx-border-color: transparent;" HBox.hgrow="ALWAYS">
+                <VBox spacing="20" style="-fx-padding: 24 24 24 24;">
+
+                    <!-- === CHỌN SÂN === -->
+                    <VBox spacing="12">
+                        <VBox spacing="3">
+                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Chọn sân" />
+                            <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Chọn sân cầu lông bạn muốn đặt" />
+                        </VBox>
+
+                        <!-- SÂN A1 -->
+                        <VBox fx:id="cardSanA1" onMouseClicked="#handleChonSanA1" spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                                      -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                                      -fx-cursor: hand;                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 1);">
+                            <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding: 16 18 16 18;">
+                                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                        <Label fx:id="iconChonA1" style="-fx-font-size: 14px; -fx-text-fill: #16a34a; -fx-font-weight: bold;" text="" />
+                                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Sân A1" />
+                                    </HBox>
+                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Sân đơn gỗ tiêu chuẩn" />
+                                    <HBox alignment="CENTER_LEFT" spacing="4">
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="123 Nguyễn Trãi, Q1, TP.HCM" />
+                                    </HBox>
+                                    <HBox spacing="6">
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Đơn" />
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Gỗ" />
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="NhàCầu" />
+                                    </HBox>
+                                </VBox>
+                                <VBox alignment="CENTER_RIGHT" spacing="2">
+                                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="80.000 đ" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="/ giờ" />
+                                </VBox>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </HBox>
+                        </VBox>
+
+                        <!-- SÂN A2 -->
+                        <VBox fx:id="cardSanA2" onMouseClicked="#handleChonSanA2" spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                                      -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                                      -fx-cursor: hand;                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 1);">
+                            <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding: 16 18 16 18;">
+                                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                        <Label fx:id="iconChonA2" style="-fx-font-size: 14px; -fx-text-fill: #16a34a; -fx-font-weight: bold;" text="" />
+                                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Sân A2" />
+                                    </HBox>
+                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Sân đôi gỗ cao cấp" />
+                                    <HBox alignment="CENTER_LEFT" spacing="4">
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="123 Nguyễn Trãi, Q1, TP.HCM" />
+                                    </HBox>
+                                    <HBox spacing="6">
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Đôi" />
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Gỗ" />
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="NhàCầu" />
+                                    </HBox>
+                                </VBox>
+                                <VBox alignment="CENTER_RIGHT" spacing="2">
+                                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="120.000 đ" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="/ giờ" />
+                                </VBox>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </HBox>
+                        </VBox>
+
+                        <!-- SÂN B1 -->
+                        <VBox fx:id="cardSanB1" onMouseClicked="#handleChonSanB1" spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                                      -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                                      -fx-cursor: hand;                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 1);">
+                            <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding: 16 18 16 18;">
+                                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                        <Label fx:id="iconChonB1" style="-fx-font-size: 14px; -fx-text-fill: #16a34a; -fx-font-weight: bold;" text="" />
+                                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Sân B1" />
+                                    </HBox>
+                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Sân đơn ngoài trời giá rẻ" />
+                                    <HBox alignment="CENTER_LEFT" spacing="4">
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="45 Lê Lợi, Q3, TP.HCM" />
+                                    </HBox>
+                                    <HBox spacing="6">
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Đơn" />
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Nhựa PVC" />
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="NgoàiTrời" />
+                                    </HBox>
+                                </VBox>
+                                <VBox alignment="CENTER_RIGHT" spacing="2">
+                                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="60.000 đ" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="/ giờ" />
+                                </VBox>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </HBox>
+                        </VBox>
+
+                        <!-- SÂN C1 -->
+                        <VBox fx:id="cardSanC1" onMouseClicked="#handleChonSanC1" spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                                      -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                                      -fx-cursor: hand;                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 1);">
+                            <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding: 16 18 16 18;">
+                                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                        <Label fx:id="iconChonC1" style="-fx-font-size: 14px; -fx-text-fill: #16a34a; -fx-font-weight: bold;" text="" />
+                                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Sân C1" />
+                                    </HBox>
+                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Sân đôi cao su cao cấp VIP" />
+                                    <HBox alignment="CENTER_LEFT" spacing="4">
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="88 Trần Hưng Đạo, Q5, TP.HCM" />
+                                    </HBox>
+                                    <HBox spacing="6">
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Đôi" />
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Cao Su" />
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="NhàCầu" />
+                                    </HBox>
+                                </VBox>
+                                <VBox alignment="CENTER_RIGHT" spacing="2">
+                                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="150.000 đ" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="/ giờ" />
+                                </VBox>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </HBox>
+                        </VBox>
+
+                        <!-- SÂN C2 -->
+                        <VBox fx:id="cardSanC2" onMouseClicked="#handleChonSanC2" spacing="0" style="-fx-background-color: white; -fx-background-radius: 12;                                      -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                                      -fx-cursor: hand;                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 1);">
+                            <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding: 16 18 16 18;">
+                                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                        <Label fx:id="iconChonC2" style="-fx-font-size: 14px; -fx-text-fill: #16a34a; -fx-font-weight: bold;" text="" />
+                                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Sân C2" />
+                                    </HBox>
+                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Sân đơn cao su trong nhà" />
+                                    <HBox alignment="CENTER_LEFT" spacing="4">
+                                        <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="88 Trần Hưng Đạo, Q5, TP.HCM" />
+                                    </HBox>
+                                    <HBox spacing="6">
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Đơn" />
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Cao Su" />
+                                        <Label style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151;                                                -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="NhàCầu" />
+                                    </HBox>
+                                </VBox>
+                                <VBox alignment="CENTER_RIGHT" spacing="2">
+                                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="90.000 đ" />
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="/ giờ" />
+                                </VBox>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- === CHỌN NGÀY === -->
+                    <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 12;                                  -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                                  -fx-padding: 18 18 18 18;">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Chọn ngày" />
+                        <DatePicker fx:id="datePicker" maxWidth="220" onAction="#handleChonNgay" promptText="dd/MM/yyyy" style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb;                                            -fx-border-radius: 8; -fx-background-radius: 8;                                            -fx-font-size: 13px;" />
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                    </VBox>
+
+                    <!-- === CHỌN KHUNG GIỜ === -->
+                    <VBox fx:id="paneKhungGio" spacing="12" style="-fx-background-color: white; -fx-background-radius: 12;                                  -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                                  -fx-padding: 18 18 18 18;" visible="true">
+                        <VBox spacing="3">
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Chọn khung giờ" />
+                            <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Mỗi khung giờ là 1.5 giờ chơi" />
+                        </VBox>
+                        <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Chọn khung giờ" />
+                        <!-- Hàng 1 -->
+                        <HBox spacing="8">
+                            <VBox fx:id="kg001" alignment="CENTER" onMouseClicked="#handleChonKG001" prefWidth="148" spacing="2" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                          -fx-padding: 10 12 10 12; -fx-cursor: hand;">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="06:00 - 07:30" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="1.5 giờ" />
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </VBox>
+                            <VBox fx:id="kg002" alignment="CENTER" onMouseClicked="#handleChonKG002" prefWidth="148" spacing="2" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                          -fx-padding: 10 12 10 12; -fx-cursor: hand;">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="07:30 - 09:00" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="1.5 giờ" />
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </VBox>
+                            <VBox fx:id="kg003" alignment="CENTER" onMouseClicked="#handleChonKG003" prefWidth="148" spacing="2" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                          -fx-padding: 10 12 10 12; -fx-cursor: hand;">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="09:00 - 10:30" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="1.5 giờ" />
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </VBox>
+                            <VBox fx:id="kg004" alignment="CENTER" onMouseClicked="#handleChonKG004" prefWidth="148" spacing="2" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                          -fx-padding: 10 12 10 12; -fx-cursor: hand;">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="10:30 - 12:00" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="1.5 giờ" />
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </VBox>
+                        </HBox>
+                        <!-- Hàng 2 -->
+                        <HBox spacing="8">
+                            <VBox fx:id="kg005" alignment="CENTER" onMouseClicked="#handleChonKG005" prefWidth="148" spacing="2" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                          -fx-padding: 10 12 10 12; -fx-cursor: hand;">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="13:00 - 14:30" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="1.5 giờ" />
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </VBox>
+                            <VBox fx:id="kg006" alignment="CENTER" onMouseClicked="#handleChonKG006" prefWidth="148" spacing="2" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                          -fx-padding: 10 12 10 12; -fx-cursor: hand;">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="14:30 - 16:00" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="1.5 giờ" />
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </VBox>
+                            <VBox fx:id="kg007" alignment="CENTER" onMouseClicked="#handleChonKG007" prefWidth="148" spacing="2" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                          -fx-padding: 10 12 10 12; -fx-cursor: hand;">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="16:00 - 17:30" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="1.5 giờ" />
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </VBox>
+                            <VBox fx:id="kg008" alignment="CENTER" onMouseClicked="#handleChonKG008" prefWidth="148" spacing="2" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                          -fx-padding: 10 12 10 12; -fx-cursor: hand;">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="17:30 - 19:00" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="1.5 giờ" />
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </VBox>
+                        </HBox>
+                        <!-- Hàng 3 -->
+                        <HBox spacing="8">
+                            <VBox fx:id="kg009" alignment="CENTER" onMouseClicked="#handleChonKG009" prefWidth="148" spacing="2" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                          -fx-padding: 10 12 10 12; -fx-cursor: hand;">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="19:00 - 20:30" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="1.5 giờ" />
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </VBox>
+                            <VBox fx:id="kg010" alignment="CENTER" onMouseClicked="#handleChonKG010" prefWidth="148" spacing="2" style="-fx-background-color: #f9fafb; -fx-background-radius: 8;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                          -fx-padding: 10 12 10 12; -fx-cursor: hand;">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="20:30 - 22:00" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="1.5 giờ" />
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                </VBox>
+            </ScrollPane>
+
+            <!-- CỘT PHẢI: TÓM TẮT -->
+            <VBox prefWidth="320" spacing="0" style="-fx-background-color: #f1f5f1; -fx-padding: 24 24 24 0;">
+                <VBox spacing="16" style="-fx-background-color: white; -fx-background-radius: 12;                              -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                              -fx-padding: 20;">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Tóm tắt" />
+                    <VBox spacing="10">
+                        <HBox>
+                            <Label style="-fx-font-size: 13px; -fx-text-fill: #6b7280;" text="Sân" HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblTomTatSan" style="-fx-font-size: 13px; -fx-text-fill: #1a2e1a; -fx-font-weight: bold;" text="—" />
+                        </HBox>
+                        <HBox>
+                            <Label style="-fx-font-size: 13px; -fx-text-fill: #6b7280;" text="Ngày" HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblTomTatNgay" style="-fx-font-size: 13px; -fx-text-fill: #1a2e1a; -fx-font-weight: bold;" text="—" />
+                        </HBox>
+                        <HBox>
+                            <Label style="-fx-font-size: 13px; -fx-text-fill: #6b7280;" text="Khung giờ" HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblTomTatKhungGio" style="-fx-font-size: 13px; -fx-text-fill: #1a2e1a; -fx-font-weight: bold;" text="—" />
+                        </HBox>
+                        <Separator />
+                        <HBox>
+                            <Label style="-fx-font-size: 13px; -fx-text-fill: #6b7280;" text="Tiền sân" HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblTomTatTienSan" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;" text="0 đ" />
+                        </HBox>
+                        <HBox>
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Tổng cộng" HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblTomTatTong" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="  0 đ" />
+                        </HBox>
+                    </VBox>
+                    <Button fx:id="btnTiepTheo" maxWidth="Infinity" onAction="#handleTiepTheo" style="-fx-background-color: #1a2e1a; -fx-text-fill: white;                                    -fx-font-size: 14px; -fx-font-weight: bold;                                    -fx-background-radius: 8; -fx-padding: 13 0 13 0;                                    -fx-cursor: hand;" text="Tiếp theo  →">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor></Button>
+                    <Button maxWidth="Infinity" onAction="#handleThoat" style="-fx-background-color: white; -fx-text-fill: #374151;                                    -fx-font-size: 13px; -fx-background-radius: 8;                                    -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                    -fx-padding: 10 0 10 0; -fx-cursor: hand;" text="✕   Thoát">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor></Button>
+                </VBox>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- ===== BƯỚC 2: XÁC NHẬN ĐẶT SÂN ===== -->
+    <VBox fx:id="buoc2Pane" managed="false" spacing="0" style="-fx-background-color: #f1f5f1;" visible="false">
+
+        <!-- HEADER -->
+        <HBox alignment="CENTER_LEFT" spacing="16" style="-fx-background-color: #1a2e1a; -fx-padding: 18 28 18 28;">
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;" text="Xác nhận đặt sân" />
+            </VBox>
+            <Label style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white;                           -fx-font-size: 13px; -fx-font-weight: bold; -fx-background-radius: 20;                           -fx-padding: 6 14 6 14;" text="Bước 2/2" />
+        </HBox>
+
+        <HBox spacing="0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+
+            <!-- CỘT TRÁI: thông tin đặt sân + khách hàng + thanh toán -->
+            <ScrollPane fitToWidth="true" prefWidth="680" style="-fx-background-color: #f1f5f1; -fx-background: #f1f5f1;                                -fx-border-color: transparent;" HBox.hgrow="ALWAYS">
+                <VBox spacing="16" style="-fx-padding: 24 24 24 24;">
+
+                    <!-- Thông tin đặt sân -->
+                    <VBox spacing="12" style="-fx-background-color: white; -fx-background-radius: 12;                                  -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                                  -fx-padding: 18;">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Thông tin đặt sân" />
+                        <!-- Card sân đã chọn -->
+                        <VBox spacing="6" style="-fx-background-color: #f9fafb; -fx-background-radius: 10;                                      -fx-border-color: #e5e7eb; -fx-border-radius: 10; -fx-border-width: 1;                                      -fx-padding: 14;">
+                            <HBox alignment="CENTER_LEFT" spacing="6">
+                                <FontAwesomeIconView glyphName="MAP_MARKER" style="-fx-fill: #16a34a; -fx-font-size: 14px;" />
+                                <Label fx:id="lblXacNhanTenSan" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Sân B1" />
+                            </HBox>
+                            <Label fx:id="lblXacNhanDiaChi" style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="45 Lê Lợi, Q3, TP.HCM" />
+                            <HBox spacing="6">
+                                <Label fx:id="lblXacNhanLoai1" style="-fx-background-color: #e8f5e9; -fx-text-fill: #16a34a;                                               -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Đơn" />
+                                <Label fx:id="lblXacNhanLoai2" style="-fx-background-color: #e8f5e9; -fx-text-fill: #16a34a;                                               -fx-font-size: 11px; -fx-background-radius: 4; -fx-padding: 2 8 2 8;" text="Nhựa PVC" />
+                            </HBox>
+                        </VBox>
+                        <!-- Ngày + Giờ -->
+                        <HBox spacing="12">
+                            <VBox spacing="4" style="-fx-background-color: #f9fafb; -fx-background-radius: 10;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 10; -fx-border-width: 1;                                          -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT" spacing="6">
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Ngày đặt" />
+                                </HBox>
+                                <Label fx:id="lblXacNhanNgay" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="21/5/2026" />
+                            </VBox>
+                            <VBox spacing="4" style="-fx-background-color: #f9fafb; -fx-background-radius: 10;                                          -fx-border-color: #e5e7eb; -fx-border-radius: 10; -fx-border-width: 1;                                          -fx-padding: 12;" HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT" spacing="6">
+                                    <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Khung giờ" />
+                                </HBox>
+                                <Label fx:id="lblXacNhanGio" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="07:30 - 09:00" />
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Thông tin khách hàng -->
+                    <VBox spacing="12" style="-fx-background-color: white; -fx-background-radius: 12;                                  -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                                  -fx-padding: 18;">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Thông tin khách hàng" />
+                        <VBox spacing="4">
+                            <Label style="-fx-font-size: 12px; -fx-text-fill: #374151; -fx-font-weight: bold;" text="Họ và tên *" />
+                            <TextField fx:id="txtHoTen" promptText="Nhập họ tên" style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb;                                               -fx-border-radius: 8; -fx-background-radius: 8;                                               -fx-font-size: 13px; -fx-padding: 10 12 10 12;" />
+                        </VBox>
+                        <VBox spacing="4">
+                            <Label style="-fx-font-size: 12px; -fx-text-fill: #374151; -fx-font-weight: bold;" text="Số điện thoại *" />
+                            <TextField fx:id="txtSDT" promptText="Nhập số điện thoại" style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb;                                               -fx-border-radius: 8; -fx-background-radius: 8;                                               -fx-font-size: 13px; -fx-padding: 10 12 10 12;" />
+                        </VBox>
+                        <VBox spacing="4">
+                            <Label style="-fx-font-size: 12px; -fx-text-fill: #374151; -fx-font-weight: bold;" text="Email" />
+                            <TextField fx:id="txtEmail" promptText="Nhập email (không bắt buộc)" style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb;                                               -fx-border-radius: 8; -fx-background-radius: 8;                                               -fx-font-size: 13px; -fx-padding: 10 12 10 12;" />
+                        </VBox>
+                    </VBox>
+
+                    <!-- Phương thức thanh toán -->
+                    <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 12;                                  -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                                  -fx-padding: 18;">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Phương thức thanh toán" />
+                        <!-- Tiền mặt -->
+                        <HBox fx:id="ptttTienMat" alignment="CENTER_LEFT" onMouseClicked="#handleChonTienMat" spacing="12" style="-fx-background-color: white; -fx-background-radius: 10;                                      -fx-border-color: #16a34a; -fx-border-radius: 10; -fx-border-width: 2;                                      -fx-padding: 14; -fx-cursor: hand;">
+                            <Label fx:id="radioBtnTienMat" style="-fx-font-size: 14px; -fx-text-fill: #16a34a;" text="●" />
+                            <VBox spacing="1" HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Tiền mặt" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Thanh toán trực tiếp tại sân" />
+                            </VBox>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </HBox>
+                        <!-- Chuyển khoản -->
+                        <HBox fx:id="ptttChuyenKhoan" alignment="CENTER_LEFT" onMouseClicked="#handleChonChuyenKhoan" spacing="12" style="-fx-background-color: white; -fx-background-radius: 10;                                      -fx-border-color: #e5e7eb; -fx-border-radius: 10; -fx-border-width: 1;                                      -fx-padding: 14; -fx-cursor: hand;">
+                            <Label fx:id="radioBtnChuyenKhoan" style="-fx-font-size: 14px; -fx-text-fill: #9ca3af;" text="○" />
+                            <VBox spacing="1" HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Chuyển khoản" />
+                                <Label style="-fx-font-size: 11px; -fx-text-fill: #6b7280;" text="Chuyển khoản ngân hàng" />
+                            </VBox>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </HBox>
+                    </VBox>
+
+                </VBox>
+            </ScrollPane>
+
+            <!-- CỘT PHẢI: Tổng + nút đặt -->
+            <VBox prefWidth="320" spacing="0" style="-fx-background-color: #f1f5f1; -fx-padding: 24 24 24 0;">
+                <VBox spacing="16" style="-fx-background-color: white; -fx-background-radius: 12;                              -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                              -fx-padding: 20;">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Tổng cộng" />
+                    <VBox spacing="8">
+                        <HBox>
+                            <Label style="-fx-font-size: 13px; -fx-text-fill: #6b7280;" text="Tiền sân" HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblTongTienSan" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;" text="90.000 đ" />
+                        </HBox>
+                        <Separator />
+                        <HBox>
+                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Tổng tiền" HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblTongTienCuoi" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="90.000 đ" />
+                        </HBox>
+                    </VBox>
+                    <Button fx:id="btnDatSan" maxWidth="Infinity" onAction="#handleDatSan" style="-fx-background-color: #1a2e1a; -fx-text-fill: white;                                    -fx-font-size: 15px; -fx-font-weight: bold;                                    -fx-background-radius: 8; -fx-padding: 14 0 14 0;                                    -fx-cursor: hand;" text="Đặt sân" />
+                    <Button maxWidth="Infinity" onAction="#handleQuayLaiBuoc1" style="-fx-background-color: white; -fx-text-fill: #374151;                                    -fx-font-size: 13px; -fx-background-radius: 8;                                    -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-border-width: 1;                                    -fx-padding: 10 0 10 0; -fx-cursor: hand;" text="←  Quay lại" />
+                </VBox>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- ===== MÀN HÌNH ĐẶT THÀNH CÔNG ===== -->
+    <VBox fx:id="thanhCongPane" alignment="CENTER" managed="false" style="-fx-background-color: white;" visible="false">
+        <VBox alignment="CENTER" maxWidth="480" spacing="20" style="-fx-padding: 48 32 48 32;">
+
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Đặt sân thành công!" />
+
+            <!-- Mã đặt sân -->
+            <VBox alignment="CENTER" maxWidth="380" prefWidth="380" spacing="6" style="-fx-background-color: #f9fafb; -fx-background-radius: 12;                          -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                          -fx-padding: 18 32 18 32;">
+                <Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Mã đặt sân của bạn" />
+                <Label fx:id="lblMaDS" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;                               -fx-font-family: 'Courier New';" text="DS000000" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="Vui lòng lưu lại mã đặt sân để check-in" textAlignment="CENTER" wrapText="true" />
+            </VBox>
+
+            <!-- Chi tiết -->
+            <VBox maxWidth="380" prefWidth="380" spacing="8" style="-fx-background-color: #f9fafb; -fx-background-radius: 12;                          -fx-border-color: #e5e7eb; -fx-border-radius: 12; -fx-border-width: 1;                          -fx-padding: 16;">
+                <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Thông tin đặt sân" />
+                <HBox><Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Sân:" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblKQSan" style="-fx-font-size: 12px; -fx-text-fill: #1a2e1a;" text="" /></HBox>
+                <HBox><Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Ngày:" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblKQNgay" style="-fx-font-size: 12px; -fx-text-fill: #1a2e1a;" text="" /></HBox>
+                <HBox><Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Giờ:" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblKQGio" style="-fx-font-size: 12px; -fx-text-fill: #1a2e1a;" text="" /></HBox>
+                <HBox><Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Người đặt:" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblKQNguoiDat" style="-fx-font-size: 12px; -fx-text-fill: #1a2e1a;" text="" /></HBox>
+                <HBox><Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Số điện thoại:" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblKQSDT" style="-fx-font-size: 12px; -fx-text-fill: #1a2e1a;" text="" /></HBox>
+                <HBox><Label style="-fx-font-size: 12px; -fx-text-fill: #6b7280;" text="Phương thức thanh toán:" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblKQPTTT" style="-fx-font-size: 12px; -fx-text-fill: #1a2e1a;" text="" /></HBox>
+                <Separator />
+                <HBox>
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1a2e1a;" text="Tổng tiền:" HBox.hgrow="ALWAYS" />
+                    <Label fx:id="lblKQTongTien" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="" />
+                </HBox>
+            </VBox>
+
+            <Label maxWidth="380" style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;" text="Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận đặt sân. Vui lòng giữ máy!" textAlignment="CENTER" wrapText="true" />
+
+            <Button maxWidth="Infinity" onAction="#handleQuayVeTrangChu" prefWidth="380" style="-fx-background-color: #1a2e1a; -fx-text-fill: white;                            -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 10;                            -fx-padding: 14 0 14 0; -fx-cursor: hand;" text="Quay về trang chủ" />
+        </VBox>
+    </VBox>
+
+</StackPane>

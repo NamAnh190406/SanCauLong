@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.CaiDatNVController">
+   <stylesheets>
+      <URL value="@style.css" />
+   </stylesheets>
+   <children>
+      <ScrollPane fitToWidth="true" style="-fx-background-color: #f3f4f6; -fx-background: #f3f4f6; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <VBox alignment="TOP_CENTER" prefHeight="1007.0" prefWidth="989.0" spacing="20" style="-fx-padding: 24;">
+               <FontAwesomeIconView glyphName="CHEVRON_LEFT" onMouseClicked="#handleThoat" size="15">
+                  <VBox.margin>
+                     <Insets right="1000.0" />
+                  </VBox.margin>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </FontAwesomeIconView>
+               <!-- Max width container -->
+               <VBox maxWidth="800" spacing="24" HBox.hgrow="ALWAYS">
+                  
+                  <Label style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="Cài Đặt Hệ Thống" />
+
+                  <!-- Printer & Devices -->
+                  <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24;                                 -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.05),10,0,0,2);">
+                     <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 0 0 16 0;">
+                        <Label style="-fx-font-size: 20; -fx-text-fill: #374151;" text="🖨" />
+                        <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="In ấn &amp; Thiết bị" />
+                     </HBox>
+                     
+                     <VBox spacing="16">
+                        <HBox alignment="CENTER_LEFT" style="-fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0; -fx-padding: 0 0 12 0;">
+                           <HBox alignment="CENTER_LEFT" spacing="12" HBox.hgrow="ALWAYS">
+                              <Label style="-fx-background-color: #fee2e2; -fx-text-fill: #dc2626; -fx-font-size: 18;                                              -fx-background-radius: 8; -fx-min-width: 40; -fx-min-height: 40; -fx-alignment: center;" text="🖨" />
+                              <VBox>
+                                 <Label style="-fx-font-size: 14; -fx-font-weight: bold;" text="Máy in mặc định" />
+                                 <Label style="-fx-font-size: 12; -fx-text-fill: #6b7280;" text="Chọn máy in để in hóa đơn" />
+                              </VBox>
+                           </HBox>
+                           <ComboBox fx:id="cbPrinter" style="-fx-background-color: white; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-padding: 4 8;" />
+                        </HBox>
+                        
+                        <HBox alignment="CENTER_LEFT">
+                           <HBox alignment="CENTER_LEFT" spacing="12" HBox.hgrow="ALWAYS">
+                              <Label style="-fx-background-color: #e0e7ff; -fx-text-fill: #4f46e5; -fx-font-size: 18;                                              -fx-background-radius: 8; -fx-min-width: 40; -fx-min-height: 40; -fx-alignment: center;" text="📶" />
+                              <VBox>
+                                 <Label style="-fx-font-size: 14; -fx-font-weight: bold;" text="Kết nối" />
+                                 <Label style="-fx-font-size: 12; -fx-text-fill: #6b7280;" text="Trạng thái: Đã kết nối" />
+                              </VBox>
+                           </HBox>
+                           <Button style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151; -fx-font-weight: bold;                                            -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand;" text="Cài đặt mạng" />
+                        </HBox>
+                     </VBox>
+                  </VBox>
+
+                  <!-- System Info -->
+                  <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 24;                                 -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.05),10,0,0,2);">
+                     <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 0 0 16 0;">
+                        <Label style="-fx-font-size: 20; -fx-text-fill: #374151;" text="📜" />
+                        <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Thông tin hệ thống" />
+                     </HBox>
+                     
+                     <VBox spacing="12">
+                        <HBox alignment="CENTER_LEFT" style="-fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0; -fx-padding: 0 0 8 0;">
+                           <Label style="-fx-text-fill: #6b7280;" text="Phiên bản" HBox.hgrow="ALWAYS" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Label style="-fx-font-weight: bold;" text="1.0.0" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" style="-fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0; -fx-padding: 0 0 8 0;">
+                           <Label style="-fx-text-fill: #6b7280;" text="Cập nhật cuối" HBox.hgrow="ALWAYS" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Label style="-fx-font-weight: bold;" text="01/05/2026" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT">
+                           <Label style="-fx-text-fill: #6b7280;" text="Giấy phép" HBox.hgrow="ALWAYS" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Label style="-fx-text-fill: #16a34a; -fx-font-weight: bold;" text="Đã kích hoạt" />
+                        </HBox>
+                     </VBox>
+                  </VBox>
+                  
+               </VBox>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

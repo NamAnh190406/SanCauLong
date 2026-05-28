@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject1.ThemDVController">
+    <children>
+        <VBox alignment="TOP_CENTER" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label text="THÊM DỊCH VỤ &amp; TIỆN ÍCH MỚI" textFill="#009933">
+                    <font>
+                        <Font name="System Bold" size="28.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="50.0" />
+                    </VBox.margin>
+                </Label>
+
+                <GridPane hgap="25.0" maxWidth="650.0" vgap="30.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="160.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="440.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Mã dịch vụ (*):">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtMaDV" prefHeight="35.0" promptText="Ví dụ: DV001" styleClass="text-field-pill" GridPane.columnIndex="1" />
+
+                        <Label text="Tên dịch vụ (*):" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtTenDV" prefHeight="35.0" promptText="Nhập tên nước uống, dụng cụ..." styleClass="text-field-pill" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                        <Label text="Đơn vị tính (*):" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="cbDonViTinh" prefHeight="35.0" prefWidth="442.0" promptText="-- Chọn đơn vị tính --" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                        <Label text="Giá bán (VNĐ) (*):" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtGiaBan" prefHeight="35.0" promptText="Ví dụ: 15000" styleClass="text-field-pill" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                        <Label text="Số lượng tồn kho (*):" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtSoLuong" prefHeight="35.0" promptText="Nhập số lượng ban đầu" styleClass="text-field-pill" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    </children>
+                </GridPane>
+
+                <HBox alignment="CENTER" prefHeight="100.0" spacing="50.0">
+                    <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#handleThoat" prefHeight="45.0" prefWidth="110.0" text="Thoát">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#handleLuuDichVu" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #009933;" text="Lưu dịch vụ" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
