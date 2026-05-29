@@ -10,29 +10,38 @@ import java.util.List;
 
 public class ThongBaoDAO {
     public static List<THONGBAO> getThongBaoMoiNhat() {
-        List<THONGBAO> list = new ArrayList<>();
-        String sql = "SELECT * FROM THONGBAO ORDER BY ThoiGian DESC FETCH FIRST 20 ROWS ONLY";
+
+    List<THONGBAO> list = new ArrayList<>();
+
+    String sql = "SELECT * FROM THONGBAO ORDER BY ThoiGian DESC FETCH FIRST 20 ROWS ONLY";
+
+    Databasehelper db = new Databasehelper();
+
+    try (Connection conn = db.createCon()) {
+
         
-        Databasehelper db = new Databasehelper();
-        try (Connection conn = db.createCon();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-            
-            while (rs.next()) {
-                list.add(new THONGBAO(
-                    rs.getInt("MaTB"),
-                    rs.getString("TieuDe"),
-                    rs.getString("NoiDung"),
-                    rs.getTimestamp("ThoiGian"),
-                    rs.getString("Loai"),
-                    rs.getInt("DaDoc") == 1
-                ));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+
+            list.add(new THONGBAO(
+                rs.getInt("MaTB"),
+                rs.getString("TieuDe"),
+                rs.getString("NoiDung"),
+                rs.getTimestamp("ThoiGian"),
+                rs.getString("Loai"),
+                rs.getInt("DaDoc") == 1
+            ));
         }
-        return list;
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+
+    return list;
+}
 
     public static void danhDauDaDoc(int maTB) {
         String sql = "UPDATE THONGBAO SET DaDoc = 1 WHERE MaTB = ?";

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controller.TaoThanhToanController"
+      spacing="20.0" prefWidth="480.0"
+      style="-fx-background-color: white; -fx-padding: 30;">
+
+    <Label text="Tạo Thanh Toán Mới"
+        style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #16a34a;"/>
+
+    <GridPane hgap="12.0" vgap="14.0">
+        <Label text="Mã giao dịch:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="tfMaTT" promptText="VD: TT001"
+            GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="280.0"/>
+
+        <Label text="Mã hóa đơn:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="cbMaHD" promptText="Chọn mã hóa đơn..."
+            GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="280.0"/>
+
+        <Label text="Số tiền:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="tfSoTien" promptText="Tự động lấy từ hóa đơn"
+            GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="280.0"
+            editable="false" style="-fx-background-color: #f3f4f6;"/>
+
+        <Label text="Phương thức:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="cbPTTT"
+            GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="280.0"/>
+
+        <Label text="Trạng thái:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="cbTrangThai"
+            GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="280.0"/>
+    </GridPane>
+
+    <HBox spacing="12.0" alignment="CENTER_RIGHT">
+        <Button onAction="#onHuy"
+            style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151; -fx-padding: 8 20; -fx-background-radius: 6; -fx-cursor: hand;"
+            text="Hủy"/>
+        <Button onAction="#onLuu"
+            style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20; -fx-background-radius: 6; -fx-cursor: hand;"
+            text="Lưu"/>
+    </HBox>
+</VBox>

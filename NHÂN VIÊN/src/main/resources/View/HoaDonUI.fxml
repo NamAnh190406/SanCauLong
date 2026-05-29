@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controller.HoaDonController"
+      style="-fx-background-color: #f3f4f6;">
+
+    <VBox spacing="20.0" style="-fx-padding: 24;" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER_LEFT">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #16a34a;" text="Hoá Đơn"/>
+                <Label style="-fx-text-fill: #6b7280;" text="Quản lý danh sách hóa đơn"/>
+            </VBox>
+            <Button onAction="#onTaoHoaDon"
+                style="-fx-background-color: #00C853; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"
+                text="+ Tạo hóa đơn"/>
+        </HBox>
+
+        <!-- BỘ LỌC NGÀY -->
+        <HBox alignment="CENTER_LEFT" spacing="12.0"
+            style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 16; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+            <Label style="-fx-text-fill: #374151; -fx-font-weight: bold;" text="Lọc theo ngày:"/>
+            <DatePicker fx:id="dpNgay" promptText="Chọn ngày"/>
+            <Button onAction="#onLocNgay"
+                style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-padding: 6 14; -fx-background-radius: 6; -fx-cursor: hand;"
+                text="Lọc"/>
+            <Button onAction="#onXemTat"
+                style="-fx-background-color: #6b7280; -fx-text-fill: white; -fx-padding: 6 14; -fx-background-radius: 6; -fx-cursor: hand;"
+                text="Xem tất cả"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblTongDoanhThu"
+                style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #16a34a;"
+                text="Tổng: 0 VNĐ"/>
+        </HBox>
+
+        <!-- BẢNG HÓA ĐƠN -->
+        <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tableHoaDon" VBox.vgrow="ALWAYS"
+                style="-fx-background-color: transparent;">
+                <columns>
+                    <TableColumn fx:id="colMaHD" text="Mã HĐ" prefWidth="120"/>
+                    <TableColumn fx:id="colMaDS" text="Mã Đặt Sân" prefWidth="120"/>
+                    <TableColumn fx:id="colNgayXuat" text="Ngày Xuất" prefWidth="130"/>
+                    <TableColumn fx:id="colTongTien" text="Tổng Tiền DV" prefWidth="140"/>
+                    <TableColumn fx:id="colTienGiam" text="Tiền Giảm" prefWidth="120"/>
+                    <TableColumn fx:id="colThanhTien" text="Thành Tiền" prefWidth="130"/>
+                    <TableColumn fx:id="colGhiChu" text="Ghi Chú" prefWidth="160"/>
+                    <TableColumn fx:id="colThaoTac" text="Thao Tác" prefWidth="100"/>
+                </columns>
+                <placeholder>
+                    <Label text="Không có dữ liệu hóa đơn" style="-fx-text-fill: #9ca3af;"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+    </VBox>
+</VBox>

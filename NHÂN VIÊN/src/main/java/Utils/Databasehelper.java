@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class Databasehelper {
     private Connection con =null;
-    private final String url ="jdbc:oracle:thin:@localhost:1521:orcl";
+    private final String url ="jdbc:oracle:thin:@localhost:1521/FREE";
     private final String user="system";
     private final String password ="Chon2006";
     private final String driver ="oracle.jdbc.driver.OracleDriver";

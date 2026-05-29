@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controller.TaoHoaDonController"
+      spacing="20.0" prefWidth="500.0"
+      style="-fx-background-color: white; -fx-padding: 30;">
+
+    <Label text="Tạo Hóa Đơn Mới"
+        style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #16a34a;"/>
+
+    <GridPane hgap="12.0" vgap="14.0">
+        <Label text="Mã hóa đơn:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+            style="-fx-font-weight: bold;"/>
+        <TextField fx:id="tfMaHD" promptText="VD: HD001"
+            GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="280.0"/>
+
+        <Label text="Chọn đặt sân:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+            style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="cbMaDS" promptText="Chọn mã đặt sân..."
+            GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="280.0"/>
+
+        <Label text="Tổng tiền DV:" GridPane.rowIndex="2" GridPane.columnIndex="0"
+            style="-fx-font-weight: bold;"/>
+        <TextField fx:id="tfTongTien" promptText="Tự động tính"
+            GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="280.0"
+            editable="false" style="-fx-background-color: #f3f4f6;"/>
+
+        <Label text="Tiền giảm giá:" GridPane.rowIndex="3" GridPane.columnIndex="0"
+            style="-fx-font-weight: bold;"/>
+        <TextField fx:id="tfTienGiam" promptText="0"
+            GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="280.0"/>
+
+        <Label text="Thành tiền:" GridPane.rowIndex="4" GridPane.columnIndex="0"
+            style="-fx-font-weight: bold;"/>
+        <TextField fx:id="tfThanhTien" promptText="Tự động tính"
+            GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="280.0"
+            editable="false"
+            style="-fx-background-color: #f0fdf4; -fx-text-fill: #16a34a; -fx-font-weight: bold;"/>
+
+        <Label text="Ghi chú:" GridPane.rowIndex="5" GridPane.columnIndex="0"
+            style="-fx-font-weight: bold;"/>
+        <TextArea fx:id="taGhiChu" promptText="Nhập ghi chú (nếu có)..."
+            GridPane.rowIndex="5" GridPane.columnIndex="1"
+            prefWidth="280.0" prefHeight="80.0" wrapText="true"/>
+    </GridPane>
+
+    <HBox spacing="12.0" alignment="CENTER_RIGHT">
+        <Button onAction="#onHuy"
+            style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151; -fx-padding: 8 20; -fx-background-radius: 6; -fx-cursor: hand;"
+            text="Hủy"/>
+        <Button onAction="#onLuu"
+            style="-fx-background-color: #16a34a; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20; -fx-background-radius: 6; -fx-cursor: hand;"
+            text="Lưu hóa đơn"/>
+    </HBox>
+</VBox>

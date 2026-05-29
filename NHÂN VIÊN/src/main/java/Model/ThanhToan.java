@@ -37,6 +37,8 @@ public class ThanhToan {
 
     public String getTrangThai() { return trangThai; }
     public void setTrangThai(String trangThai) { this.trangThai = trangThai; }
+    
+    public long getSoTien() { return soTien; }
 
     public String getMaHoaDon() { return maHoaDon; }
     public void setMaHoaDon(String maHoaDon) { this.maHoaDon = maHoaDon; }
