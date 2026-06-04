@@ -26,8 +26,6 @@ public void start(Stage stage) throws IOException {
 
    static void setRoot(String fxml) throws IOException {
     URL fxmlUrl = App.class.getResource(fxml + ".fxml");
-    
-    // ✅ In ra để biết đường dẫn thực tế đang tìm
     System.out.println("Đang load FXML: " + fxml + ".fxml → URL = " + fxmlUrl);
     
     if (fxmlUrl == null) {
