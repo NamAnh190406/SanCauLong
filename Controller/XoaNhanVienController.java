@@ -87,8 +87,6 @@ private void handleThoat() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ThemNV.fxml"));
             Parent themNhanVienView = loader.load();
-
-            // ✅ Sửa: setCenter -> setRoot
             tableNhanVien.getScene().setRoot(themNhanVienView);
         } catch (IOException e) {
             e.printStackTrace();
@@ -238,7 +236,6 @@ private void handleThoat() {
             SuaNhanVienController controllerSua = loader.getController();
             controllerSua.setNhanVienBanDau(nvDuocChon.get(0));
 
-            // ✅ Sửa: setCenter -> setRoot
             tableNhanVien.getScene().setRoot(view);
         } catch (IOException e) {
             e.printStackTrace();
